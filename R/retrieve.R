@@ -42,19 +42,15 @@ cds_retrieve <- function(
   job <-
     .base_url |>
     paste("retrieve/v1/processes", id, "execution", sep = "/") |>
-    .make_request(token) |>
-    httr2::req_body_json(body) |>
-    httr2::req_method("POST") |>
-    httr2::req_perform() |>
-    httr2::resp_body_json()
+    .execute_request(token, "POST", body)
 
   wait_anim <- c("-", "\\", "|", "/")
   i <- 1
   repeat {
-    status <- cds_jobs(job$jobID, token)
-    if (!is.null(status$finished)) {wait_anim <- " "; i <- 1}
+    status <- cds_list_jobs(job$jobID, token)
+    if ("finished" %in% names(status)) {wait_anim <- " "; i <- 1}
     message(paste("\rChecking job status:", wait_anim[i], status$status, "    "), appendLF = FALSE)
-    if (!is.null(status$finished)) break
+    if ("finished" %in% names(status)) break
     i <- i + 1
     if (i > length(wait_anim)) i <- 1
     Sys.sleep(1)
@@ -67,10 +63,8 @@ cds_retrieve <- function(
   job_result <-
     .base_url |>
     paste("retrieve/v1/jobs", job$jobID, "results", sep = "/") |>
-    .make_request(token) |>
-    httr2::req_perform() |>
-    httr2::resp_body_json()
-  
+    .execute_request(token)
+
   message("Downloading data")
   
   data <-

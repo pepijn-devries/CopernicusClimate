@@ -12,9 +12,7 @@ cds_accepted_licences <- function(
   .base_url |>
     paste0("/profiles/v1/account/licences", sep = "") |>
     httr2::url_modify_query(scope = scope) |>
-    .make_request(token) |>
-    httr2::req_perform() |>
-    httr2::resp_body_json() |>
+    .execute_request(token) |>
     dplyr::first() |>
     lapply(data.frame) |>
     dplyr::bind_rows()

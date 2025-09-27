@@ -8,6 +8,15 @@
       `User-Agent` = "r_package")
 }
 
+.execute_request <- function(x, token, method = "GET", req_body = NULL) {
+  x |>
+    .make_request(token) |>
+    httr2::req_method(method) |>
+    httr2::req_body_json(req_body) |>
+    httr2::req_perform() |>
+    httr2::resp_body_json()
+}
+
 .simplify <- function(x) {
   x <- lapply(x, tibble::enframe) |>
     lapply(tidyr::pivot_wider, names_from = "name", values_from = "value") |>

@@ -1,18 +1,14 @@
 #' @export
 cds_starred <- function(..., token = cds_get_token()) {
   account <- cds_get_account(token = token)
-  account$starred_datasets
+  account$starred_datasets |> unlist()
 }
 
 #' @export
 cds_assign_star <- function(dataset, ..., token = cds_get_token()) {
   .base_url |>
     paste0("/profiles/v1/account/starred", sep = "") |>
-    .make_request(token) |>
-    httr2::req_method("POST") |>
-    httr2::req_body_json(list(uid = dataset)) |>
-    httr2::req_perform() |>
-    httr2::resp_body_json() |>
+    .execute_request(token, "POST", list(uid = dataset)) |>
     unlist()
 }
 

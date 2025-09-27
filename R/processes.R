@@ -7,9 +7,7 @@ cds_processes <- function(id = NULL, token = cds_get_token()) {
   result <-
     .base_url |>
     paste("retrieve/v1/processes", id, sep = "/") |>
-    .make_request(token) |>
-    httr2::req_perform() |>
-    httr2::resp_body_json()
+    .execute_request(token)
   
   result$links     <- .simplify(result$links)
   result$inputs    <- .simplify(result$inputs)

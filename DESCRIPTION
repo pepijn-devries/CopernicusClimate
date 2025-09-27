@@ -30,5 +30,4 @@ Collate:
     'processes.R'
     'retrieve.R'
     'stars.R'
-    'test.R'
     'token.R'

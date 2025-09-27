@@ -4,14 +4,18 @@
 #' }
 #' @export
 cds_list_jobs <- function(job_id = NULL, token = cds_get_token()) {
+
   result <-
     .base_url |>
     paste("retrieve/v1/jobs", job_id, sep = "/") |>
-    .make_request(token) |>
-    httr2::req_perform() |>
-    httr2::resp_body_json()
-  result$jobs |>
-    .simplify()
+    .execute_request(token)
+  
+  if ("jobs" %in% names(result)) {
+    result$jobs |>
+      .simplify()
+  } else {
+    result |> list() |> .simplify()
+  }
 }
 
 #' @export
@@ -19,10 +23,6 @@ cds_delete_job <- function(job_id, ..., token = cds_get_token()) {
   result <-
     .base_url |>
     paste("retrieve/v1/jobs/delete", sep = "/") |>
-    .make_request(token) |>
-    httr2::req_method("POST") |>
-    httr2::req_body_json(list(job_ids = as.list(job_id))) |>
-    httr2::req_perform() |>
-    httr2::resp_body_json()
+    .execute_request(token, "POST", list(job_ids = as.list(job_id)))
   result$jobs |> .simplify()
 }
