@@ -1,0 +1,83 @@
+#' @examples
+#' if (interactive()) { # TODO test if token works
+#'   cds_retrieve(
+#'     id             = "reanalysis-era5-pressure-levels",
+#'     variable       = "geopotential",
+#'     product_type   = "reanalysis",
+#'     year           = "2024",
+#'     month          = "03",
+#'     day            = "01",
+#'     pressure_level = "1000",
+#'     format         = "netcdf"
+#'   )
+#' }
+#' 
+#' @export
+cds_retrieve <- function(
+    id,
+    variable,
+    product_type,
+    # date,
+    # time,
+    year,
+    month,
+    day,
+    pressure_level,
+    format,
+    token = cds_get_token()
+) {
+  body <- list(inputs =
+                 list(variable     = as.list(variable),
+                      product_type = as.list(product_type),
+                      # date         = as.list(date),
+                      # time         = as.list(time),
+                      year         = as.list(year),
+                      month        = as.list(month),
+                      day          = as.list(day),
+                      pressure_level = as.list(pressure_level),
+                      format       = format))
+  
+  message("Submitting job")
+  
+  job <-
+    .base_url |>
+    paste("retrieve/v1/processes", id, "execution", sep = "/") |>
+    .make_request(token) |>
+    httr2::req_body_json(body) |>
+    httr2::req_method("POST") |>
+    httr2::req_perform() |>
+    httr2::resp_body_json()
+
+  wait_anim <- c("-", "\\", "|", "/")
+  i <- 1
+  repeat {
+    status <- cds_jobs(job$jobID, token)
+    if (!is.null(status$finished)) {wait_anim <- " "; i <- 1}
+    message(paste("\rChecking job status:", wait_anim[i], status$status, "    "), appendLF = FALSE)
+    if (!is.null(status$finished)) break
+    i <- i + 1
+    if (i > length(wait_anim)) i <- 1
+    Sys.sleep(1)
+  }
+  
+  if (status$status == "failed") stop(sprintf("Job id '%s' failed", job$jobID))
+  
+  message("\nGetting job results")
+  
+  job_result <-
+    .base_url |>
+    paste("retrieve/v1/jobs", job$jobID, "results", sep = "/") |>
+    .make_request(token) |>
+    httr2::req_perform() |>
+    httr2::resp_body_json()
+  
+  message("Downloading data")
+  
+  data <-
+    job_result$asset$value$href |>
+    .make_request(token) |>
+    httr2::req_perform() |>
+    httr2::resp_body_raw()
+  
+  message("Done")
+}

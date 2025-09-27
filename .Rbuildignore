@@ -1,0 +1,7 @@
+^LICENSE\.md$
+^CODE_OF_CONDUCT\.md$
+^README\.Rmd$
+^.*\.Rproj$
+^\.gitignore$
+^\.Rproj\.user$
+^pkgdown$
