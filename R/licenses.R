@@ -2,6 +2,7 @@
 #' if (interactive() && cds_token_works()) {
 #'   cds_accepted_licences("portal")
 #' }
+#' @include helpers.R
 #' @export
 cds_accepted_licences <- function(
     scope = c("None", "all", "dataset", "portal"),

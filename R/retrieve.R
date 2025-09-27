@@ -11,7 +11,7 @@
 #'     format         = "netcdf"
 #'   )
 #' }
-#' 
+#' @include helpers.R
 #' @export
 cds_retrieve <- function(
     id,

@@ -1,3 +1,4 @@
+#' @include helpers.R
 #' @export
 cds_get_token <- function() {
   ## TODO env var ECMWF_DATASTORES_KEY
@@ -10,12 +11,10 @@ cds_get_token <- function() {
 cds_check_authentication <- function(token = cds_get_token()) {
   .base_url |>
     paste0("/profiles/v1/account/verification/pat", sep = "") |>
-    .make_request(token) |>
-    httr2::req_method("POST") |>
-    httr2::req_perform() |>
-    httr2::resp_body_json()
+    .execute_request(token, "POST")
 }
 
+#' @include helpers.R
 #' @export
 cds_token_works <- function(token = cds_get_token()) {
   result <-
@@ -31,9 +30,7 @@ cds_token_works <- function(token = cds_get_token()) {
 cds_get_account <- function(token = cds_get_token()) {
   .base_url |>
     paste0("/profiles/v1/account/", sep = "") |>
-    .make_request(token) |>
-    httr2::req_perform() |>
-    httr2::resp_body_json()
+    .execute_request(token)
 }
 
 #' @include helpers.R
@@ -41,7 +38,5 @@ cds_get_account <- function(token = cds_get_token()) {
 cds_account_metrics <- function(token = cds_get_token()) {
   .base_url |>
     paste0("/profiles/v1/metrics/", sep = "") |>
-    .make_request(token) |>
-    httr2::req_perform() |>
-    httr2::resp_body_string()
+    .execute_request(token)
 }

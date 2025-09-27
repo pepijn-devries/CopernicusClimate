@@ -2,6 +2,7 @@
 #' if (interactive() && cds_token_works()) {
 #'   cds_processes("derived-era5-land-daily-statistics")
 #' }
+#' @include helpers.R
 #' @export
 cds_processes <- function(id = NULL, token = cds_get_token()) {
   result <-

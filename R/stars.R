@@ -1,9 +1,11 @@
+#' @include helpers.R
 #' @export
 cds_starred <- function(..., token = cds_get_token()) {
   account <- cds_get_account(token = token)
   account$starred_datasets |> unlist()
 }
 
+#' @include helpers.R
 #' @export
 cds_assign_star <- function(dataset, ..., token = cds_get_token()) {
   .base_url |>
@@ -12,6 +14,7 @@ cds_assign_star <- function(dataset, ..., token = cds_get_token()) {
     unlist()
 }
 
+#' @include helpers.R
 #' @export
 cds_remove_star <- function(dataset, ..., token = cds_get_token()) {
   .base_url |>

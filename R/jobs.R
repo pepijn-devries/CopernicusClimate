@@ -2,6 +2,7 @@
 #' if (interactive() && cds_token_works()) {
 #'   cds_jobs()
 #' }
+#' @include helpers.R
 #' @export
 cds_list_jobs <- function(job_id = NULL, token = cds_get_token()) {
 
@@ -18,6 +19,7 @@ cds_list_jobs <- function(job_id = NULL, token = cds_get_token()) {
   }
 }
 
+#' @include helpers.R
 #' @export
 cds_delete_job <- function(job_id, ..., token = cds_get_token()) {
   result <-

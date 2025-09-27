@@ -1,9 +1,8 @@
-#' @include helpers.R
 #' @examples
 #' if (interactive()) {
 #'   cds_collections()
 #' }
-#' 
+#' @include helpers.R
 #' @export
 cds_collections <- function() {
   result <-
@@ -15,6 +14,7 @@ cds_collections <- function() {
     .simplify()
 }
 
+#' @include helpers.R
 #' @export
 cds_datasets <- function(search = NULL, page = 0, limit = 50) {
   if (is.null(search)) search <- ""
@@ -28,6 +28,7 @@ cds_datasets <- function(search = NULL, page = 0, limit = 50) {
     .simplify()
 }
 
+#' @include helpers.R
 #' @export
 cds_open_api <- function() {
   #https://cds.climate.copernicus.eu/api/catalogue/v1/docs
@@ -37,9 +38,10 @@ cds_open_api <- function() {
   
 }
 
+#' @include helpers.R
 #' @export
 cds_vocabulary <- function() {
   .base_url |>
     paste0("/catalogue/v1/vocabularies/keywords", sep = "") |>
-    .excute_request("")
+    .execute_request("")
 }
