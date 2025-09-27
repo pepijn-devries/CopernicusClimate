@@ -1,5 +1,5 @@
 #' @examples
-#' if (interactive()) { # TODO test if token works
+#' if (interactive() && cds_token_works()) {
 #'   cds_retrieve(
 #'     id             = "reanalysis-era5-pressure-levels",
 #'     variable       = "geopotential",
@@ -60,7 +60,7 @@ cds_retrieve <- function(
     Sys.sleep(1)
   }
   
-  if (status$status == "failed") stop(sprintf("Job id '%s' failed", job$jobID))
+  if (status$status %in% c("failed", "error")) stop(sprintf("Job id '%s' failed", job$jobID))
   
   message("\nGetting job results")
   
