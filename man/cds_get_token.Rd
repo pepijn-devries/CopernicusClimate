@@ -2,17 +2,54 @@
 % Please edit documentation in R/token.R
 \name{cds_get_token}
 \alias{cds_get_token}
-\title{Get a previously stored Climate Data Service API key}
+\alias{cds_set_token}
+\title{Get or set a Climate Data Service API key}
 \usage{
-cds_get_token()
+cds_get_token(...)
+
+cds_set_token(token, method = c("option", "sysenv"), ...)
+}
+\arguments{
+\item{...}{Ignored}
+
+\item{token}{The API key you wish to set as an R option or to an evironment variable.}
+
+\item{method}{Method to store the API key. Should be either \code{"option"} (default) or
+\code{"sysenv"}.}
 }
 \value{
-TODO
+\code{cds_get_token()} will return an API key token if it has been set. If
+it is not set it will return an empty string: \code{""}. \code{cds_set_token()} will
+return \code{NULL} invisibly.
 }
 \description{
-TODO
+Many of the Climate Data Services features require a personal
+Application Programming Interface (API) key. This function
+will get a token that was previously stored (\code{cds_set_token()}),
+and can be used throughout the R session.
+}
+\details{
+To use an API key, you first need to get one from the
+Climate Data Service. You can do so, by creating an account
+and then initialise the key at \url{https://cds.climate.copernicus.eu/profile}.
+
+There are diffrent locations where the key can be stored and where
+\code{cds_get_token()} will look. It will look for the first succecful value of (in order):
+the environment variable named \code{"CDSAPI_KEY"}, the R \code{getOption()} named \code{"CDSAPI_KEY"},
+the environment variable named \code{"ECMWF_DATASTORES_KEY"}, and the R \code{getOption()} named
+\code{"ECMWF_DATASTORES_KEY"}.
+
+You can set the key at the start of each R session with \code{cds_set_token()}. If you
+want a persistent sollution, you can add the environment variable (with names shown above)
+to your system. Or you can add the option (with the names shown above) to your
+\code{".profile"} file. This will help you obscure your sensitive account information in your R script.
 }
 \examples{
-# TODO
+if (interactive() && !cds_token_works()) {
+  cds_set_token("this-is-a-dummy-token", "option")
+}
 
+if (interactive()) {
+  cds_get_token()
+}
 }

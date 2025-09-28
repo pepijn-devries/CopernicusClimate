@@ -10,7 +10,7 @@
 #' @param pressure_level TODO
 #' @param format TODO
 #' @param ... Ignored
-#' @param token TODO
+#' @inheritParams cds_check_authentication
 #' @returns TODO
 #' @examples
 #' if (interactive() && cds_token_works()) {

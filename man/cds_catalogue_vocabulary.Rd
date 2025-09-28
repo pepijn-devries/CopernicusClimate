@@ -10,10 +10,11 @@ cds_catalogue_vocabulary(...)
 \item{...}{Ignored}
 }
 \value{
-TODO
+Returns a \code{data.frame} of keyword vocabulary used by the catalogue.
 }
 \description{
-TODO
+The catalogue uses a specific vocabulary for keywords. This function
+produces an overview.
 }
 \examples{
 if (interactive()) {

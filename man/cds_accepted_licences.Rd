@@ -5,23 +5,27 @@
 \title{List accepted licences}
 \usage{
 cds_accepted_licences(
-  scope = c("None", "all", "dataset", "portal"),
+  scope = c("all", "dataset", "portal"),
   ...,
   token = cds_get_token()
 )
 }
 \arguments{
-\item{scope}{TODO}
+\item{scope}{Scope of the licenses to be listed should be one of \code{"all"} (default),
+\code{"dataset"} or \code{"portal"}.}
 
 \item{...}{Ignored}
 
-\item{token}{TODO}
+\item{token}{An API key to be used for authentication. Will use
+\code{cds_get_token()} by default.}
 }
 \value{
-TODO
+Returns a \code{data.frame} listing the accepted licenses.
 }
 \description{
-TODO
+In order to use specific features of the Climate Data Service, you may first
+need to accept specific licences. This function will list all licenses you
+have accepted.
 }
 \examples{
 if (interactive() && cds_token_works()) {

@@ -2,23 +2,37 @@
 % Please edit documentation in R/stars.R
 \name{cds_starred}
 \alias{cds_starred}
-\title{List starred datasets}
+\alias{cds_assign_star}
+\alias{cds_remove_star}
+\title{Add or remove a star to a dataset, or list starred datasets}
 \usage{
 cds_starred(..., token = cds_get_token())
+
+cds_assign_star(dataset, ..., token = cds_get_token())
+
+cds_remove_star(dataset, ..., token = cds_get_token())
 }
 \arguments{
 \item{...}{Ignored}
 
-\item{token}{TODO}
+\item{token}{An API key to be used for authentication. Will use
+\code{cds_get_token()} by default.}
+
+\item{dataset}{Name of the dataset to assign a star to, or remove it from.}
 }
 \value{
-TODO
+In case of \code{cds_assign_star()} returns the name of the starred
+dataset. In case of \code{cds_starred()} a vector of names of starred datasets.
+In case of \code{cds_remove_star()} returns \code{NULL} invisibly.
 }
 \description{
-TODO
+Use stars to keep track of your favourite datasets. Use these
+functions to add or remove a star.
 }
 \examples{
 if (interactive() && cds_token_works()) {
+  cds_assign_star("reanalysis-carra-single-levels")
   cds_starred()
+  cds_remove_star("reanalysis-carra-single-levels")
 }
 }

@@ -7,17 +7,19 @@
 cds_get_account(token = cds_get_token(), ...)
 }
 \arguments{
-\item{token}{TODO}
+\item{token}{An API key to be used for authentication. Will use
+\code{cds_get_token()} by default.}
 
 \item{...}{Ignored}
 }
 \value{
-TODO
+Returns a named \code{list} with account details.
 }
 \description{
-TODO
+Retrieve account details associated with the provided \code{token}
 }
 \examples{
-# TODO
-
+if (interactive() && cds_token_works()) {
+  cds_get_account()
+}
 }

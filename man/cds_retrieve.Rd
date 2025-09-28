@@ -36,7 +36,8 @@ cds_retrieve(
 
 \item{...}{Ignored}
 
-\item{token}{TODO}
+\item{token}{An API key to be used for authentication. Will use
+\code{cds_get_token()} by default.}
 }
 \value{
 TODO

@@ -7,17 +7,19 @@
 cds_account_metrics(token = cds_get_token(), ...)
 }
 \arguments{
-\item{token}{TODO}
+\item{token}{An API key to be used for authentication. Will use
+\code{cds_get_token()} by default.}
 
 \item{...}{Ignored}
 }
 \value{
-TODO
+Returns text that can be interpreted with \href{https://prometheus.io/}{prometheus}
 }
 \description{
-TODO
+Obtain account metrics that can be interpreted with \href{https://prometheus.io/}{prometheus}
 }
 \examples{
-# TODO
-
+if (interactive() && cds_token_works()) {
+  cds_account_metrics()
+}
 }

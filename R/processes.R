@@ -3,7 +3,7 @@
 #' TODO
 #' @param process_id TODO
 #' @param ... Ignored
-#' @param token TODO
+#' @inheritParams cds_check_authentication
 #' @returns TODO
 #' @examples
 #' if (interactive() && cds_token_works()) {

@@ -3,7 +3,7 @@
 #' TODO
 #' @param job_id TODO
 #' @param ... Ignored
-#' @param token TODO
+#' @inheritParams cds_check_authentication
 #' @returns TODO
 #' @examples
 #' if (interactive() && cds_token_works()) {
@@ -31,7 +31,7 @@ cds_list_jobs <- function(job_id = NULL, ..., token = cds_get_token()) {
 #' TODO
 #' @param job_id TODO
 #' @param ... Ignored
-#' @param token TODO
+#' @inheritParams cds_check_authentication
 #' @returns TODO
 #' @examples
 #' #TODO

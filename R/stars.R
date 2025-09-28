@@ -1,12 +1,18 @@
-#' List starred datasets
+#' Add or remove a star to a dataset, or list starred datasets
 #' 
-#' TODO
+#' Use stars to keep track of your favourite datasets. Use these
+#' functions to add or remove a star.
+#' @param dataset Name of the dataset to assign a star to, or remove it from.
 #' @param ... Ignored
-#' @param token TODO
-#' @returns TODO
+#' @inheritParams cds_check_authentication
+#' @returns In case of `cds_assign_star()` returns the name of the starred
+#' dataset. In case of `cds_starred()` a vector of names of starred datasets.
+#' In case of `cds_remove_star()` returns `NULL` invisibly.
 #' @examples
 #' if (interactive() && cds_token_works()) {
+#'   cds_assign_star("reanalysis-carra-single-levels")
 #'   cds_starred()
+#'   cds_remove_star("reanalysis-carra-single-levels")
 #' }
 #' @include helpers.R
 #' @export
@@ -15,15 +21,7 @@ cds_starred <- function(..., token = cds_get_token()) {
   account$starred_datasets |> unlist()
 }
 
-#' Assign or remove stars to/from datasets
-#' 
-#' TODO
-#' @param dataset TODO
-#' @param ... Ignored
-#' @param token TODO
-#' @returns TODO
-#' @examples
-#' #TODO
+#' @rdname cds_starred
 #' @include helpers.R
 #' @export
 cds_assign_star <- function(dataset, ..., token = cds_get_token()) {
@@ -33,14 +31,13 @@ cds_assign_star <- function(dataset, ..., token = cds_get_token()) {
     unlist()
 }
 
-#' @rdname cds_assign_star
+#' @rdname cds_starred
 #' @include helpers.R
 #' @export
 cds_remove_star <- function(dataset, ..., token = cds_get_token()) {
   .base_url |>
     paste("profiles/v1/account/starred", dataset, sep = "/") |>
-    .make_request(token) |>
-    httr2::req_method("DELETE") |>
+    .make_request(token, "DELETE") |>
     httr2::req_perform()
   ## removing a star returns empty body
   invisible(NULL)

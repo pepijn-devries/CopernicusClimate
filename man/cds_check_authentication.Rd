@@ -10,17 +10,23 @@ cds_check_authentication(token = cds_get_token(), ...)
 cds_token_works(token = cds_get_token(), ...)
 }
 \arguments{
-\item{token}{TODO}
+\item{token}{An API key to be used for authentication. Will use
+\code{cds_get_token()} by default.}
 
 \item{...}{Ignored}
 }
 \value{
-TODO
+\code{cds_check_authentication()} will return
+some account information when successful but throws an error if
+it is not. In contrast \code{cds_token_works()} returns a \code{logical}
+value and will not throw an error upon failure.
 }
 \description{
-TODO
+Checks if the specified API key can be used for authentication at
+the Climate Data Service.
 }
 \examples{
-# TODO
-
+if (interactive() && cds_token_works()) {
+  cds_check_authentication()
+}
 }
