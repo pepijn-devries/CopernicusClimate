@@ -1,6 +1,6 @@
 .base_url <- "https://cds.climate.copernicus.eu/api"
 
-.make_request <- function(x, token) {
+.make_request <- function(x, token = "") {
   x |>
     httr2::request() |>
     httr2::req_headers(
@@ -8,7 +8,7 @@
       `User-Agent` = "r_package")
 }
 
-.execute_request <- function(x, token, method = "GET", req_body = NULL) {
+.execute_request <- function(x, token = "", method = "GET", req_body = NULL) {
   x |>
     .make_request(token) |>
     httr2::req_method(method) |>

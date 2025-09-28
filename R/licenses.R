@@ -1,3 +1,10 @@
+#' List accepted licences
+#' 
+#' TODO
+#' @param scope TODO
+#' @param ... Ignored
+#' @param token TODO
+#' @returns TODO
 #' @examples
 #' if (interactive() && cds_token_works()) {
 #'   cds_accepted_licences("portal")

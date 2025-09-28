@@ -1,3 +1,13 @@
+#' List starred datasets
+#' 
+#' TODO
+#' @param ... Ignored
+#' @param token TODO
+#' @returns TODO
+#' @examples
+#' if (interactive() && cds_token_works()) {
+#'   cds_starred()
+#' }
 #' @include helpers.R
 #' @export
 cds_starred <- function(..., token = cds_get_token()) {
@@ -5,6 +15,15 @@ cds_starred <- function(..., token = cds_get_token()) {
   account$starred_datasets |> unlist()
 }
 
+#' Assign or remove stars to/from datasets
+#' 
+#' TODO
+#' @param dataset TODO
+#' @param ... Ignored
+#' @param token TODO
+#' @returns TODO
+#' @examples
+#' #TODO
 #' @include helpers.R
 #' @export
 cds_assign_star <- function(dataset, ..., token = cds_get_token()) {
@@ -14,6 +33,7 @@ cds_assign_star <- function(dataset, ..., token = cds_get_token()) {
     unlist()
 }
 
+#' @rdname cds_assign_star
 #' @include helpers.R
 #' @export
 cds_remove_star <- function(dataset, ..., token = cds_get_token()) {

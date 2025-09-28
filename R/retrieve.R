@@ -1,3 +1,17 @@
+#' TODO retrieve split this in submit and download functions
+#' 
+#' TODO
+#' @param id TODO
+#' @param variable TODO
+#' @param product_type TODO
+#' @param year TODO
+#' @param month TODO
+#' @param day TODO
+#' @param pressure_level TODO
+#' @param format TODO
+#' @param ... Ignored
+#' @param token TODO
+#' @returns TODO
 #' @examples
 #' if (interactive() && cds_token_works()) {
 #'   cds_retrieve(
@@ -24,6 +38,7 @@ cds_retrieve <- function(
     day,
     pressure_level,
     format,
+    ...,
     token = cds_get_token()
 ) {
   body <- list(inputs =
