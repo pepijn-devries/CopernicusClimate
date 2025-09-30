@@ -33,6 +33,13 @@ library(CopernicusClimate)
 ## basic example code
 ```
 
+## More of Copernicus
+
+More R packages for exploring other Copernicus data services:
+
+- [CopernicusMarine](https://github.com/pepijn-devries/CopernicusMarine)
+  Dedicated to marine datasets
+
 ## Code of Conduct
 
 Please note that the CopernicusClimate project is released with a

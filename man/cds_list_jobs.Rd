@@ -4,10 +4,23 @@
 \alias{cds_list_jobs}
 \title{List jobs submitted to the Climate Data Service}
 \usage{
-cds_list_jobs(job_id = NULL, ..., token = cds_get_token())
+cds_list_jobs(
+  job_id = NULL,
+  status = NULL,
+  limit = 50,
+  ...,
+  token = cds_get_token()
+)
 }
 \arguments{
-\item{job_id}{TODO}
+\item{job_id}{The id of a specific job, if you want the results for that job. If \code{NULL}
+(default) it is ignored.}
+
+\item{status}{Only return jobs with the status stated by this argument. Default is \code{NULL}
+meaning that jobs with any status are returned. Should be any of \code{"accepted"}, \code{"running"},
+\code{"successful"}, \code{"failed"}, or \code{"rejected"}.}
+
+\item{limit}{Use to limit the number of listed results. Defaults to \code{50}.}
 
 \item{...}{Ignored}
 
@@ -15,7 +28,7 @@ cds_list_jobs(job_id = NULL, ..., token = cds_get_token())
 \code{cds_get_token()} by default.}
 }
 \value{
-TODO
+Returns a \code{data.frame} of submitted jobs.
 }
 \description{
 TODO

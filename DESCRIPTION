@@ -16,6 +16,8 @@ Depends:
 Imports:
     dplyr,
     httr2,
+    purrr,
+    rlang,
     tibble,
     tidyr
 License: GPL (>= 3)

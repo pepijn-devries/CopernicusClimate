@@ -12,7 +12,7 @@ cds_dataset_form(dataset, ...)
 \item{...}{Ignored}
 }
 \value{
-A named list with aspects of the dataset that can be subsetted, when defining
+A named list\emph{TODO} \emph{df?} with aspects of the dataset that can be subsetted, when defining
 a job \emph{TODO} ref
 }
 \description{

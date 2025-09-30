@@ -53,13 +53,17 @@ cds_search_datasets <- function(search = NULL, page = 0, limit = 50, ...) {
 #' TODO
 #' @param dataset TODO
 #' @param ... Ignored
-#' @returns A named list with aspects of the dataset that can be subsetted, when defining
+#' @returns A named list*TODO* *df?* with aspects of the dataset that can be subsetted, when defining
 #' a job *TODO* ref
 #' @export
 cds_dataset_form <- function(dataset, ...) {
   .base_url |>
     paste("catalogue/v1/collections", dataset, "form.json", sep = "/") |>
-    .execute_request()
+    .execute_request() |>
+    purrr::map_df(~ .x) |>
+    tidyr::nest(
+      children = .data$children,
+      details = .data$details)
 }
 
 # This function is not exported as it will not have added value
