@@ -7,15 +7,20 @@
 cds_build_request(dataset, ...)
 }
 \arguments{
-\item{dataset}{TODO}
+\item{dataset}{The dataset name to be used for setting up a request.}
 
-\item{...}{TODO}
+\item{...}{Parameters for subsetting the dataset. Use \code{cds_dataset_form()} to inquiry
+which parameters and parameter values are available for a specific dataset.
+If left blank it will take default parameter values.}
 }
 \value{
-TODO
+Returns a named list, which can be used to submit a job (\code{cds_submit_job()})
+or inquiry its cost (\code{cds_estimate_costs()}).
 }
 \description{
-TODO
+This function is used by \code{cds_estimate_costs()} and \code{cds_submit_job()}
+to subset a dataset before downloading. It will also help you to explore
+which parameters are available for subsetting.
 }
 \examples{
 if (interactive()) {

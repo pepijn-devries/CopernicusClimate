@@ -2,19 +2,20 @@
 % Please edit documentation in R/catalogue.R
 \name{cds_dataset_form}
 \alias{cds_dataset_form}
-\title{Obtain list of options to subset a dataset}
+\title{Obtain an overview of options to subset a dataset}
 \usage{
 cds_dataset_form(dataset, ...)
 }
 \arguments{
-\item{dataset}{TODO}
+\item{dataset}{A name of a dataset to explore}
 
 \item{...}{Ignored}
 }
 \value{
-A named list\emph{TODO} \emph{df?} with aspects of the dataset that can be subsetted, when defining
-a job \emph{TODO} ref
+A \code{data.frame} with aspects of the dataset that can be subsetted, when defining
+a job. See also \code{cds_submit_job()} and \code{cds_build_request()}
 }
 \description{
-TODO
+This function provides an overview of parameters that can be used to subset a
+dataset. It can help you set up a request with \code{cds_submit_job()} or \code{cds_build_request()}.
 }

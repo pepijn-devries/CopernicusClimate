@@ -7,11 +7,13 @@
 cds_download_jobs(job_id, destination, names, ..., token = cds_get_token())
 }
 \arguments{
-\item{job_id}{TODO}
+\item{job_id}{If a specific job identifier is listed here, only the files resulting
+from those jobs are downloaded. If left blank, all successful jobs are downloaded.}
 
-\item{destination}{Destination path to store downloaded files}
+\item{destination}{Destination path to store downloaded files.}
 
-\item{names}{File names for the downloaded files. If missing, it is taken from the job.}
+\item{names}{File names for the downloaded files. If missing, the cryptic hexadecimal
+file name is taken from the job.}
 
 \item{...}{Ignored}
 
@@ -23,9 +25,21 @@ A \code{data.frame} of all downloaded files. Contains a column \code{local} with
 to the locally stored files.
 }
 \description{
-TODO
+After submitting one or more jobs with \code{cds_submit_job()}, you can download the resulting
+files with \code{cds_download_jobs()}
 }
 \examples{
-# TODO
-
+if (interactive() && cds_token_works()) {
+  job <- cds_submit_job(
+      dataset        = "reanalysis-era5-pressure-levels",
+      variable       = "geopotential",
+      product_type   = "reanalysis",
+      year           = "2024",
+      month          = "03",
+      day            = "01",
+      pressure_level = "1000",
+      format         = "netcdf"
+    )
+  cds_download_jobs(job$jobID, tempdir())
+}
 }

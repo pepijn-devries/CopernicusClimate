@@ -8,33 +8,41 @@ cds_submit_job(
   dataset,
   ...,
   wait = TRUE,
-  check_quotum = TRUE,
+  check_quota = TRUE,
   check_licence = TRUE,
   token = cds_get_token()
 )
 }
 \arguments{
-\item{dataset}{TODO}
+\item{dataset}{The dataset name to be downloaded}
 
-\item{...}{TODO}
+\item{...}{Subsetting parameters passed onto \code{cds_build_request()}.}
 
-\item{wait}{TODO}
+\item{wait}{A \code{logical} value indicating if the function should wait for the
+submitted job to finish. Set it to \code{FALSE} to continue without waiting}
 
-\item{check_quotum}{TODO}
+\item{check_quota}{Each account has a quota of data that can be downloaded.
+If this argument is set to \code{TRUE} (default) it is checked if the request doesn't
+exceed your quota. Set it to \code{FALSE} to skip this step and speed up the submission.}
 
-\item{check_licence}{TODO}
+\item{check_licence}{Datasets generally require you to accept certain terms of use.
+If this argument is set to \code{TRUE} (default), it will be checked if you have accepted all
+required licences for the submitted request. Set it to \code{FALSE} to skip this step and
+speed up the submission.}
 
 \item{token}{An API key to be used for authentication. Will use
 \code{cds_get_token()} by default.}
 }
 \value{
-TODO
+Returns a \code{data.frame} containing information about the submitted job.
 }
 \description{
-TODO
+Submit a request to the Copernicus Climate Data Service to download
+(part of) a dataset. If the request is successful, a job identifier is
+returned which can be used to actually download the data (\code{cds_download_jobs()}).
 }
 \examples{
-# TODO
+# TODO specify area
 if (interactive() && cds_token_works()) {
   job <- cds_submit_job(
       dataset        = "reanalysis-era5-pressure-levels",

@@ -1,16 +1,24 @@
 #' Submit a download job for a dataset
 #' 
-#' TODO
+#' Submit a request to the Copernicus Climate Data Service to download
+#' (part of) a dataset. If the request is successful, a job identifier is
+#' returned which can be used to actually download the data (`cds_download_jobs()`).
 #' 
-#' @param dataset TODO
-#' @param ... TODO
-#' @param wait TODO
-#' @param check_quotum TODO
-#' @param check_licence TODO
+#' @param dataset The dataset name to be downloaded
+#' @param ... Subsetting parameters passed onto `cds_build_request()`.
+#' @param wait A `logical` value indicating if the function should wait for the
+#' submitted job to finish. Set it to `FALSE` to continue without waiting
+#' @param check_quota Each account has a quota of data that can be downloaded.
+#' If this argument is set to `TRUE` (default) it is checked if the request doesn't
+#' exceed your quota. Set it to `FALSE` to skip this step and speed up the submission.
+#' @param check_licence Datasets generally require you to accept certain terms of use.
+#' If this argument is set to `TRUE` (default), it will be checked if you have accepted all
+#' required licences for the submitted request. Set it to `FALSE` to skip this step and
+#'  speed up the submission.
 #' @inheritParams cds_check_authentication
-#' @returns TODO
+#' @returns Returns a `data.frame` containing information about the submitted job.
 #' @examples
-#' # TODO
+#' # TODO specify area
 #' if (interactive() && cds_token_works()) {
 #'   job <- cds_submit_job(
 #'       dataset        = "reanalysis-era5-pressure-levels",
@@ -26,16 +34,16 @@
 #' @include helpers.R
 #' @export
 cds_submit_job <- function(
-    dataset, ..., wait = TRUE, check_quotum = TRUE, check_licence = TRUE,
+    dataset, ..., wait = TRUE, check_quota = TRUE, check_licence = TRUE,
     token = cds_get_token()) {
   #https://cds.climate.copernicus.eu/api/retrieve/v1/docs
   message("Building request")
   form <- cds_build_request(dataset, ...)
-  if (check_quotum) {
-    message("Checking quotum")
+  if (check_quota) {
+    message("Checking quota")
     quota <- .cds_estimate_costs(dataset, form, token)
     if (quota$cost > quota$limit) {
-      rlang::abort(c(x = sprintf("This request (%i) exceeds your quotum (%i)",
+      rlang::abort(c(x = sprintf("This request (%i) exceeds your quota (%i)",
                                  quota$cost, quota$limit),
                      i = "Try narrowing your request"))
     }
@@ -82,10 +90,15 @@ cds_submit_job <- function(
 
 #' Prepare a request for downloading a dataset
 #' 
-#' TODO
-#' @param dataset TODO
-#' @param ... TODO
-#' @returns TODO
+#' This function is used by `cds_estimate_costs()` and `cds_submit_job()`
+#' to subset a dataset before downloading. It will also help you to explore
+#' which parameters are available for subsetting.
+#' @param dataset The dataset name to be used for setting up a request.
+#' @param ... Parameters for subsetting the dataset. Use `cds_dataset_form()` to inquiry
+#' which parameters and parameter values are available for a specific dataset.
+#' If left blank it will take default parameter values.
+#' @returns Returns a named list, which can be used to submit a job (`cds_submit_job()`)
+#' or inquiry its cost (`cds_estimate_costs()`).
 #' @examples
 #' if (interactive()) {
 #'   cds_build_request(
@@ -169,13 +182,15 @@ cds_build_request <- function(dataset, ...) {
   return( form_result )
 }
 
-#' Check the cost of a request against your quotum
+#' Check the cost of a request against your quota
 #' 
-#' TODO
-#' @param dataset TODO
-#' @param ... TODO
+#' Each account has a limit to the amount of data that can be downloaded.
+#' Use this function to check if a request exceeds your quota.
+#' @param dataset A dataset name to be inspected
+#' @param ... Parameters passed on to `cds_build_request()`
 #' @inheritParams cds_check_authentication
-#' @returns TODO
+#' @returns Returns a named list indicating the available quota and
+#' the estimated cost for a request specified with `...`-arguments.
 #' @examples
 #' if (interactive() && cds_token_works()) {
 #'   cds_estimate_costs(
@@ -188,6 +203,8 @@ cds_build_request <- function(dataset, ...) {
 #'     pressure_level = "1000",
 #'     format         = "netcdf"
 #'   )
+#'   
+#'   cds_estimate_costs(dataset = "reanalysis-era5-pressure-levels")
 #' }
 #' @include helpers.R
 #' @export
@@ -203,17 +220,31 @@ cds_estimate_costs <- function(dataset, ..., token = cds_get_token()) {
 
 #' Download specific jobs
 #' 
-#' TODO
-#' @param job_id TODO
-#' @param destination Destination path to store downloaded files
-#' @param names File names for the downloaded files. If missing, it is taken from the job.
+#' After submitting one or more jobs with `cds_submit_job()`, you can download the resulting
+#' files with `cds_download_jobs()`
+#' @param job_id If a specific job identifier is listed here, only the files resulting
+#' from those jobs are downloaded. If left blank, all successful jobs are downloaded.
+#' @param destination Destination path to store downloaded files.
+#' @param names File names for the downloaded files. If missing, the cryptic hexadecimal
+#' file name is taken from the job.
 #' @param ... Ignored
 #' @inheritParams cds_check_authentication
 #' @returns A `data.frame` of all downloaded files. Contains a column `local` with the path
 #' to the locally stored files.
 #' @examples
-#' # TODO
-#' 
+#' if (interactive() && cds_token_works()) {
+#'   job <- cds_submit_job(
+#'       dataset        = "reanalysis-era5-pressure-levels",
+#'       variable       = "geopotential",
+#'       product_type   = "reanalysis",
+#'       year           = "2024",
+#'       month          = "03",
+#'       day            = "01",
+#'       pressure_level = "1000",
+#'       format         = "netcdf"
+#'     )
+#'   cds_download_jobs(job$jobID, tempdir())
+#' }
 #' @include helpers.R
 #' @export
 cds_download_jobs <- function(job_id, destination, names, ..., token = cds_get_token()) {

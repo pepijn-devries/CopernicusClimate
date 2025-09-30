@@ -48,13 +48,14 @@ cds_search_datasets <- function(search = NULL, page = 0, limit = 50, ...) {
   result
 }
 
-#' Obtain list of options to subset a dataset
+#' Obtain an overview of options to subset a dataset
 #' 
-#' TODO
-#' @param dataset TODO
+#' This function provides an overview of parameters that can be used to subset a
+#' dataset. It can help you set up a request with `cds_submit_job()` or `cds_build_request()`.
+#' @param dataset A name of a dataset to explore
 #' @param ... Ignored
-#' @returns A named list*TODO* *df?* with aspects of the dataset that can be subsetted, when defining
-#' a job *TODO* ref
+#' @returns A `data.frame` with aspects of the dataset that can be subsetted, when defining
+#' a job. See also `cds_submit_job()` and `cds_build_request()`
 #' @export
 cds_dataset_form <- function(dataset, ...) {
   .base_url |>
