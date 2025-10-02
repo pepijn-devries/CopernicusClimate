@@ -4,6 +4,9 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/pepijn-devries/CopernicusClimate/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/pepijn-devries/CopernicusClimate/actions/workflows/R-CMD-check.yaml)
+[![CopernicusClimate status
+badge](https://pepijn-devries.r-universe.dev/badges/CopernicusClimate)](https://pepijn-devries.r-universe.dev/CopernicusClimate)
+<!-- [![Codecov test coverage](https://codecov.io/gh/pepijn-devries/CopernicusClimate/graph/badge.svg)](https://app.codecov.io/gh/pepijn-devries/CopernicusClimate) -->
 <!-- badges: end -->
 
 ## Overview
@@ -27,18 +30,52 @@ install.packages("CopernicusClimate", repos = c('https://pepijn-devries.r-univer
 
 ## Example
 
-TODO
+In order to download data from C3S you first need to submit a request
+with `cds_submit_job()`. After your request has been processed by C3S,
+you can download the data with `cds_download_jobs()`. This workflow is
+demonstrated in the code snippet below.
 
 ``` r
 library(CopernicusClimate)
-## basic example code
+library(stars)   ## For loading spatial raster data
+library(ggplot2) ## For plotting the data
+
+if (cds_token_works()) { ## Make sure there is an operational access token
+  
+  ## Submit a download job:
+  job <-
+    cds_submit_job(
+      "sis-agrometeorological-indicators",
+      statistic = "day_time_mean",
+      variable = "2m_temperature",
+      year = "2025",
+      month = "01",
+      day = "01")
+  
+  ## Actually download the data:
+  data_file <- cds_download_jobs(job$jobID, tempdir())
+  
+  ## Unzip the downloaded data:
+  data_unzipped <- unzip(data_file$local, list = TRUE)
+  unzip(data_file$local, exdir = tempdir())
+  data_stars <- read_mdim(file.path(tempdir(), data_unzipped))
+  
+  ## Plot the downloaded data
+  ggplot() +
+    geom_stars(data = data_stars) +
+    coord_sf() +
+    labs(fill = "T(air 2m) [K]") +
+    scale_fill_viridis_c(option = "inferno", na.value = "transparent")
+}
 ```
+
+<img src="man/figures/README-example-1.png" width="100%" />
 
 ## More of Copernicus
 
 More R packages for exploring other Copernicus data services:
 
-- [CopernicusMarine](https://github.com/pepijn-devries/CopernicusMarine)
+- [CopernicusClimate](https://github.com/pepijn-devries/CopernicusClimate)
   Dedicated to marine datasets
 
 ## Code of Conduct
