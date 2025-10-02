@@ -14,6 +14,9 @@ cds_search_datasets(search, keywords, page = 0, limit = 50, ...)
 
 \item{search}{A string containing free text search terms to look for in the available datasets.}
 
+\item{keywords}{A (vector of) string containing specific keywords. Should be listed in
+\code{cds_catalogue_vocabulary()}}
+
 \item{page}{When there are more search results than \code{limit}, results are paginated.
 Use \code{page} to specify which page to return starting at \code{0} (default).}
 
@@ -33,15 +36,3 @@ if (interactive()) {
   cds_search_datasets("rain", "Temporal coverage: Future")
 }
 }
-\keyword{(vector}
-\keyword{A}
-\keyword{Should}
-\keyword{`cds_catalogue_vocabulary()`}
-\keyword{be}
-\keyword{containing}
-\keyword{in}
-\keyword{keywords.}
-\keyword{listed}
-\keyword{of)}
-\keyword{specific}
-\keyword{string}

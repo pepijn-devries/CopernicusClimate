@@ -15,7 +15,7 @@ cds_list_datasets <- function(...) {
 #' 
 #' This will help you decide which datasets you wish to obtain.
 #' @param search A string containing free text search terms to look for in the available datasets.
-#' @keywords A (vector of) string containing specific keywords. Should be listed in
+#' @param keywords A (vector of) string containing specific keywords. Should be listed in
 #' `cds_catalogue_vocabulary()`
 #' @param page When there are more search results than `limit`, results are paginated.
 #' Use `page` to specify which page to return starting at `0` (default).
