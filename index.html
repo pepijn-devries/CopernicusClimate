@@ -28,7 +28,7 @@
 
     <a class="navbar-brand me-2" href="index.html">CopernicusClimate</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9003</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9005</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -104,7 +104,7 @@
 <span>  <span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">geom_stars</span><span class="op">(</span>data <span class="op">=</span> <span class="va">data_stars</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">coord_sf</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu">labs</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"T(air 2m) [K]"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">labs</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"T(air 2m) [K]"</span>, x <span class="op">=</span> <span class="cn">NULL</span>, y <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">scale_fill_viridis_c</span><span class="op">(</span>option <span class="op">=</span> <span class="st">"inferno"</span>, na.value <span class="op">=</span> <span class="st">"transparent"</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <p><img src="reference/figures/README-example-1.png" width="100%"></p>
@@ -158,6 +158,7 @@
 <ul class="list-unstyled">
 <li><a href="https://github.com/pepijn-devries/CopernicusClimate/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/pepijn-devries/CopernicusClimate/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
 <li><a href="https://pepijn-devries.r-universe.dev/CopernicusClimate" class="external-link"><img src="https://pepijn-devries.r-universe.dev/badges/CopernicusClimate" alt="CopernicusClimate status badge"></a></li>
+<li><a href="https://app.codecov.io/gh/pepijn-devries/CopernicusClimate" class="external-link"><img src="https://codecov.io/gh/pepijn-devries/CopernicusClimate/graph/badge.svg" alt="Codecov test coverage"></a></li>
 </ul>
 </div>
 
