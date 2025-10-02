@@ -64,7 +64,7 @@ if (cds_token_works()) { ## Make sure there is an operational access token
   ggplot() +
     geom_stars(data = data_stars) +
     coord_sf() +
-    labs(fill = "T(air 2m) [K]") +
+    labs(fill = "T(air 2m) [K]", x = NULL, y = NULL) +
     scale_fill_viridis_c(option = "inferno", na.value = "transparent")
 }
 ```

@@ -130,5 +130,7 @@ cds_get_account <- function(token = cds_get_token(), ...) {
 cds_account_metrics <- function(token = cds_get_token(), ...) {
   .base_url |>
     paste0("/profiles/v1/metrics/", sep = "") |>
-    .execute_request(token)
+    .make_request(token) |>
+    httr2::req_perform() |>
+    httr2::resp_body_string()
 }

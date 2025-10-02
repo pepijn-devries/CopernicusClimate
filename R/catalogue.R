@@ -14,7 +14,9 @@ cds_list_datasets <- function(...) {
 #' List or search Climate Data Service datasets
 #' 
 #' This will help you decide which datasets you wish to obtain.
-#' @param search A string containing search terms to look for in the available datasets.
+#' @param search A string containing free text search terms to look for in the available datasets.
+#' @keywords A (vector of) string containing specific keywords. Should be listed in
+#' `cds_catalogue_vocabulary()`
 #' @param page When there are more search results than `limit`, results are paginated.
 #' Use `page` to specify which page to return starting at `0` (default).
 #' @param limit Use to limit the number of search results. Defaults to `50`.
@@ -25,17 +27,19 @@ cds_list_datasets <- function(...) {
 #' @examples
 #' if (interactive()) {
 #'   cds_list_datasets()
-#'   cds_search_datasets("rain")
+#'   cds_search_datasets("rain", "Temporal coverage: Future")
 #' }
 #' @include helpers.R
 #' @export
-cds_search_datasets <- function(search = NULL, page = 0, limit = 50, ...) {
-  if (is.null(search)) search <- ""
+cds_search_datasets <- function(search, keywords, page = 0, limit = 50, ...) {
+  if (missing(search)) search <- ""
+  if (missing(keywords)) keywords <- list()
+  keywords <- unlist(keywords)
   result <-
     .base_url |>
     paste0("/catalogue/v1/datasets", sep = "") |>
     .execute_request("", "POST",
-                     list(q = search, kw = list(), idx = list(), sortby = "update",
+                     list(q = search, kw = as.list(keywords), idx = list(), sortby = "update",
                           page = page, limit = limit, search_stats = TRUE))
   
   meta <- list(numberMatched = result$numberMatched,
@@ -64,20 +68,10 @@ cds_dataset_form <- function(dataset, ...) {
     .execute_request() |>
     purrr::map_df(~ .x)
   if ("details" %in% names(result))
-    result <- tidyr::nest(result, details = .data$details)
+    result <- tidyr::nest(result, details = "details")
   if ("children" %in% names(result))
-    result <- tidyr::nest(result, children = .data$children)
+    result <- tidyr::nest(result, children = "children")
   result
-}
-
-# This function is not exported as it will not have added value
-# for most users
-cds_open_api <- function(...) {
-  #https://cds.climate.copernicus.eu/api/catalogue/v1/docs
-  .base_url |>
-    paste0("/catalogue/v1/openapi.json", sep = "") |>
-    .execute_request()
-  
 }
 
 #' List catalogue vocabulary

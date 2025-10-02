@@ -28,7 +28,7 @@
 #'       month          = "03",
 #'       day            = "01",
 #'       pressure_level = "1000",
-#'       format         = "netcdf"
+#'       data_format    = "netcdf"
 #'     )
 #' }
 #' @include helpers.R
@@ -122,6 +122,7 @@ cds_build_request <- function(dataset, ...) {
     dplyr::mutate(
       required = ifelse(is.na(.data$required), FALSE, .data$required)
     )
+  
   known <- names(form_result) %in% form$name
   for (nm in names(form_result)) {
     details <- form |> dplyr::filter(.data$name == nm)
@@ -132,8 +133,10 @@ cds_build_request <- function(dataset, ...) {
                      i = paste("Expected one of", paste(unlist(details$values),
                                                         collapse = ", "))))
     }
-    form_result[[nm]] <- methods::as(unlist(form_result[[nm]]),
-                                     typeof(details$values[[1]]))
+    if (!is.null(details$values)) {
+      form_result[[nm]] <- methods::as(unlist(form_result[[nm]]),
+                                       typeof(details$values[[1]]))
+    }
   }
   for (unknown in names(form_result)[!known]) {
     message("Removing unknown field ", unknown)
@@ -178,7 +181,7 @@ cds_build_request <- function(dataset, ...) {
           rlang::abort(c(x = "Coordinates of `area` out of range",
                          i = sprintf("Check if your coordinates are in range (%s)",
                                      paste(unlist(geo_details$range), collapse = ", "))))
-        form_result[[nm]] <- as.list(current)
+        form_result[[nm]] <- current
       },
       LicenceWidget = {
         form_result[[nm]] <- NULL
