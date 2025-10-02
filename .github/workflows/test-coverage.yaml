@@ -13,6 +13,7 @@ jobs:
   test-coverage:
     runs-on: ubuntu-latest
     env:
+      CDSAPI_KEY: ${{ secrets.CDSAPI_KEY }}
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
