@@ -18,12 +18,12 @@
 #' @inheritParams cds_check_authentication
 #' @returns Returns a `data.frame` containing information about the submitted job.
 #' @examples
-#' # TODO specify area
 #' if (interactive() && cds_token_works()) {
 #'   job <- cds_submit_job(
 #'       dataset        = "reanalysis-era5-pressure-levels",
 #'       variable       = "geopotential",
 #'       product_type   = "reanalysis",
+#'       area           = c(n = 55, w = -1, s = 50, e = 10),
 #'       year           = "2024",
 #'       month          = "03",
 #'       day            = "01",
@@ -105,30 +105,35 @@ cds_submit_job <- function(
 #'     dataset        = "reanalysis-era5-pressure-levels",
 #'     variable       = "geopotential",
 #'     product_type   = "reanalysis",
+#'     area           = c(n = 55, w = -1, s = 50, e = 10),
 #'     year           = "2024",
 #'     month          = "03",
 #'     day            = "01",
 #'     pressure_level = "1000",
-#'     format         = "netcdf"
+#'     data_format    = "netcdf"
 #'   )
 #' }
 #'@export
 cds_build_request <- function(dataset, ...) {
   form_result <- list(...)
+
+  constraints_all <- .cds_constraints(dataset,  structure(list(), names = character(0)))
   form <- cds_dataset_form(dataset) |>
     dplyr::mutate(
-      required = ifelse(is.na(.data$required), FALSE, .data$required),
-      name = ifelse(.data$name == "data_format", "format", .data$name)
+      required = ifelse(is.na(.data$required), FALSE, .data$required)
     )
   known <- names(form_result) %in% form$name
   for (nm in names(form_result)) {
     details <- form |> dplyr::filter(.data$name == nm)
     details <- details$details[[1]]$details
-    if (!form_result[[nm]] %in% unlist(details$values)) {
+    if (!is.null(details$values) &&
+        !form_result[[nm]] %in% unlist(details$values)) {
       rlang::abort(c(x = paste("Unknown value", paste(form_result[[nm]], collapse = ", ")),
                      i = paste("Expected one of", paste(unlist(details$values),
                                                         collapse = ", "))))
     }
+    form_result[[nm]] <- methods::as(unlist(form_result[[nm]]),
+                                     typeof(details$values[[1]]))
   }
   for (unknown in names(form_result)[!known]) {
     message("Removing unknown field ", unknown)
@@ -136,19 +141,7 @@ cds_build_request <- function(dataset, ...) {
   }
   required_elements <- form$name[form$required]
   not_included <- required_elements[!required_elements %in% names(form_result)]
-  for (missing_element in not_included) {
-    ## Fill all missing fields with all possible values
-    details <-
-      form |>
-      dplyr::filter(.data$name == missing_element) |>
-      dplyr::pull("details")
-    details <- details[[1]]$details
-    if (!is.null(details$default)) {
-      form_result[[missing_element]] <- details$default |> unlist()
-    } else {
-      form_result[[missing_element]] <- details$values |> unlist()
-    }
-  }
+  
   # Check lengths
   for (nm in names(form_result)) {
     details <- form |> dplyr::filter(.data$name == nm)
@@ -166,12 +159,53 @@ cds_build_request <- function(dataset, ...) {
           form_result[[nm]] <- unlist(form_result[[nm]])
         }
       },
+      GeographicExtentWidget = {
+        geo_details <- details$details[[1]]$details
+        ## TODO also handle bbox
+        current <- unlist(form_result[[nm]])
+        if (length(current) != 4)
+          rlang::abort(c(x = sprintf("Expected rectangular bounding box, with 4 values (%s)",
+                                     paste(names(geo_details$default))),
+                         i = "Provide a correct bounding box"))
+        if (is.null(names(current))) names(current) <- names(geo_details$default)
+        if (current["s"] > current["n"] || current["w"] > current["e"])
+          rlang::abort(c(x = "North should be larger than South. West should be larget than East",
+                         i = "Check your bounding box for correctness"))
+        if (current[["n"]] > geo_details$range$n ||
+            current[["s"]] < geo_details$range$s ||
+            current[["e"]] > geo_details$range$e ||
+            current[["w"]] < geo_details$range$w)
+          rlang::abort(c(x = "Coordinates of `area` out of range",
+                         i = sprintf("Check if your coordinates are in range (%s)",
+                                     paste(unlist(geo_details$range), collapse = ", "))))
+        form_result[[nm]] <- as.list(current)
+      },
       LicenceWidget = {
         form_result[[nm]] <- NULL
       },
       rlang::abort(c(x = paste("Unknown field type", type),
                      i = "Please report at <https://github.com/pepijn-devries/CopernicusClimate/issues> with a reprex"))
     )
+  }
+
+  constraints <- .cds_constraints(dataset, form_result)
+  for (missing_element in not_included) {
+    if (!is.null(constraints[[missing_element]])) {
+      details <-
+        form |>
+        dplyr::filter(.data$name == missing_element)
+      type <- details$type
+      details <- details$details[[1]]$details
+      if (!is.null(details$default)) {
+        form_result[[missing_element]] <- details$default |> unlist()
+      } else {
+        dat <- constraints[[missing_element]]
+        if (type %in% "StringChoiceWidget") dat <- dat[[1]]
+        
+        if (length(dat) == 0) form_result[[missing_element]] <- NULL else
+          form_result[[missing_element]] <- dat
+      }
+    }
   }
   
   licences <- form |>
@@ -180,6 +214,12 @@ cds_build_request <- function(dataset, ...) {
   licences <- licences[[1]]$details$licences |> .simplify()
   attributes(form_result)$licences <- licences
   return( form_result )
+}
+
+.cds_constraints <- function(dataset, form) {
+  .base_url |>
+    paste("retrieve/v1/processes", dataset, "constraints", sep = "/") |>
+    .execute_request(token = "", "POST", list(inputs = form))
 }
 
 #' Check the cost of a request against your quota
@@ -197,11 +237,12 @@ cds_build_request <- function(dataset, ...) {
 #'     dataset        = "reanalysis-era5-pressure-levels",
 #'     variable       = "geopotential",
 #'     product_type   = "reanalysis",
+#'     area           = c(n = 55, w = -1, s = 50, e = 10),
 #'     year           = "2024",
 #'     month          = "03",
 #'     day            = "01",
 #'     pressure_level = "1000",
-#'     format         = "netcdf"
+#'     data_format    = "netcdf"
 #'   )
 #'   
 #'   cds_estimate_costs(dataset = "reanalysis-era5-pressure-levels")
@@ -237,11 +278,12 @@ cds_estimate_costs <- function(dataset, ..., token = cds_get_token()) {
 #'       dataset        = "reanalysis-era5-pressure-levels",
 #'       variable       = "geopotential",
 #'       product_type   = "reanalysis",
+#'       area           = c(n = 55, w = -1, s = 50, e = 10),
 #'       year           = "2024",
 #'       month          = "03",
 #'       day            = "01",
 #'       pressure_level = "1000",
-#'       format         = "netcdf"
+#'       data_format    = "netcdf"
 #'     )
 #'   cds_download_jobs(job$jobID, tempdir())
 #' }

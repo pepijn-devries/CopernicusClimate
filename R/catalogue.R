@@ -58,13 +58,16 @@ cds_search_datasets <- function(search = NULL, page = 0, limit = 50, ...) {
 #' a job. See also `cds_submit_job()` and `cds_build_request()`
 #' @export
 cds_dataset_form <- function(dataset, ...) {
-  .base_url |>
+  result <-
+    .base_url |>
     paste("catalogue/v1/collections", dataset, "form.json", sep = "/") |>
     .execute_request() |>
-    purrr::map_df(~ .x) |>
-    tidyr::nest(
-      children = .data$children,
-      details = .data$details)
+    purrr::map_df(~ .x)
+  if ("details" %in% names(result))
+    result <- tidyr::nest(result, details = .data$details)
+  if ("children" %in% names(result))
+    result <- tidyr::nest(result, children = .data$children)
+  result
 }
 
 # This function is not exported as it will not have added value

@@ -7,7 +7,8 @@
 cds_delete_job(job_id, ..., token = cds_get_token())
 }
 \arguments{
-\item{job_id}{TODO}
+\item{job_id}{Hexadecimal code used as identifier of a job. Identifies the job
+to be cancelled.}
 
 \item{...}{Ignored}
 
@@ -15,11 +16,24 @@ cds_delete_job(job_id, ..., token = cds_get_token())
 \code{cds_get_token()} by default.}
 }
 \value{
-TODO
+Returns a \code{data.frame} with information about the cancelled job.
 }
 \description{
-TODO
+Whe you regret submitting a job, you can cancel it by calling this function.
 }
 \examples{
-#TODO
+if (interactive() && cds_token_works()) {
+  job <- cds_submit_job(
+      dataset        = "reanalysis-era5-pressure-levels",
+      variable       = "geopotential",
+      product_type   = "reanalysis",
+      area           = c(n = 55, w = -1, s = 50, e = 10),
+      year           = "2024",
+      month          = "03",
+      day            = "01",
+      pressure_level = "1000",
+      data_format    = "netcdf"
+    )
+  cds_delete_job(job$jobID, tempdir())
+}
 }

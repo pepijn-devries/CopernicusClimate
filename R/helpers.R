@@ -13,7 +13,7 @@
   #TODO build better error handlers
   x |>
     .make_request(token, method) |>
-    httr2::req_body_json(req_body) |>
+    httr2::req_body_json(req_body, auto_unbox = TRUE) |>
     httr2::req_perform() |>
     httr2::resp_body_json()
 }
