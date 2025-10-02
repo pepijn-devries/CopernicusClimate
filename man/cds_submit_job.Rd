@@ -52,7 +52,7 @@ if (interactive() && cds_token_works()) {
       month          = "03",
       day            = "01",
       pressure_level = "1000",
-      format         = "netcdf"
+      data_format    = "netcdf"
     )
 }
 }

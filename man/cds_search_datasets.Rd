@@ -7,12 +7,12 @@
 \usage{
 cds_list_datasets(...)
 
-cds_search_datasets(search = NULL, page = 0, limit = 50, ...)
+cds_search_datasets(search, keywords, page = 0, limit = 50, ...)
 }
 \arguments{
 \item{...}{Ignored}
 
-\item{search}{A string containing search terms to look for in the available datasets.}
+\item{search}{A string containing free text search terms to look for in the available datasets.}
 
 \item{page}{When there are more search results than \code{limit}, results are paginated.
 Use \code{page} to specify which page to return starting at \code{0} (default).}
@@ -30,6 +30,18 @@ This will help you decide which datasets you wish to obtain.
 \examples{
 if (interactive()) {
   cds_list_datasets()
-  cds_search_datasets("rain")
+  cds_search_datasets("rain", "Temporal coverage: Future")
 }
 }
+\keyword{(vector}
+\keyword{A}
+\keyword{Should}
+\keyword{`cds_catalogue_vocabulary()`}
+\keyword{be}
+\keyword{containing}
+\keyword{in}
+\keyword{keywords.}
+\keyword{listed}
+\keyword{of)}
+\keyword{specific}
+\keyword{string}
