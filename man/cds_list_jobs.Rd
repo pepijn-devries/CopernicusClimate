@@ -31,7 +31,8 @@ meaning that jobs with any status are returned. Should be any of \code{"accepted
 Returns a \code{data.frame} of submitted jobs.
 }
 \description{
-TODO
+Once submitted with \code{cds_submit_job()} you can check the status of the job with
+this function. You can list all available jobs, or specific jobs.
 }
 \examples{
 if (interactive() && cds_token_works()) {

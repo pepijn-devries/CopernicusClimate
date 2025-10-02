@@ -28,11 +28,12 @@ if (interactive() && cds_token_works()) {
     dataset        = "reanalysis-era5-pressure-levels",
     variable       = "geopotential",
     product_type   = "reanalysis",
+    area           = c(n = 55, w = -1, s = 50, e = 10),
     year           = "2024",
     month          = "03",
     day            = "01",
     pressure_level = "1000",
-    format         = "netcdf"
+    data_format    = "netcdf"
   )
   
   cds_estimate_costs(dataset = "reanalysis-era5-pressure-levels")

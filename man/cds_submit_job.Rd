@@ -42,12 +42,12 @@ Submit a request to the Copernicus Climate Data Service to download
 returned which can be used to actually download the data (\code{cds_download_jobs()}).
 }
 \examples{
-# TODO specify area
 if (interactive() && cds_token_works()) {
   job <- cds_submit_job(
       dataset        = "reanalysis-era5-pressure-levels",
       variable       = "geopotential",
       product_type   = "reanalysis",
+      area           = c(n = 55, w = -1, s = 50, e = 10),
       year           = "2024",
       month          = "03",
       day            = "01",
