@@ -28,7 +28,7 @@
 
     <a class="navbar-brand me-2" href="index.html">CopernicusClimate</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9002</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -74,10 +74,40 @@
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
-<p>TODO</p>
+<p>In order to download data from C3S you first need to submit a request with <code><a href="reference/cds_submit_job.html">cds_submit_job()</a></code>. After your request has been processed by C3S, you can download the data with <code><a href="reference/cds_download_jobs.html">cds_download_jobs()</a></code>. This workflow is demonstrated in the code snippet below.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://pepijn-devries.github.io/CopernicusClimate/">CopernicusClimate</a></span><span class="op">)</span></span>
-<span><span class="co">## basic example code</span></span></code></pre></div>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/stars/" class="external-link">stars</a></span><span class="op">)</span>   <span class="co">## For loading spatial raster data</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span> <span class="co">## For plotting the data</span></span>
+<span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="reference/cds_check_authentication.html">cds_token_works</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span> <span class="co">## Make sure there is an operational access token</span></span>
+<span>  </span>
+<span>  <span class="co">## Submit a download job:</span></span>
+<span>  <span class="va">job</span> <span class="op">&lt;-</span></span>
+<span>    <span class="fu"><a href="reference/cds_submit_job.html">cds_submit_job</a></span><span class="op">(</span></span>
+<span>      <span class="st">"sis-agrometeorological-indicators"</span>,</span>
+<span>      statistic <span class="op">=</span> <span class="st">"day_time_mean"</span>,</span>
+<span>      variable <span class="op">=</span> <span class="st">"2m_temperature"</span>,</span>
+<span>      year <span class="op">=</span> <span class="st">"2025"</span>,</span>
+<span>      month <span class="op">=</span> <span class="st">"01"</span>,</span>
+<span>      day <span class="op">=</span> <span class="st">"01"</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="co">## Actually download the data:</span></span>
+<span>  <span class="va">data_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/cds_download_jobs.html">cds_download_jobs</a></span><span class="op">(</span><span class="va">job</span><span class="op">$</span><span class="va">jobID</span>, <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="co">## Unzip the downloaded data:</span></span>
+<span>  <span class="va">data_unzipped</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/unzip.html" class="external-link">unzip</a></span><span class="op">(</span><span class="va">data_file</span><span class="op">$</span><span class="va">local</span>, list <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/unzip.html" class="external-link">unzip</a></span><span class="op">(</span><span class="va">data_file</span><span class="op">$</span><span class="va">local</span>, exdir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="va">data_stars</span> <span class="op">&lt;-</span> <span class="fu">read_mdim</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">data_unzipped</span><span class="op">)</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="co">## Plot the downloaded data</span></span>
+<span>  <span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">geom_stars</span><span class="op">(</span>data <span class="op">=</span> <span class="va">data_stars</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">coord_sf</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">labs</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"T(air 2m) [K]"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">scale_fill_viridis_c</span><span class="op">(</span>option <span class="op">=</span> <span class="st">"inferno"</span>, na.value <span class="op">=</span> <span class="st">"transparent"</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+<p><img src="reference/figures/README-example-1.png" width="100%"></p>
 </div>
 <div class="section level2">
 <h2 id="more-of-copernicus">More of Copernicus<a class="anchor" aria-label="anchor" href="#more-of-copernicus"></a>
@@ -85,7 +115,7 @@
 <p>More R packages for exploring other Copernicus data services:</p>
 <ul>
 <li>
-<a href="https://github.com/pepijn-devries/CopernicusMarine" class="external-link">CopernicusMarine</a> Dedicated to marine datasets</li>
+<a href="https://github.com/pepijn-devries/CopernicusClimate" class="external-link">CopernicusClimate</a> Dedicated to marine datasets</li>
 </ul>
 </div>
 <div class="section level2">
@@ -127,6 +157,7 @@
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://github.com/pepijn-devries/CopernicusClimate/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/pepijn-devries/CopernicusClimate/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://pepijn-devries.r-universe.dev/CopernicusClimate" class="external-link"><img src="https://pepijn-devries.r-universe.dev/badges/CopernicusClimate" alt="CopernicusClimate status badge"></a></li>
 </ul>
 </div>
 
