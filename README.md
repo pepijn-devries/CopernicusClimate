@@ -6,7 +6,8 @@
 [![R-CMD-check](https://github.com/pepijn-devries/CopernicusClimate/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/pepijn-devries/CopernicusClimate/actions/workflows/R-CMD-check.yaml)
 [![CopernicusClimate status
 badge](https://pepijn-devries.r-universe.dev/badges/CopernicusClimate)](https://pepijn-devries.r-universe.dev/CopernicusClimate)
-<!-- [![Codecov test coverage](https://codecov.io/gh/pepijn-devries/CopernicusClimate/graph/badge.svg)](https://app.codecov.io/gh/pepijn-devries/CopernicusClimate) -->
+[![Codecov test
+coverage](https://codecov.io/gh/pepijn-devries/CopernicusClimate/graph/badge.svg)](https://app.codecov.io/gh/pepijn-devries/CopernicusClimate)
 <!-- badges: end -->
 
 ## Overview
