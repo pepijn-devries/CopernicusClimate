@@ -9,7 +9,7 @@ Use this function to check if a request exceeds your quota."><meta property="og:
 
     <a class="navbar-brand me-2" href="../index.html">CopernicusClimate</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9001</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -73,11 +73,12 @@ the estimated cost for a request specified with <code>...</code>-arguments.</p>
 <span class="r-in"><span>    dataset        <span class="op">=</span> <span class="st">"reanalysis-era5-pressure-levels"</span>,</span></span>
 <span class="r-in"><span>    variable       <span class="op">=</span> <span class="st">"geopotential"</span>,</span></span>
 <span class="r-in"><span>    product_type   <span class="op">=</span> <span class="st">"reanalysis"</span>,</span></span>
+<span class="r-in"><span>    area           <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">55</span>, w <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>, s <span class="op">=</span> <span class="fl">50</span>, e <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    year           <span class="op">=</span> <span class="st">"2024"</span>,</span></span>
 <span class="r-in"><span>    month          <span class="op">=</span> <span class="st">"03"</span>,</span></span>
 <span class="r-in"><span>    day            <span class="op">=</span> <span class="st">"01"</span>,</span></span>
 <span class="r-in"><span>    pressure_level <span class="op">=</span> <span class="st">"1000"</span>,</span></span>
-<span class="r-in"><span>    format         <span class="op">=</span> <span class="st">"netcdf"</span></span></span>
+<span class="r-in"><span>    data_format    <span class="op">=</span> <span class="st">"netcdf"</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span>  </span></span>
 <span class="r-in"><span>  <span class="fu">cds_estimate_costs</span><span class="op">(</span>dataset <span class="op">=</span> <span class="st">"reanalysis-era5-pressure-levels"</span><span class="op">)</span></span></span>
