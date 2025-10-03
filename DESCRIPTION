@@ -1,6 +1,6 @@
 Package: CopernicusClimate
 Title: Search Download and Handle Data from Copernicus Climate Data Service
-Version: 0.0.1
+Version: 0.0.1.0001
 Authors@R: 
     c(
       person("Pepijn", "de Vries", role = c("aut", "cre"),
@@ -41,4 +41,5 @@ Suggests:
     stars,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
-URL: https://pepijn-devries.github.io/CopernicusClimate/
+URL: https://pepijn-devries.github.io/CopernicusClimate/, https://github.com/pepijn-devries/CopernicusClimate/
+BugReports: https://github.com/pepijn-devries/CopernicusMarine/issues
