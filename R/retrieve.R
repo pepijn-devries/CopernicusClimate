@@ -166,7 +166,6 @@ cds_build_request <- function(dataset, ...) {
       },
       GeographicExtentWidget = {
         geo_details <- details$details[[1]]$details
-        ## TODO also handle bbox
         current <- unlist(form_result[[nm]])
         if (length(current) != 4)
           rlang::abort(c(x = sprintf("Expected rectangular bounding box, with 4 values (%s)",

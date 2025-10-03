@@ -49,6 +49,7 @@ cds_accept_licence <- function(
     paste("profiles/v1/account/licences", license, sep = "/") |>
     .make_request(token, "PUT") |>
     httr2::req_body_json(list(revision = revision)) |>
+    httr2::req_error(body = .req_error) |>
     httr2::req_perform() |>
     httr2::resp_body_json() |>
     dplyr::as_tibble()

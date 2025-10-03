@@ -10,12 +10,30 @@
 }
 
 .execute_request <- function(x, token = "", method = "GET", req_body = NULL) {
-  #TODO build better error handlers
   x |>
     .make_request(token, method) |>
     httr2::req_body_json(req_body, auto_unbox = TRUE) |>
+    httr2::req_error(body = .req_error) |>
     httr2::req_perform() |>
     httr2::resp_body_json()
+}
+
+.req_error <- function(body) {
+  body <- httr2::resp_body_json(body)
+  if (!is.null(body$detail) && nchar(body$detail) > 3) {
+    body$detail <- tryCatch({
+      result <-
+        substr(body$detail, 2, nchar(body$detail) - 1) |>
+        stringr::str_replace_all("'", "\"") |>
+        stringr::str_replace_all("\\(", "[") |>
+        stringr::str_replace_all("\\)", "]") |>
+        jsonlite::fromJSON()
+      result$msg
+    }, error = function(e) body$detail)
+  } else {
+    body$detail <- NULL
+  }
+  c(body$title, body$detail)
 }
 
 .simplify <- function(x) {

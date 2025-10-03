@@ -38,6 +38,7 @@ cds_remove_star <- function(dataset, ..., token = cds_get_token()) {
   .base_url |>
     paste("profiles/v1/account/starred", dataset, sep = "/") |>
     .make_request(token, "DELETE") |>
+    httr2::req_error(body = .req_error) |>
     httr2::req_perform()
   ## removing a star returns empty body
   invisible(NULL)

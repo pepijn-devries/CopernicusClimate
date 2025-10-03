@@ -5,7 +5,9 @@ test_that("Datasets can be starred", {
   expect_false({
     nm <- "reanalysis-era5-pressure-levels"
     cds_assign_star(nm)
+    Sys.sleep(1) ## Wait to make sure request has been processed
     cds_remove_star(nm)
+    Sys.sleep(1) ## Wait to make sure request has been processed
     nm %in% cds_starred()
   })
 })
