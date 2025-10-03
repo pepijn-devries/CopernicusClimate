@@ -26,6 +26,6 @@ test_that("Costs can be estimated", {
   skip_on_cran()
   skip_if_offline()
   expect_no_error({
-    cds_estimate_costs()
+    cds_estimate_costs("reanalysis-era5-pressure-levels")
   })
 })
