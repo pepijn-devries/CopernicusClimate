@@ -122,25 +122,27 @@ cds_build_request <- function(dataset, ...) {
     dplyr::mutate(
       required = ifelse(is.na(.data$required), FALSE, .data$required)
     )
-  
+
   known <- names(form_result) %in% form$name
+  unknown <- names(form_result)[!known]
   for (nm in names(form_result)) {
-    details <- form |> dplyr::filter(.data$name == nm)
-    details <- details$details[[1]]$details
-    if (!is.null(details$values) &&
-        !form_result[[nm]] %in% unlist(details$values)) {
-      rlang::abort(c(x = paste("Unknown value", paste(form_result[[nm]], collapse = ", ")),
-                     i = paste("Expected one of", paste(unlist(details$values),
-                                                        collapse = ", "))))
+    if (nm %in% unknown) {
+      message("Removing unknown field ", nm)
+      form_result[[nm]] <- NULL
+    } else {
+      details <- form |> dplyr::filter(.data$name == nm)
+      details <- details$details[[1]]$details
+      if (!is.null(details$values) &&
+          any(!form_result[[nm]] %in% unlist(details$values))) {
+        rlang::abort(c(x = paste("Unknown value", paste(form_result[[nm]], collapse = ", ")),
+                       i = paste("Expected one of", paste(unlist(details$values),
+                                                          collapse = ", "))))
+      }
+      if (!is.null(details$values)) {
+        form_result[[nm]] <- methods::as(unlist(form_result[[nm]]),
+                                         typeof(details$values[[1]]))
+      }
     }
-    if (!is.null(details$values)) {
-      form_result[[nm]] <- methods::as(unlist(form_result[[nm]]),
-                                       typeof(details$values[[1]]))
-    }
-  }
-  for (unknown in names(form_result)[!known]) {
-    message("Removing unknown field ", unknown)
-    form_result[[unknown]] <- NULL
   }
   required_elements <- form$name[form$required]
   not_included <- required_elements[!required_elements %in% names(form_result)]
@@ -191,6 +193,7 @@ cds_build_request <- function(dataset, ...) {
     )
   }
 
+  if (length(form_result) == 0) names(form_result) <- character(0)
   constraints <- .cds_constraints(dataset, form_result)
   for (missing_element in not_included) {
     if (!is.null(constraints[[missing_element]])) {

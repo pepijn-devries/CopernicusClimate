@@ -12,13 +12,20 @@ test_that("Download workflow works", {
       month          = "03",
       day            = "01",
       pressure_level = "1000",
-      data_format    = "netcdf",
-      wait           = FALSE
+      data_format    = "netcdf"
     ) |>
       suppressMessages()
     my_download <-
       cds_download_jobs(job$jobID, tempdir()) |>
       suppressMessages()
     file.size(my_download$local) > 0
+  })
+})
+
+test_that("Costs can be estimated", {
+  skip_on_cran()
+  skip_if_offline()
+  expect_no_error({
+    cds_estimate_costs()
   })
 })
