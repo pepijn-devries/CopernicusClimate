@@ -14,6 +14,8 @@ Subset and download data from EU Copernicus Climate Data Service: \url{https://c
 Useful links:
 \itemize{
   \item \url{https://pepijn-devries.github.io/CopernicusClimate/}
+  \item \url{https://github.com/pepijn-devries/CopernicusClimate/}
+  \item Report bugs at \url{https://github.com/pepijn-devries/CopernicusMarine/issues}
 }
 
 }
