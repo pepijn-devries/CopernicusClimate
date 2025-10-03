@@ -41,3 +41,21 @@ test_that("Names cannot have a different length than jobs", {
     cds_download_jobs(1:3, names = "foo")
   })
 })
+
+test_that("Cannot delete non-existing stars", {
+  skip_on_cran()
+  skip_if_offline()
+  skip_if_not(cds_token_works())
+  expect_error({
+    cds_remove_star("foobar")
+  }, regexp = "*.?Cannot find dataset foobar*.?")
+})
+
+test_that("Cannot pass invalid parameters to url", {
+  skip_on_cran()
+  skip_if_offline()
+  skip_if_not(cds_token_works())
+  expect_error({
+    cds_search_datasets(page = "foobar")
+  }, regexp = "*.?value is not a valid integer*.?")
+})

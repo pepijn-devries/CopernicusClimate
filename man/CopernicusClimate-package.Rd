@@ -8,7 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Subset and download data from EU Copernicus Climate Data Service: \url{https://cds.climate.copernicus.eu/}. Import data on information about the Earth's past, present and future climate from Copernicus into R without the need of external software.
+Subset and download data from EU Copernicus Climate Data Service: \url{https://cds.climate.copernicus.eu/}. Import information about the Earth's past, present and future climate from Copernicus into R without the need of external software.
 }
 \seealso{
 Useful links:

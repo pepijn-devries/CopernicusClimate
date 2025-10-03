@@ -32,6 +32,7 @@ test_that("Token can be set", {
     cds_set_token("foobar", "sysenv")
     result <- getOption("CDSAPI_KEY") == "foobar" &&
       Sys.getenv("CDSAPI_KEY") == "foobar"
+    options(CDSAPI_KEY = NULL)
     cds_set_token(my_token, "sysenv")
     result
   })

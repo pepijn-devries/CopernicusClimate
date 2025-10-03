@@ -1,6 +1,6 @@
 Package: CopernicusClimate
 Title: Search Download and Handle Data from Copernicus Climate Data Service
-Version: 0.0.0.9007
+Version: 0.0.1
 Authors@R: 
     c(
       person("Pepijn", "de Vries", role = c("aut", "cre"),
@@ -8,7 +8,7 @@ Authors@R:
              comment = c(ORCID = "0000-0002-7961-6646"))
     )
 Description: Subset and download data from EU Copernicus Climate Data Service:
-    <https://cds.climate.copernicus.eu/>. Import data on information about the Earth's
+    <https://cds.climate.copernicus.eu/>. Import information about the Earth's
     past, present and future climate from Copernicus into R without the need of
     external software.
 Depends:
@@ -16,9 +16,11 @@ Depends:
 Imports:
     dplyr,
     httr2,
+    jsonlite,
     methods,
     purrr,
     rlang,
+    stringr,
     tibble,
     tidyr
 License: GPL (>= 3)
@@ -34,7 +36,9 @@ Collate:
     'retrieve.R'
     'stars.R'
     'token.R'
-Suggests: 
+Suggests:
+    ggplot2,
+    stars,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 URL: https://pepijn-devries.github.io/CopernicusClimate/
