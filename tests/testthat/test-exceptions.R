@@ -36,7 +36,7 @@ test_that("Cannot provide multiple values when expecting one", {
   }, regexp = "*.?Found multiple values for field*.?")
 })
 
-testthat("Names cannot have a different length than jobs" {
+testthat("Names cannot have a different length than jobs", {
   expect_error({
     cds_download_jobs(1:3, names = "foo")
   })
