@@ -22,6 +22,10 @@ and can be used throughout the R session."><meta property="og:image" content="ht
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/download.html">Downloading from Copernicus Climate Service</a></li>
+  </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
@@ -80,13 +84,13 @@ return <code>NULL</code> invisibly.</p>
     <p>To use an API key, you first need to get one from the
 Climate Data Service. You can do so, by creating an account
 and then initialise the key at <a href="https://cds.climate.copernicus.eu/profile" class="external-link">https://cds.climate.copernicus.eu/profile</a>.</p>
-<p>There are diffrent locations where the key can be stored and where
-<code>cds_get_token()</code> will look. It will look for the first succecful value of (in order):
+<p>There are different locations where the key can be stored and where
+<code>cds_get_token()</code> will look. It will look for the first successful value of (in order):
 the environment variable named <code>"CDSAPI_KEY"</code>, the R <code><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption()</a></code> named <code>"CDSAPI_KEY"</code>,
 the environment variable named <code>"ECMWF_DATASTORES_KEY"</code>, and the R <code><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption()</a></code> named
 <code>"ECMWF_DATASTORES_KEY"</code>.</p>
 <p>You can set the key at the start of each R session with <code>cds_set_token()</code>. If you
-want a persistent sollution, you can add the environment variable (with names shown above)
+want a persistent solution, you can add the environment variable (with names shown above)
 to your system. Or you can add the option (with the names shown above) to your
 <code>".profile"</code> file. This will help you obscure your sensitive account information in your R script.</p>
     </div>
