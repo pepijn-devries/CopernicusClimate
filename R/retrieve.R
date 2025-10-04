@@ -267,7 +267,7 @@ cds_estimate_costs <- function(dataset, ..., token = cds_get_token()) {
 #' Download specific jobs
 #' 
 #' After submitting one or more jobs with `cds_submit_job()`, you can download the resulting
-#' files with `cds_download_jobs()`
+#' files with `cds_download_jobs()`. See `vignette("download")` for more details.
 #' @param job_id If a specific job identifier is listed here, only the files resulting
 #' from those jobs are downloaded. If left blank, all successful jobs are downloaded.
 #' @param destination Destination path to store downloaded files.

@@ -19,3 +19,8 @@ a job. See also \code{cds_submit_job()} and \code{cds_build_request()}
 This function provides an overview of parameters that can be used to subset a
 dataset. It can help you set up a request with \code{cds_submit_job()} or \code{cds_build_request()}.
 }
+\examples{
+if (interactive() && cds_token_works()) {
+  cds_dataset_form("reanalysis-era5-pressure-levels")
+}
+}
