@@ -19,6 +19,7 @@ jobs:
     concurrency:
       group: pkgdown-${{ github.event_name != 'pull_request' || github.run_id }}
     env:
+      CDSAPI_KEY: ${{ secrets.CDSAPI_KEY }}
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     permissions:
       contents: write
