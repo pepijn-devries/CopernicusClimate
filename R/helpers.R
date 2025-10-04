@@ -6,7 +6,8 @@
     httr2::req_headers(
       `PRIVATE-TOKEN` = token,
       `User-Agent` = "r_package") |>
-    httr2::req_method(method)
+    httr2::req_method(method) |>
+    httr2::req_retry(max_tries = 3, retry_on_failure = TRUE, after = \(x) NA)
 }
 
 .execute_request <- function(x, token = "", method = "GET", req_body = NULL) {

@@ -45,7 +45,8 @@ install.packages("CopernicusClimate", repos = c('https://pepijn-devries.r-univer
 
 In order to download data from C3S you first need to submit a request with `cds_submit_job()`.
 After your request has been processed by C3S, you can download the data with `cds_download_jobs()`.
-This workflow is demonstrated in the code snippet below.
+This workflow is demonstrated in the code snippet below. For a more detailed
+description of the workflow see `vignette("download")`.
 
 ```{r example, message=FALSE, fig.width=7, fig.height=3}
 library(CopernicusClimate)

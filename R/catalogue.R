@@ -60,6 +60,10 @@ cds_search_datasets <- function(search, keywords, page = 0, limit = 50, ...) {
 #' @param ... Ignored
 #' @returns A `data.frame` with aspects of the dataset that can be subsetted, when defining
 #' a job. See also `cds_submit_job()` and `cds_build_request()`
+#' @examples
+#' if (interactive() && cds_token_works()) {
+#'   cds_dataset_form("reanalysis-era5-pressure-levels")
+#' }
 #' @export
 cds_dataset_form <- function(dataset, ...) {
   result <-

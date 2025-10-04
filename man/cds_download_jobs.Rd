@@ -26,7 +26,7 @@ to the locally stored files.
 }
 \description{
 After submitting one or more jobs with \code{cds_submit_job()}, you can download the resulting
-files with \code{cds_download_jobs()}
+files with \code{cds_download_jobs()}. See \code{vignette("download")} for more details.
 }
 \examples{
 if (interactive() && cds_token_works()) {

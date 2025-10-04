@@ -33,14 +33,14 @@ To use an API key, you first need to get one from the
 Climate Data Service. You can do so, by creating an account
 and then initialise the key at \url{https://cds.climate.copernicus.eu/profile}.
 
-There are diffrent locations where the key can be stored and where
-\code{cds_get_token()} will look. It will look for the first succecful value of (in order):
+There are different locations where the key can be stored and where
+\code{cds_get_token()} will look. It will look for the first successful value of (in order):
 the environment variable named \code{"CDSAPI_KEY"}, the R \code{getOption()} named \code{"CDSAPI_KEY"},
 the environment variable named \code{"ECMWF_DATASTORES_KEY"}, and the R \code{getOption()} named
 \code{"ECMWF_DATASTORES_KEY"}.
 
 You can set the key at the start of each R session with \code{cds_set_token()}. If you
-want a persistent sollution, you can add the environment variable (with names shown above)
+want a persistent solution, you can add the environment variable (with names shown above)
 to your system. Or you can add the option (with the names shown above) to your
 \code{".profile"} file. This will help you obscure your sensitive account information in your R script.
 }
