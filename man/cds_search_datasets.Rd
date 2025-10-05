@@ -5,11 +5,14 @@
 \alias{cds_search_datasets}
 \title{List or search Climate Data Service datasets}
 \usage{
-cds_list_datasets(...)
+cds_list_datasets(dataset, ...)
 
 cds_search_datasets(search, keywords, page = 0, limit = 50, ...)
 }
 \arguments{
+\item{dataset}{A specific dataset for which to list details. If missing
+all datasets are listed.}
+
 \item{...}{Ignored}
 
 \item{search}{A string containing free text search terms to look for in the available datasets.}

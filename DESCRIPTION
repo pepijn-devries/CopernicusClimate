@@ -1,6 +1,6 @@
 Package: CopernicusClimate
 Title: Search Download and Handle Data from Copernicus Climate Data Service
-Version: 0.0.1.0001
+Version: 0.0.2
 Authors@R: 
     c(
       person("Pepijn", "de Vries", role = c("aut", "cre"),
@@ -23,6 +23,13 @@ Imports:
     stringr,
     tibble,
     tidyr
+Suggests:
+    ggplot2,
+    knitr,
+    RefManageR,
+    rmarkdown,
+    stars,
+    testthat (>= 3.0.0)
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
@@ -31,17 +38,12 @@ Collate:
     'CopernicusClimate-package.R'
     'helpers.R'
     'catalogue.R'
+    'cite.R'
     'jobs.R'
     'licenses.R'
     'retrieve.R'
     'stars.R'
     'token.R'
-Suggests:
-    ggplot2,
-    knitr,
-    rmarkdown,
-    stars,
-    testthat (>= 3.0.0)
 Config/testthat/edition: 3
 URL: https://pepijn-devries.github.io/CopernicusClimate/, https://github.com/pepijn-devries/CopernicusClimate/
 BugReports: https://github.com/pepijn-devries/CopernicusMarine/issues

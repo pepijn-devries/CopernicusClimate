@@ -293,7 +293,7 @@ if (cds_token_works()) {
 
 Now you can do whatever it is you want to do with the data:
 
-```{r plot}
+```{r plot, fig.width=7, fig.height=3}
 fn <- file.path(tempdir(), filename)
 
 if (file.exists(fn)) {
