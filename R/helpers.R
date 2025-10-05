@@ -20,20 +20,33 @@
 }
 
 .req_error <- function(body) {
-  body <- httr2::resp_body_json(body)
-  if (!is.null(body$detail) && nchar(body$detail) > 3) {
-    body$detail <- tryCatch({
-      result <-
-        substr(body$detail, 2, nchar(body$detail) - 1) |>
-        stringr::str_replace_all("'", "\"") |>
-        stringr::str_replace_all("\\(", "[") |>
-        stringr::str_replace_all("\\)", "]") |>
-        jsonlite::fromJSON()
-      result$msg
-    }, error = function(e) body$detail)
-  } else {
-    body$detail <- NULL
-  }
+  ct <- httr2::resp_content_type(body)
+  body <-
+    switch(
+    ct,
+    `application/json` = {
+      body <- httr2::resp_body_json(body)
+      if (!is.null(body$detail) && nchar(body$detail) > 3) {
+        body$detail <- tryCatch({
+          result <-
+            substr(body$detail, 2, nchar(body$detail) - 1) |>
+            stringr::str_replace_all("'", "\"") |>
+            stringr::str_replace_all("\\(", "[") |>
+            stringr::str_replace_all("\\)", "]") |>
+            jsonlite::fromJSON()
+          result$msg
+        }, error = function(e) body$detail)
+        body
+      } else {
+        body$detail <- NULL
+        body
+      }
+    },
+    `text/html` = {
+      list(detail = httr2::resp_body_string(body))
+    },
+    list(detail = "")
+  )
   c(body$title, body$detail)
 }
 

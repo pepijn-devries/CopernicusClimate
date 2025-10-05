@@ -71,13 +71,11 @@ if (cds_token_works()) { ## Make sure there is an operational access token
 }
 ```
 
-<img src="man/figures/README-example-1.png" width="100%" />
-
 ## More of Copernicus
 
 More R packages for exploring other Copernicus data services:
 
-- [CopernicusClimate](https://github.com/pepijn-devries/CopernicusClimate)
+- [CopernicusMarine](https://github.com/pepijn-devries/CopernicusMarine)
   Dedicated to marine datasets
 
 ## Code of Conduct

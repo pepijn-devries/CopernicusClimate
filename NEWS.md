@@ -1,4 +1,4 @@
-# CopernicusClimate v0.0.1.0001
+# CopernicusClimate v0.0.2
 
 * Initial version which can:
   * Explore the catalogue

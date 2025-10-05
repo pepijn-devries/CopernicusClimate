@@ -1,19 +1,23 @@
 #' @rdname cds_search_datasets
 #' @include helpers.R
 #' @export
-cds_list_datasets <- function(...) {
+cds_list_datasets <- function(dataset, ...) {
+  if (missing(dataset)) dataset <- NULL
   result <-
     .base_url |>
-    paste0("/catalogue/v1/collections", sep = "") |>
+    paste("catalogue/v1/collections", dataset, sep = "/") |>
     .execute_request()
-
-  result$collections |>
-    .simplify()
+  
+  if (is.null(result$collections)) .simplify(list(result)) else
+    result$collections |>
+      .simplify()
 }
 
 #' List or search Climate Data Service datasets
 #' 
 #' This will help you decide which datasets you wish to obtain.
+#' @param dataset A specific dataset for which to list details. If missing
+#' all datasets are listed.
 #' @param search A string containing free text search terms to look for in the available datasets.
 #' @param keywords A (vector of) string containing specific keywords. Should be listed in
 #' `cds_catalogue_vocabulary()`
