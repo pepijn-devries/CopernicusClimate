@@ -71,6 +71,8 @@ if (cds_token_works()) { ## Make sure there is an operational access token
 }
 ```
 
+<img src="man/figures/README-example-1.png" width="100%" />
+
 ## More of Copernicus
 
 More R packages for exploring other Copernicus data services:

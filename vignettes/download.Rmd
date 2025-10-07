@@ -293,7 +293,7 @@ if (cds_token_works()) {
 
 Now you can do whatever it is you want to do with the data:
 
-```{r plot, fig.width=7, fig.height=3}
+```{r plot, fig.width=7, fig.height=3, message = FALSE}
 fn <- file.path(tempdir(), filename)
 
 if (file.exists(fn)) {
@@ -306,9 +306,10 @@ if (file.exists(fn)) {
   ggplot() +
     geom_stars(data = result) +
     coord_sf() +
-    facet_wrap(~strftime(valid_time, "%H:%M")) +
+    facet_wrap(~strftime(valid_time, "%H:%M"), nrow = 3) +
     scale_fill_viridis_c(option = "turbo") +
-    labs(x = NULL, y = NULL, fill = "Temperature [K]")
+    labs(x = NULL, y = NULL, fill = "Temperature [K]") +
+    theme(axis.text = element_blank())
 
 } else {
   message("File wasn't downloaded")
