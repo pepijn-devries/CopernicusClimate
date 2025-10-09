@@ -28,7 +28,7 @@
 
     <a class="navbar-brand me-2" href="index.html">CopernicusClimate</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2.0001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2.0002</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -74,15 +74,18 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>Install latest developmental version from R-Universe:</p>
+<p>Install CRAN release:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"CopernicusClimate"</span><span class="op">)</span></span></code></pre></div>
+<p>Install latest developmental version from R-Universe:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"CopernicusClimate"</span>, repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'https://pepijn-devries.r-universe.dev'</span>, <span class="st">'https://cloud.r-project.org'</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
 <p>In order to download data from C3S you first need to submit a request with <code><a href="reference/cds_submit_job.html">cds_submit_job()</a></code>. After your request has been processed by C3S, you can download the data with <code><a href="reference/cds_download_jobs.html">cds_download_jobs()</a></code>. This workflow is demonstrated in the code snippet below. For a more detailed description of the workflow see <code><a href="articles/download.html">vignette("download")</a></code>.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://pepijn-devries.github.io/CopernicusClimate/">CopernicusClimate</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/stars/" class="external-link">stars</a></span><span class="op">)</span>   <span class="co">## For loading spatial raster data</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span> <span class="co">## For plotting the data</span></span>
@@ -134,6 +137,7 @@
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
+<li><a href="https://cloud.r-project.org/package=CopernicusClimate" class="external-link">View on CRAN</a></li>
 <li><a href="https://github.com/pepijn-devries/CopernicusMarine/" class="external-link">Browse source code</a></li>
 <li><a href="https://github.com/pepijn-devries/CopernicusMarine/issues" class="external-link">Report a bug</a></li>
 </ul>
@@ -172,6 +176,8 @@
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://github.com/pepijn-devries/CopernicusClimate/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/pepijn-devries/CopernicusClimate/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://CRAN.R-project.org/package=CopernicusClimate" class="external-link"><img src="https://www.r-pkg.org/badges/version/CopernicusClimate" alt="version"></a></li>
+<li><a href="https://cran.r-project.org/web/checks/check_results_CopernicusClimate.html" class="external-link"><img src="https://badges.cranchecks.info/worst/CopernicusClimate.svg" alt="cran checks"></a></li>
 <li><a href="https://pepijn-devries.r-universe.dev/CopernicusClimate" class="external-link"><img src="https://pepijn-devries.r-universe.dev/badges/CopernicusClimate" alt="CopernicusClimate status badge"></a></li>
 <li><a href="https://app.codecov.io/gh/pepijn-devries/CopernicusClimate" class="external-link"><img src="https://codecov.io/gh/pepijn-devries/CopernicusClimate/graph/badge.svg" alt="Codecov test coverage"></a></li>
 </ul>
