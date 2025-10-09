@@ -1,4 +1,4 @@
-# CopernicusClimate v0.0.2.0001
+# CopernicusClimate v0.0.2.0002
 
 * Updated documentation
 
