@@ -52,3 +52,29 @@ test_that("Job can be cancelled", {
     job_del$status == "dismissed"
   })
 })
+
+test_that("Job can listed", {
+  skip_on_cran()
+  skip_if_offline()
+  skip_if_not(cds_token_works())
+  expect_no_error({
+    cds_list_jobs(status = "accepted")
+  })
+})
+
+test_that("Duplicated default values are removed", {
+  skip_on_cran()
+  skip_if_offline()
+  expect_true({
+    request <-
+      cds_build_request(
+        "reanalysis-era5-single-levels",
+        variable = "v_component_stokes_drift",
+        year = "2025",
+        month = "01",
+        day = "01",
+        data_format="netcdf"
+      )
+    length(request$product_type) == 1
+  })
+})
