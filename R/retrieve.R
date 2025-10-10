@@ -213,7 +213,7 @@ cds_build_request <- function(dataset, ...) {
       type <- details$type
       details <- details$details[[1]]$details
       if (!is.null(details$default)) {
-        form_result[[missing_element]] <- details$default |> unlist()
+        form_result[[missing_element]] <- details$default |> unlist() |> unique()
       } else {
         dat <- constraints[[missing_element]]
         if (type %in% "StringChoiceWidget") dat <- dat[[1]]
