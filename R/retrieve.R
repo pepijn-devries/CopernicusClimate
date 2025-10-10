@@ -132,6 +132,14 @@ cds_build_request <- function(dataset, ...) {
     } else {
       details <- form |> dplyr::filter(.data$name == nm)
       details <- details$details[[1]]$details
+      if (!is.null(details$groups)) {
+        details$values <-
+          lapply(details$groups, `[[`, "values") |>
+          unlist() |>
+          unique() |>
+          list()
+      }
+      
       if (!is.null(details$values) &&
           any(!form_result[[nm]] %in% unlist(details$values))) {
         rlang::abort(c(x = paste("Unknown value", paste(form_result[[nm]], collapse = ", ")),
@@ -154,6 +162,9 @@ cds_build_request <- function(dataset, ...) {
     switch(
       type,
       StringListWidget = {
+        form_result[[nm]] <- as.list(unlist(form_result[[nm]]))
+      },
+      StringListArrayWidget = {
         form_result[[nm]] <- as.list(unlist(form_result[[nm]]))
       },
       StringChoiceWidget = {
@@ -202,11 +213,11 @@ cds_build_request <- function(dataset, ...) {
       type <- details$type
       details <- details$details[[1]]$details
       if (!is.null(details$default)) {
-        form_result[[missing_element]] <- details$default |> unlist()
+        form_result[[missing_element]] <- details$default |> unlist() |> unique()
       } else {
         dat <- constraints[[missing_element]]
         if (type %in% "StringChoiceWidget") dat <- dat[[1]]
-        
+
         if (length(dat) == 0) form_result[[missing_element]] <- NULL else
           form_result[[missing_element]] <- dat
       }

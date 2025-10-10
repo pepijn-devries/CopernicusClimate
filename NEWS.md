@@ -1,6 +1,7 @@
-# CopernicusClimate v0.0.2.0002
+# CopernicusClimate v0.0.2.0003
 
 * Updated documentation
+* Fixes in `cds_build_request()`
 
 # CopernicusClimate v0.0.2
 
