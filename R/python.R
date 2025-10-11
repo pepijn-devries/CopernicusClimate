@@ -53,9 +53,9 @@ cds_python_to_r <- function(text, ...) {
       )
     }
   }
-  ## strip spaces and tabs:
+  ## collapse + strip spaces and tabs:
   text <- gsub("[ \t]", "", paste(text, collapse = "\n"))
-  tryCatch({
+  # tryCatch({
     ## extract dataset from text:
     dataset <-
       text |>
@@ -70,7 +70,7 @@ cds_python_to_r <- function(text, ...) {
       jsonlite::fromJSON(req)
     attributes(req)$dataset <- dataset
     req
-  }, error = function(e) rlang::abort(
-    c(x = "Failed to convert text to CDSAPI request",
-      i = "Check the input text (also the clipboard if relevant)")))
+  # }, error = function(e) rlang::abort(
+  #   c(x = "Failed to convert text to CDSAPI request",
+  #     i = "Check the input text (also the clipboard if relevant)")))
 }
