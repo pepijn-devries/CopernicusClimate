@@ -24,6 +24,7 @@ Imports:
     tibble,
     tidyr
 Suggests:
+    clipr,
     ggplot2,
     knitr,
     RefManageR,
@@ -41,6 +42,7 @@ Collate:
     'cite.R'
     'jobs.R'
     'licenses.R'
+    'python.R'
     'retrieve.R'
     'stars.R'
     'token.R'

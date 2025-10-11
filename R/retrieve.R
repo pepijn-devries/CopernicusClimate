@@ -4,8 +4,11 @@
 #' (part of) a dataset. If the request is successful, a job identifier is
 #' returned which can be used to actually download the data (`cds_download_jobs()`).
 #' 
-#' @param dataset The dataset name to be downloaded
-#' @param ... Subsetting parameters passed onto `cds_build_request()`.
+#' @param dataset The dataset name to be downloaded, or a `list` returned by
+#' `cds_build_request()`. When this argument is missing the function will
+#' attempt to build a request with text on the clipboard using `cds_python_to_r()`.
+#' @param ... Subsetting parameters passed onto `cds_build_request()`. Should
+#' be empty when `dataset` is missing or a `list`.
 #' @param wait A `logical` value indicating if the function should wait for the
 #' submitted job to finish. Set it to `FALSE` to continue without waiting
 #' @param check_quota Each account has a quota of data that can be downloaded.
@@ -30,6 +33,21 @@
 #'       pressure_level = "1000",
 #'       data_format    = "netcdf"
 #'     )
+#'
+#'   ## Or split into two separate steps:
+#'   
+#'   req <- cds_build_request(
+#'       dataset        = "reanalysis-era5-pressure-levels",
+#'       variable       = "geopotential",
+#'       product_type   = "reanalysis",
+#'       area           = c(n = 55, w = -1, s = 50, e = 10),
+#'       year           = "2024",
+#'       month          = "03",
+#'       day            = "01",
+#'       pressure_level = "1000",
+#'       data_format    = "netcdf"
+#'     )
+#'   job <- cds_submit_job(req)
 #' }
 #' @include helpers.R
 #' @export
@@ -38,17 +56,22 @@ cds_submit_job <- function(
     token = cds_get_token()) {
   #https://cds.climate.copernicus.eu/api/retrieve/v1/docs
   message("Building request")
+  if (missing(dataset)) dataset <- NULL
+  
   form <- cds_build_request(dataset, ...)
+  if (is.null(dataset) || is.list(dataset)) dataset <- attr(form, "dataset")
   if (check_quota) {
     message("Checking quota")
-    quota <- .cds_estimate_costs(dataset, form, token)
+    quota <- .cds_estimate_costs(form, token = token)
     if (quota$cost > quota$limit) {
       rlang::abort(c(x = sprintf("This request (%i) exceeds your quota (%i)",
                                  quota$cost, quota$limit),
                      i = "Try narrowing your request"))
     }
   }
-  if (check_licence) {
+  if (is.null(attributes(form)$licences)) {
+    message("Required license unknown, skipping check")
+  } else if (check_licence) {
     message("Checking license")
     missing_licence <- attributes(form)$licences$id
     missing_licence <- missing_licence[!missing_licence %in% cds_accepted_licences()$id]
@@ -116,6 +139,15 @@ cds_submit_job <- function(
 #'@export
 cds_build_request <- function(dataset, ...) {
   form_result <- list(...)
+  if ((missing(dataset) || is.null(dataset)) && length(form_result) == 0) {
+    form_result <- cds_python_to_r()
+    dataset <- attr(form_result, "dataset")
+  } else if (is.list(dataset) && length(form_result) == 0) {
+    ## Assume that if dataset is a list and there are no
+    ## further arguments, 'dataset' is already parsed by
+    ## cds_build_request and can be returned as is.
+    return (dataset)
+  }
 
   constraints_all <- .cds_constraints(dataset,  structure(list(), names = character(0)))
   form <- cds_dataset_form(dataset) |>
@@ -133,16 +165,21 @@ cds_build_request <- function(dataset, ...) {
       details <- form |> dplyr::filter(.data$name == nm)
       details <- details$details[[1]]$details
       if (!is.null(details$groups)) {
+        my_groups <- lapply(details$groups, `[[`, "label") |> unlist() |>
+          tolower() |> stringr::str_replace_all(" ", "_")
+        sel <- my_groups %in% form_result[[nm]]
+        if (!any(sel)) sel <- rep(TRUE, length(my_groups))
         details$values <-
-          lapply(details$groups, `[[`, "values") |>
+          lapply(details$groups[sel], `[[`, "values") |>
           unlist() |>
           unique() |>
           list()
+        form_result[[nm]] <- details$values |> unlist()
       }
-      
       if (!is.null(details$values) &&
           any(!form_result[[nm]] %in% unlist(details$values))) {
-        rlang::abort(c(x = paste("Unknown value", paste(form_result[[nm]], collapse = ", ")),
+        rlang::abort(c(x = sprintf("Unknown value '%s'", paste(unlist(form_result[[nm]]),
+                                                               collapse = ", ")),
                        i = paste("Expected one of", paste(unlist(details$values),
                                                           collapse = ", "))))
       }
@@ -229,6 +266,7 @@ cds_build_request <- function(dataset, ...) {
     dplyr::pull("details")
   licences <- licences[[1]]$details$licences |> .simplify()
   attributes(form_result)$licences <- licences
+  attributes(form_result)$dataset  <- dataset
   return( form_result )
 }
 
@@ -266,10 +304,13 @@ cds_build_request <- function(dataset, ...) {
 #' @include helpers.R
 #' @export
 cds_estimate_costs <- function(dataset, ..., token = cds_get_token()) {
-  .cds_estimate_costs(dataset, cds_build_request(dataset, ...), token)
+  if (missing(dataset)) dataset <- NULL
+  .cds_estimate_costs(dataset, ..., token = token)
 }
 
-.cds_estimate_costs <- function(dataset, form, token) {
+.cds_estimate_costs <- function(dataset, ..., token) {
+  form <- cds_build_request(dataset, ...)
+  if (is.null(dataset) || is.list(dataset)) dataset <- attr(form, "dataset")
   .base_url |>
     paste("retrieve/v1/processes", dataset, "costing", sep = "/") |>
     .execute_request(token, "POST", list(inputs = form))
