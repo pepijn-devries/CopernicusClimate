@@ -30,11 +30,19 @@ client.retrieve(dataset, request).download()"
 test_that("Clipboard can be used to define request", {
   skip_on_cran()
   skip_if_offline()
-  skip_if_not(clipr::clipr_available(), "This test needs acces to the clipboard")
+  skip_if_not(clipr::clipr_available(), "This test needs access to the clipboard")
   skip_if_not(cds_token_works(), "This test requires a working access token")
   expect_no_error({
     clipr::write_clip(python_code)
     cds_submit_job() |>
       suppressMessages()
+  })
+})
+
+test_that("Python request can be converted to R request", {
+  skip_on_cran()
+  skip_if_offline()
+  expect_no_error({
+    req <- cds_python_to_r(python_code)
   })
 })
