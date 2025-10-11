@@ -26,6 +26,7 @@
     ct,
     `application/json` = {
       body <- httr2::resp_body_json(body)
+      if (is.list(body$detail)) body$detail <- body$detail[[1]]$msg
       if (!is.null(body$detail) && nchar(body$detail) > 3) {
         body$detail <- tryCatch({
           result <-
