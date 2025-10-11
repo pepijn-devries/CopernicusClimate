@@ -7,7 +7,7 @@ test_that("Download workflow works", {
       dataset        = "reanalysis-era5-pressure-levels",
       variable       = "geopotential",
       product_type   = "reanalysis",
-      area           = c(n = 55, w = -1, s = 50, e = 10),
+      area           = c(n = 55, e = -1, s = 50, w = 10),
       year           = "2024",
       month          = "03",
       day            = "01",
@@ -39,7 +39,7 @@ test_that("Job can be cancelled", {
       dataset        = "reanalysis-era5-pressure-levels",
       variable       = "geopotential",
       product_type   = "reanalysis",
-      area           = c(n = 55, w = -1, s = 50, e = 10),
+      area           = c(n = 55, e = -1, s = 50, w = 10),
       year           = "2024",
       month          = "03",
       day            = "01",
@@ -50,5 +50,31 @@ test_that("Job can be cancelled", {
       suppressMessages()
     job_del <- cds_delete_job(job$jobID)
     job_del$status == "dismissed"
+  })
+})
+
+test_that("Job can listed", {
+  skip_on_cran()
+  skip_if_offline()
+  skip_if_not(cds_token_works())
+  expect_no_error({
+    cds_list_jobs(status = "accepted")
+  })
+})
+
+test_that("Duplicated default values are removed", {
+  skip_on_cran()
+  skip_if_offline()
+  expect_true({
+    request <-
+      cds_build_request(
+        "reanalysis-era5-single-levels",
+        variable = "v_component_stokes_drift",
+        year = "2025",
+        month = "01",
+        day = "01",
+        data_format="netcdf"
+      )
+    length(request$product_type) == 1
   })
 })

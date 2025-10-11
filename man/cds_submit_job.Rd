@@ -14,9 +14,12 @@ cds_submit_job(
 )
 }
 \arguments{
-\item{dataset}{The dataset name to be downloaded}
+\item{dataset}{The dataset name to be downloaded, or a \code{list} returned by
+\code{cds_build_request()}. When this argument is missing the function will
+attempt to build a request with text on the clipboard using \code{cds_python_to_r()}.}
 
-\item{...}{Subsetting parameters passed onto \code{cds_build_request()}.}
+\item{...}{Subsetting parameters passed onto \code{cds_build_request()}. Should
+be empty when \code{dataset} is missing or a \code{list}.}
 
 \item{wait}{A \code{logical} value indicating if the function should wait for the
 submitted job to finish. Set it to \code{FALSE} to continue without waiting}
@@ -54,5 +57,20 @@ if (interactive() && cds_token_works()) {
       pressure_level = "1000",
       data_format    = "netcdf"
     )
+
+  ## Or split into two separate steps:
+  
+  req <- cds_build_request(
+      dataset        = "reanalysis-era5-pressure-levels",
+      variable       = "geopotential",
+      product_type   = "reanalysis",
+      area           = c(n = 55, w = -1, s = 50, e = 10),
+      year           = "2024",
+      month          = "03",
+      day            = "01",
+      pressure_level = "1000",
+      data_format    = "netcdf"
+    )
+  job <- cds_submit_job(req)
 }
 }

@@ -1,6 +1,6 @@
 Package: CopernicusClimate
 Title: Search Download and Handle Data from Copernicus Climate Data Service
-Version: 0.0.2.0003
+Version: 0.0.2.0004
 Authors@R: 
     c(
       person("Pepijn", "de Vries", role = c("aut", "cre"),
@@ -24,6 +24,7 @@ Imports:
     tibble,
     tidyr
 Suggests:
+    clipr,
     ggplot2,
     knitr,
     RefManageR,
@@ -41,6 +42,7 @@ Collate:
     'cite.R'
     'jobs.R'
     'licenses.R'
+    'python.R'
     'retrieve.R'
     'stars.R'
     'token.R'

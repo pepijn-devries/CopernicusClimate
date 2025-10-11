@@ -185,7 +185,7 @@ request <- cds_build_request(
   year           = "2025",
   month          = "01",
   day            = "01",
-  area           = c(n = 60, w = -5, e = 10, s = 40),
+  area           = c(n = 60, e = -5, s = 40, w = 10),
   data_format    = "netcdf")
 summary(request)
 ```
@@ -213,15 +213,7 @@ we get:
 
 ```{r estimate-detailed}
 if (cds_token_works()) {
-  cds_estimate_costs(
-    "reanalysis-era5-pressure-levels",
-    variable       = "temperature",
-    pressure_level = "1000",
-    year           = "2025",
-    month          = "01",
-    day            = "01",
-    area           = c(n = 60, w = -5, e = 10, s = 40),
-    data_format    = "netcdf")
+  cds_estimate_costs(request)
 } else {
   message("You need a working token to estimate costs")
 }
@@ -237,15 +229,7 @@ it, you can submit a request to C3S. Let's submit the request as shown above:
 ```{r submit, message=FALSE}
 if (cds_token_works()) {
   job <-
-    cds_submit_job(
-      "reanalysis-era5-pressure-levels",
-      variable       = "temperature",
-      pressure_level = "1000",
-      year           = "2025",
-      month          = "01",
-      day            = "01",
-      area           = c(n = 60, w = -5, e = 10, s = 40),
-      data_format    = "netcdf")
+    cds_submit_job(request)
   job
 } else {
   message("You need a working token to submit a request")
