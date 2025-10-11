@@ -11,7 +11,7 @@ returned which can be used to actually download the data (cds_download_jobs())."
 
     <a class="navbar-brand me-2" href="../index.html">CopernicusClimate</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2.0003</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2.0004</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -63,11 +63,14 @@ returned which can be used to actually download the data (<code><a href="cds_dow
 
 
 <dl><dt id="arg-dataset">dataset<a class="anchor" aria-label="anchor" href="#arg-dataset"></a></dt>
-<dd><p>The dataset name to be downloaded</p></dd>
+<dd><p>The dataset name to be downloaded, or a <code>list</code> returned by
+<code><a href="cds_build_request.html">cds_build_request()</a></code>. When this argument is missing the function will
+attempt to build a request with text on the clipboard using <code><a href="cds_python_to_r.html">cds_python_to_r()</a></code>.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>Subsetting parameters passed onto <code><a href="cds_build_request.html">cds_build_request()</a></code>.</p></dd>
+<dd><p>Subsetting parameters passed onto <code><a href="cds_build_request.html">cds_build_request()</a></code>. Should
+be empty when <code>dataset</code> is missing or a <code>list</code>.</p></dd>
 
 
 <dt id="arg-wait">wait<a class="anchor" aria-label="anchor" href="#arg-wait"></a></dt>
@@ -112,6 +115,21 @@ speed up the submission.</p></dd>
 <span class="r-in"><span>      pressure_level <span class="op">=</span> <span class="st">"1000"</span>,</span></span>
 <span class="r-in"><span>      data_format    <span class="op">=</span> <span class="st">"netcdf"</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">## Or split into two separate steps:</span></span></span>
+<span class="r-in"><span>  </span></span>
+<span class="r-in"><span>  <span class="va">req</span> <span class="op">&lt;-</span> <span class="fu"><a href="cds_build_request.html">cds_build_request</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      dataset        <span class="op">=</span> <span class="st">"reanalysis-era5-pressure-levels"</span>,</span></span>
+<span class="r-in"><span>      variable       <span class="op">=</span> <span class="st">"geopotential"</span>,</span></span>
+<span class="r-in"><span>      product_type   <span class="op">=</span> <span class="st">"reanalysis"</span>,</span></span>
+<span class="r-in"><span>      area           <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">55</span>, w <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>, s <span class="op">=</span> <span class="fl">50</span>, e <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      year           <span class="op">=</span> <span class="st">"2024"</span>,</span></span>
+<span class="r-in"><span>      month          <span class="op">=</span> <span class="st">"03"</span>,</span></span>
+<span class="r-in"><span>      day            <span class="op">=</span> <span class="st">"01"</span>,</span></span>
+<span class="r-in"><span>      pressure_level <span class="op">=</span> <span class="st">"1000"</span>,</span></span>
+<span class="r-in"><span>      data_format    <span class="op">=</span> <span class="st">"netcdf"</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">job</span> <span class="op">&lt;-</span> <span class="fu">cds_submit_job</span><span class="op">(</span><span class="va">req</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
