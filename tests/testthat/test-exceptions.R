@@ -82,6 +82,6 @@ test_that("Coordinates out of range are rejected", {
   skip_on_cran()
   skip_if_offline()
   expect_error({
-    cds_build_request("reanalysis-era5-single-levels", area = c(95, 0, 94, -1))
+    cds_build_request("reanalysis-era5-single-levels", area = c(95, -1, 94, 0))
   }, "out of range")
 })

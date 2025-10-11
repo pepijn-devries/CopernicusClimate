@@ -220,7 +220,7 @@ cds_build_request <- function(dataset, ...) {
                                      paste(names(geo_details$default), collapse = ", ")),
                          i = "Provide a correct bounding box"))
         if (is.null(names(current))) names(current) <- names(geo_details$default)
-        if (current["s"] > current["n"] || current["w"] > current["e"])
+        if (current["s"] > current["n"] || current["e"] > current["w"])
           rlang::abort(c(x = "North should be larger than South. West should be larger than East",
                          i = "Check your bounding box for correctness"))
         if (current[["n"]] > geo_details$range$n ||
