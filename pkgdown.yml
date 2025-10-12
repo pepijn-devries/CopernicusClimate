@@ -3,8 +3,8 @@ pkgdown: 2.1.3
 pkgdown_sha: ~
 articles:
   download: download.html
-  translation: translation.html
-last_built: 2025-10-12T08:13Z
+  translate: translate.html
+last_built: 2025-10-12T22:08Z
 urls:
   reference: https://pepijn-devries.github.io/CopernicusClimate/reference
   article: https://pepijn-devries.github.io/CopernicusClimate/articles
