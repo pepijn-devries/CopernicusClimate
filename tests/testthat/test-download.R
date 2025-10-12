@@ -78,3 +78,17 @@ test_that("Duplicated default values are removed", {
     length(request$product_type) == 1
   })
 })
+
+test_that("Grouped variables can also be used to build query", {
+  skip_on_cran()
+  skip_if_offline()
+  expect_true({
+    req <-
+      cds_build_request(
+        "reanalysis-era5-single-levels",
+        variable = "wind" ## <- this is a group
+      )
+    ## should return all variables within group
+    length(req$variable) > 1
+  })
+})
