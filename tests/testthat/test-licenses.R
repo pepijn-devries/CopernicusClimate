@@ -15,3 +15,11 @@ test_that("A license can be accepted", {
     cds_accept_licence("cc-by", 1)
   })
 })
+
+test_that("Licenses can be listed", {
+  skip_on_cran()
+  skip_if_offline()
+  expect_true({
+    nrow(cds_list_licences()) > 10
+  })
+})

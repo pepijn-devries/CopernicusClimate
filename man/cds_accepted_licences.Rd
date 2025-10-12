@@ -32,3 +32,9 @@ if (interactive() && cds_token_works()) {
   cds_accepted_licences("portal")
 }
 }
+\seealso{
+Other licences: 
+\code{\link{cds_accept_licence}()},
+\code{\link{cds_list_licences}()}
+}
+\concept{licences}

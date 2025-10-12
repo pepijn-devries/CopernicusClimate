@@ -47,10 +47,17 @@ cds_python_to_r <- function(text, ...) {
     if (requireNamespace("clipr")) {
       text <- clipr::read_clip()
     } else {
-      rlang::abort(
-        c(x = "Trying to get 'text' from clipboard, but missing required 'clipr' package",
-          i = "Install package 'clipr' and try again")
-      )
+      if (clipr::clipr_available()) {
+        rlang::abort(
+          c(x = "Trying to get 'text', however, system clipboard is not accessible",
+            i = "Pass the Python code explicitly as 'text' argument")
+        )
+      } else {
+        rlang::abort(
+          c(x = "Trying to get 'text' from clipboard, but missing required 'clipr' package",
+            i = "Install package 'clipr' and try again")
+        )
+      }
     }
   }
   ## collapse + strip spaces and tabs:
@@ -67,7 +74,7 @@ cds_python_to_r <- function(text, ...) {
       text |>
       stringr::str_extract("request=\\{(.|\n)*\\}") |>
       stringr::str_replace("^request=", "") |>
-      jsonlite::fromJSON()
+      jsonlite::fromJSON(simplifyVector = FALSE)
     attributes(req)$dataset <- dataset
     req
   }, error = function(e) rlang::abort(

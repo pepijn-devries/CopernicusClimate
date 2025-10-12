@@ -101,7 +101,9 @@ your web browser and visit either the
 [Climate Data Store](https://cds.climate.copernicus.eu/datasets) or
 [STAC catalogue](https://cds.climate.copernicus.eu/stac-browser/).
 Both allow you to navigate through the treasures of information, and identify which
-dataset best serves your needs.
+dataset best serves your needs. You can even copy the request code
+to the system clipboard and use this package to get the request from the clipboard
+and execute it. This is illustrated in `vignette("translation")`.
 
 ### Programatically
 
@@ -277,7 +279,7 @@ if (cds_token_works()) {
 
 Now you can do whatever it is you want to do with the data:
 
-```{r plot, fig.width=7, fig.height=3, message = FALSE}
+```{r plot, fig.width=7, fig.height=3, message = FALSE, fig.alt="Plot created from downloaded data"}
 fn <- file.path(tempdir(), filename)
 
 if (file.exists(fn)) {

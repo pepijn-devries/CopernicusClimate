@@ -28,3 +28,9 @@ if (interactive() && cds_token_works()) {
   cds_accept_licence("cc-by", 1)
 }
 }
+\seealso{
+Other licences: 
+\code{\link{cds_accepted_licences}()},
+\code{\link{cds_list_licences}()}
+}
+\concept{licences}

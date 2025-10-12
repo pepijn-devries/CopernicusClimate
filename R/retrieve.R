@@ -168,13 +168,14 @@ cds_build_request <- function(dataset, ...) {
         my_groups <- lapply(details$groups, `[[`, "label") |> unlist() |>
           tolower() |> stringr::str_replace_all(" ", "_")
         sel <- my_groups %in% form_result[[nm]]
-        if (!any(sel)) sel <- rep(TRUE, length(my_groups))
-        details$values <-
-          lapply(details$groups[sel], `[[`, "values") |>
-          unlist() |>
-          unique() |>
-          list()
-        form_result[[nm]] <- details$values |> unlist()
+        if (any(sel)) {
+          details$values <-
+            lapply(details$groups[sel], `[[`, "values") |>
+            unlist() |>
+            unique() |>
+            list()
+          form_result[[nm]] <- details$values |> unlist()
+        }
       }
       if (!is.null(details$values) &&
           any(!form_result[[nm]] %in% unlist(details$values))) {
@@ -357,7 +358,7 @@ cds_download_jobs <- function(job_id, destination, names, ..., token = cds_get_t
       dplyr::filter(.data$jobID %in% job_id)
     busy_jobs <- jobs$status %in% c("accepted", "running")
     if (any(busy_jobs)) {
-      message("\rWaiting for", sum(busy_jobs), "to complete   ", appendLF = FALSE)
+      message("\rWaiting for ", sum(busy_jobs), " job(s) to complete   ", appendLF = FALSE)
     } else break
     Sys.sleep(1)
   }
