@@ -103,7 +103,7 @@ your web browser and visit either the
 Both allow you to navigate through the treasures of information, and identify which
 dataset best serves your needs. You can even copy the request code
 to the system clipboard and use this package to get the request from the clipboard
-and execute it. This is illustrated in `vignette("translation")`.
+and execute it. This is illustrated in `vignette("translate")`.
 
 ### Programatically
 

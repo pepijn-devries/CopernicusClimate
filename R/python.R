@@ -4,7 +4,7 @@
 #' you have the option to copy the API request code to the clipboard. However,
 #' this is Python code and cannot be used directly in this package.
 #' Use this function to translate the code to a request that can be handled by
-#' the package.
+#' the package. For more details see `vignette("translate")`
 #' @param text A `character` string containing the Python code copied
 #' from a dataset download website <https://cds.climate.copernicus.eu/datasets>.
 #' When missing, the function will use any text on the system clipboard.

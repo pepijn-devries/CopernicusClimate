@@ -24,7 +24,7 @@ When looking for a dataset on \url{https://cds.climate.copernicus.eu/datasets},
 you have the option to copy the API request code to the clipboard. However,
 this is Python code and cannot be used directly in this package.
 Use this function to translate the code to a request that can be handled by
-the package.
+the package. For more details see \code{vignette("translate")}
 }
 \examples{
 python_code <-
