@@ -1,7 +1,8 @@
 # CopernicusClimate v0.0.2.0004
 
-* New feature:
+* New features:
   * Translator for Python request: `cds_python_to_r()`
+  * Added `cds_list_licences()`
 * Updated documentation
 * Fixes in `cds_build_request()`
 * improved test coverage

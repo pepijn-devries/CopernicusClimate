@@ -81,7 +81,7 @@ if (cds_token_works()) { ## Make sure there is an operational access token
 }
 ```
 
-<img src="man/figures/README-example-1.png" width="100%" />
+<img src="man/figures/README-example-1.png" alt="Temperature map created from downloaded data" width="100%" />
 
 ## More of Copernicus
 

@@ -1,0 +1,49 @@
+---
+title: "Translate API Code"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Translate API Code}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Locating a dataset
+
+You could use the R functions `cds_search_datasets()` and `cds_list_datasets()` to
+look for [Copernicus Climate Change Service (C3S)](https://climate.copernicus.eu/) data.
+If you prefer using a graphical user interface, you can use the website to find
+a suitable dataset: <https://cds.climate.copernicus.eu/datasets>.
+
+The screen recording below shows how to look for a dataset on the website, and then
+copy the request code for that dataset to the clipboard. Note this recording is
+only showing the essentials, and no specific subsetting selections are made, causing
+the actual request to be incomplete. But the principle remains the same.
+
+![Demonstration of copying request code to clipboard](https://raw.githubusercontent.com/pepijn-devries/CopernicusClimate/refs/heads/main/pkgdown/media/copy_api_code.gif)
+
+## Downloading the dataset
+
+Once the request code is on your system's clipboard, you can go to your R console
+and download the dataset, by first submitting the request with `cds_submit_job()`.
+By omitting the dataset argument, the function will automatically look for a request
+on the clipboard. After the request has been processed, you can download the dataset
+with `cds_download_jobs()`. All of this is illustrated in the screen recording below.
+
+![Demonstration of downloading using a request on the clipboard](https://raw.githubusercontent.com/pepijn-devries/CopernicusClimate/refs/heads/main/pkgdown/media/download_from_clipboard.gif)
+
+You can also arrange your workflow completely in R, without using a web browser.
+For more details on this workflow check out `vignette("download")`.
+
+## Translation
+
+Under the hood of all this is the function `cds_python_to_r()`. It is used to translate
+request code from the website to a request that can be handled by this R package.
+In essence it extracts all relevant information from the Python codes and turns it into
+a named list.

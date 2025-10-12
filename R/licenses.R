@@ -13,6 +13,7 @@
 #'   cds_accepted_licences("portal")
 #' }
 #' @include helpers.R
+#' @family licences
 #' @export
 cds_accepted_licences <- function(
     scope = c("all", "dataset", "portal"),
@@ -42,6 +43,7 @@ cds_accepted_licences <- function(
 #'   cds_accept_licence("cc-by", 1)
 #' }
 #' @include helpers.R
+#' @family licences
 #' @export
 cds_accept_licence <- function(
     license, revision, ..., token = cds_get_token()) {
@@ -53,4 +55,24 @@ cds_accept_licence <- function(
     httr2::req_perform() |>
     httr2::resp_body_json() |>
     dplyr::as_tibble()
+}
+
+#' Obtain a list of licences that can be accepted
+#' 
+#' Some datasets require you to accept specific licences. This function will provide
+#' an overview of all licences associated with datasets and can be accepted.
+#' @param ... Ignored
+#' @returns Returns a `data.frame` of available licences that can be accepted.
+#' @examples
+#' if (interactive()) {
+#'   cds_list_licences()
+#' }
+#' @family licences
+#' @export
+cds_list_licences <- function(...) {
+  result <-
+    .base_url |>
+    paste("catalogue/v1/vocabularies/licences", sep = "/") |>
+    .execute_request()
+  .simplify(result$licences)
 }
