@@ -15,7 +15,7 @@ the package."><meta property="og:image" content="https://pepijn-devries.github.i
 
     <a class="navbar-brand me-2" href="../index.html">CopernicusClimate</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2.0004</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2.0005</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,6 +27,7 @@ the package."><meta property="og:image" content="https://pepijn-devries.github.i
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/download.html">Downloading from Copernicus Climate Service</a></li>
+    <li><a class="dropdown-item" href="../articles/translation.html">Translate API Code</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -109,7 +110,9 @@ clipboard, then call this function without arguments.</p></dd>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">cds_python_to_r</span><span class="op">(</span><span class="va">python_code</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $variable</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $variable[[1]]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2m_dewpoint_temperature"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $year</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2025"</span>
@@ -118,12 +121,83 @@ clipboard, then call this function without arguments.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "01"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $day</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $day[[1]]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "01"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $time</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "00:00" "01:00" "02:00" "03:00" "04:00" "05:00" "06:00" "07:00" "08:00"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [10] "09:00" "10:00" "11:00" "12:00" "13:00" "14:00" "15:00" "16:00" "17:00"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [19] "18:00" "19:00" "20:00" "21:00" "22:00" "23:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $time[[1]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "00:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $time[[2]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "01:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $time[[3]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "02:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $time[[4]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "03:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $time[[5]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "04:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $time[[6]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "05:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $time[[7]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "06:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $time[[8]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "07:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $time[[9]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "08:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $time[[10]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "09:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $time[[11]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "10:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $time[[12]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "11:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $time[[13]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "12:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $time[[14]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "13:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $time[[15]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "14:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $time[[16]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "15:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $time[[17]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "16:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $time[[18]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "17:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $time[[19]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "18:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $time[[20]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "19:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $time[[21]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "20:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $time[[22]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "21:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $time[[23]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "22:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $time[[24]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "23:00"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $data_format</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "netcdf"</span>
