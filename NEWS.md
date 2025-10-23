@@ -1,4 +1,4 @@
-# CopernicusClimate v0.0.2.0006
+# CopernicusClimate v0.0.3
 
 * New features:
   * Translator for Python request: `cds_python_to_r()`
