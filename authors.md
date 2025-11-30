@@ -11,13 +11,13 @@ Source:
 [`DESCRIPTION`](https://github.com/pepijn-devries/CopernicusClimate/blob/main/DESCRIPTION)
 
 de Vries P (2025). *CopernicusClimate: Search Download and Handle Data
-from Copernicus Climate Data Service*. R package version 0.0.3.0001,
+from Copernicus Climate Data Service*. R package version 0.0.3.0002,
 <https://pepijn-devries.github.io/CopernicusClimate/>.
 
     @Manual{,
       title = {CopernicusClimate: Search Download and Handle Data from Copernicus Climate Data Service},
       author = {Pepijn {de Vries}},
       year = {2025},
-      note = {R package version 0.0.3.0001},
+      note = {R package version 0.0.3.0002},
       url = {https://pepijn-devries.github.io/CopernicusClimate/},
     }

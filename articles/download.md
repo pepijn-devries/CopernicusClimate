@@ -354,7 +354,7 @@ if (cds_token_works()) {
 #> # A tibble: 1 × 10
 #>   processID           type  jobID status created started finished updated links 
 #> * <chr>               <chr> <chr> <chr>  <chr>   <chr>   <chr>    <chr>   <list>
-#> 1 reanalysis-era5-pr… proc… b726… succe… 2025-1… 2025-1… 2025-11… 2025-1… <list>
+#> 1 reanalysis-era5-pr… proc… ed00… succe… 2025-1… 2025-1… 2025-11… 2025-1… <list>
 #> # ℹ 1 more variable: metadata <list>
 ```
 
@@ -382,7 +382,7 @@ if (cds_token_works()) {
 #> # A tibble: 1 × 10
 #>   processID           type  jobID status created started finished updated links 
 #> * <chr>               <chr> <chr> <chr>  <chr>   <chr>   <chr>    <chr>   <list>
-#> 1 reanalysis-era5-pr… proc… b726… succe… 2025-1… 2025-1… 2025-11… 2025-1… <list>
+#> 1 reanalysis-era5-pr… proc… ed00… succe… 2025-1… 2025-1… 2025-11… 2025-1… <list>
 #> # ℹ 1 more variable: metadata <list>
 ```
 
