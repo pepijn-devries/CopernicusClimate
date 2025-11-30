@@ -1,6 +1,7 @@
-# CopernicusClimate v0.0.3.0001
+# CopernicusClimate v0.0.3.0002
 
  * Corrected DESCRIPTION file
+ * Fixed broken test
 
 # CopernicusClimate v0.0.3
 

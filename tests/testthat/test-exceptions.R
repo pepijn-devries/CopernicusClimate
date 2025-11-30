@@ -59,7 +59,7 @@ test_that("Cannot pass invalid parameters to url", {
   skip_if_offline()
   expect_error({
     cds_search_datasets(page = "foobar")
-  }, regexp = "*.?value is not a valid integer*.?")
+  }, regexp = "*.?Input should be a valid integer*.?")
 })
 
 test_that("Bounding box with no 4 values is rejected", {
