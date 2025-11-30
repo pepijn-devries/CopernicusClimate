@@ -1,3 +1,7 @@
+# CopernicusClimate v0.0.3.0001
+
+ * Corrected DESCRIPTION file
+
 # CopernicusClimate v0.0.3
 
 * New features:
