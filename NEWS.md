@@ -1,6 +1,7 @@
-# CopernicusClimate v0.0.3.0002
+# CopernicusClimate v0.0.3.0003
 
  * Corrected DESCRIPTION file
+ * Correction in handling of bbox
  * Fixed broken test
 
 # CopernicusClimate v0.0.3

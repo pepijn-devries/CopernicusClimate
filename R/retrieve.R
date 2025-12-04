@@ -216,13 +216,30 @@ cds_build_request <- function(dataset, ...) {
       GeographicExtentWidget = {
         geo_details <- details$details[[1]]$details
         current <- unlist(form_result[[nm]])
+        if (inherits(current, "bbox")) {
+          if (requireNamespace("sf")) {
+            if (!is.na(sf::st_crs(form_result[[nm]]))) {
+              current <- sf::st_transform(form_result[[nm]], 4326)
+            }
+            current <- c(n = current[["ymax"]],
+                         w = current[["xmin"]],
+                         s = current[["ymin"]],
+                         e = current[["xmax"]])
+            
+          } else {
+            rlang::abort(
+              c(x = "Using a `bbox` as `area` arguments needs package `sf`",
+                i = "Install package `sf` and try again")
+            )
+          }
+        }
         if (length(current) != 4)
           rlang::abort(c(x = sprintf("Expected rectangular bounding box, with 4 values (%s)",
                                      paste(names(geo_details$default), collapse = ", ")),
                          i = "Provide a correct bounding box"))
-        if (is.null(names(current))) names(current) <- names(geo_details$default)
-        if (current["s"] > current["n"] || current["e"] > current["w"])
-          rlang::abort(c(x = "North should be larger than South. West should be larger than East",
+        if (is.null(names(current))) names(current) <- c("n", "w", "s", "e")
+        if (current["s"] > current["n"] || current["e"] < current["w"])
+          rlang::abort(c(x = "North should be larger than South. East should be larger than West",
                          i = "Check your bounding box for correctness"))
         if (current[["n"]] > geo_details$range$n ||
             current[["s"]] < geo_details$range$s ||

@@ -187,7 +187,7 @@ request <- cds_build_request(
   year           = "2025",
   month          = "01",
   day            = "01",
-  area           = c(n = 60, e = -5, s = 40, w = 10),
+  area           = c(n = 60, w = -5, s = 40, e = 10),
   data_format    = "netcdf")
 summary(request)
 ```

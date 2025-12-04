@@ -15,7 +15,7 @@ Useful links:
 \itemize{
   \item \url{https://pepijn-devries.github.io/CopernicusClimate/}
   \item \url{https://github.com/pepijn-devries/CopernicusClimate/}
-  \item Report bugs at \url{https://github.com/pepijn-devries/CopernicusMarine/issues}
+  \item Report bugs at \url{https://github.com/pepijn-devries/CopernicusClimate/issues}
 }
 
 }

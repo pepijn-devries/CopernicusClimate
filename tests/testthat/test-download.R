@@ -7,7 +7,7 @@ test_that("Download workflow works", {
       dataset        = "reanalysis-era5-pressure-levels",
       variable       = "geopotential",
       product_type   = "reanalysis",
-      area           = c(n = 55, e = -1, s = 50, w = 10),
+      area           = c(n = 55, w = -1, s = 50, e = 10),
       year           = "2024",
       month          = "03",
       day            = "01",
@@ -19,6 +19,23 @@ test_that("Download workflow works", {
       cds_download_jobs(job$jobID, tempdir()) |>
       suppressMessages()
     file.size(my_download$local) > 0
+  })
+})
+
+test_that("Area can be a `bbox` class object", {
+  expect_no_error({
+    cds_build_request(
+      dataset        = "reanalysis-era5-pressure-levels",
+      variable       = "geopotential",
+      product_type   = "reanalysis",
+      area           = sf::st_bbox(c(ymax = 55, xmin = -1,
+                                     ymin = 50, xmax = 10)),
+      year           = "2024",
+      month          = "03",
+      day            = "01",
+      pressure_level = "1000",
+      data_format    = "netcdf"
+    )
   })
 })
 
@@ -39,7 +56,7 @@ test_that("Job can be cancelled", {
       dataset        = "reanalysis-era5-pressure-levels",
       variable       = "geopotential",
       product_type   = "reanalysis",
-      area           = c(n = 55, e = -1, s = 50, w = 10),
+      area           = c(n = 55, w = -1, s = 50, e = 10),
       year           = "2024",
       month          = "03",
       day            = "01",
