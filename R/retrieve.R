@@ -220,9 +220,9 @@ cds_build_request <- function(dataset, ...) {
           rlang::abort(c(x = sprintf("Expected rectangular bounding box, with 4 values (%s)",
                                      paste(names(geo_details$default), collapse = ", ")),
                          i = "Provide a correct bounding box"))
-        if (is.null(names(current))) names(current) <- names(geo_details$default)
-        if (current["s"] > current["n"] || current["e"] > current["w"])
-          rlang::abort(c(x = "North should be larger than South. West should be larger than East",
+        if (is.null(names(current))) names(current) <- c("n", "w", "s", "e")
+        if (current["s"] > current["n"] || current["e"] < current["w"])
+          rlang::abort(c(x = "North should be larger than South. East should be larger than West",
                          i = "Check your bounding box for correctness"))
         if (current[["n"]] > geo_details$range$n ||
             current[["s"]] < geo_details$range$s ||
