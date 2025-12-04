@@ -22,6 +22,23 @@ test_that("Download workflow works", {
   })
 })
 
+test_that("Area can be a `bbox` class object", {
+  expect_no_error({
+    cds_build_request(
+      dataset        = "reanalysis-era5-pressure-levels",
+      variable       = "geopotential",
+      product_type   = "reanalysis",
+      area           = sf::st_bbox(c(ymax = 55, xmin = -1,
+                                     ymin = 50, xmax = 10)),
+      year           = "2024",
+      month          = "03",
+      day            = "01",
+      pressure_level = "1000",
+      data_format    = "netcdf"
+    )
+  })
+})
+
 test_that("Costs can be estimated", {
   skip_on_cran()
   skip_if_offline()
