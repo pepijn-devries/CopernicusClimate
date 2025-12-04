@@ -25,7 +25,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">CopernicusClimate</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.3.0002</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.3.0003</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -187,23 +187,24 @@ illustrated in <code><a href="../articles/translate.html">vignette("translate")<
 by listing them all:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cds_search_datasets.html">cds_list_datasets</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 124 × 18</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 125 × 18</span></span></span>
 <span><span class="co">#&gt;    type  id    stac_version title description summaries    providers    keywords</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> Coll… rean… 1.1.0        ERA5… <span style="color: #949494;">"</span>ERA5-Land… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> Coll… rean… 1.1.0        ERA5… <span style="color: #949494;">"</span>ERA5 is t… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> Coll… deri… 1.1.0        ERA5… <span style="color: #949494;">"</span>ERA5 is t… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> Coll… rean… 1.1.0        ERA5… <span style="color: #949494;">"</span>ERA5-Land… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> Coll… rean… 1.1.0        ERA5… <span style="color: #949494;">"</span>ERA5 is t… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> Coll… deri… 1.1.0        ERA5… <span style="color: #949494;">"</span>ERA5 is t… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> Coll… deri… 1.1.0        Ther… <span style="color: #949494;">"</span>This data… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> Coll… sis-… 1.1.0        Agro… <span style="color: #949494;">"</span>This data… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> Coll… sate… 1.1.0        Uppe… <span style="color: #949494;">"</span>Upper Tro… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> Coll… rean… 1.1.0        Arct… <span style="color: #949494;">"</span>The C3S A… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 114 more rows</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> Coll… insi… 1.1.0        Comp… <span style="color: #949494;">"</span>The Compr… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> Coll… deri… 1.1.0        Ther… <span style="color: #949494;">"</span>This data… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> Coll… rean… 1.1.0        ERA5… <span style="color: #949494;">"</span>ERA5 is t… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> Coll… sis-… 1.1.0        Agro… <span style="color: #949494;">"</span>This data… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> Coll… deri… 1.1.0        ERA5… <span style="color: #949494;">"</span>ERA5 is t… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> Coll… sate… 1.1.0        Aero… <span style="color: #949494;">"</span>This data… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> Coll… rean… 1.1.0        ERA5… <span style="color: #949494;">"</span>ERA5-Land… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> Coll… rean… 1.1.0        ERA5… <span style="color: #949494;">"</span>ERA5 is t… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> Coll… rean… 1.1.0        ERA5… <span style="color: #949494;">"</span>ERA5-Land… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> Coll… sate… 1.1.0        Meth… <span style="color: #949494;">"</span>This data… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 115 more rows</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 10 more variables: license &lt;chr&gt;, extent &lt;list&gt;, links &lt;list&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   assets &lt;named list&gt;, published &lt;chr&gt;, updated &lt;chr&gt;, `cads:message` &lt;list&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   `cads:disabled_reason` &lt;chr&gt;, `cads:sanity_check` &lt;list&gt;, `sci:doi` &lt;chr&gt;</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;">#   assets &lt;named list&gt;, published &lt;chr&gt;, updated &lt;chr&gt;, `sci:doi` &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   `cads:disabled_reason` &lt;chr&gt;, `cads:sanity_check` &lt;list&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   `cads:message` &lt;list&gt;</span></span></span></code></pre></div>
 <p>But you can also look for specific datasets using free search text
 and / or predefined keywords:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
@@ -321,7 +322,7 @@ narrow it down:</p>
 <span>  year           <span class="op">=</span> <span class="st">"2025"</span>,</span>
 <span>  month          <span class="op">=</span> <span class="st">"01"</span>,</span>
 <span>  day            <span class="op">=</span> <span class="st">"01"</span>,</span>
-<span>  area           <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">60</span>, e <span class="op">=</span> <span class="op">-</span><span class="fl">5</span>, s <span class="op">=</span> <span class="fl">40</span>, w <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>,</span>
+<span>  area           <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">60</span>, w <span class="op">=</span> <span class="op">-</span><span class="fl">5</span>, s <span class="op">=</span> <span class="fl">40</span>, e <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>,</span>
 <span>  data_format    <span class="op">=</span> <span class="st">"netcdf"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">request</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                 Length Class  Mode     </span></span>
@@ -396,7 +397,7 @@ request as shown above:</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 10</span></span></span>
 <span><span class="co">#&gt;   processID           type  jobID status created started finished updated links </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> reanalysis-era5-pr… proc… ed00… succe… 2025-1… 2025-1… 2025-11… 2025-1… <span style="color: #949494;">&lt;list&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> reanalysis-era5-pr… proc… c2c1… succe… 2025-1… 2025-1… 2025-12… 2025-1… <span style="color: #949494;">&lt;list&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 1 more variable: metadata &lt;list&gt;</span></span></span></code></pre></div>
 <p>By default this function will wait until the request has been
 processed by C3S. But when you set the argument
@@ -419,11 +420,10 @@ at the status of our job submitted above:</p>
 <span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">message</a></span><span class="op">(</span><span class="st">"You need a working token to get a job status"</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 10</span></span></span>
-<span><span class="co">#&gt;   processID           type  jobID status created started finished updated links </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> reanalysis-era5-pr… proc… ed00… succe… 2025-1… 2025-1… 2025-11… 2025-1… <span style="color: #949494;">&lt;list&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 1 more variable: metadata &lt;list&gt;</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 8</span></span></span>
+<span><span class="co">#&gt;   processID         type  jobID status created updated links        metadata    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> reanalysis-era5-… proc… c2c1… accep… 2025-1… 2025-1… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span></span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="downloading-data">Downloading data<a class="anchor" aria-label="anchor" href="#downloading-data"></a>

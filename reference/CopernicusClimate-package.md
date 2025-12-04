@@ -14,7 +14,7 @@ Useful links:
 - <https://github.com/pepijn-devries/CopernicusClimate/>
 
 - Report bugs at
-  <https://github.com/pepijn-devries/CopernicusMarine/issues>
+  <https://github.com/pepijn-devries/CopernicusClimate/issues>
 
 ## Author
 
