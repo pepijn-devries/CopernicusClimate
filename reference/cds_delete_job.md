@@ -1,6 +1,6 @@
 # Delete/cancel jobs submitted to the Climate Data Service
 
-Whe you regret submitting a job, you can cancel it by calling this
+When you regret submitting a job, you can cancel it by calling this
 function.
 
 ## Usage

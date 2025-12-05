@@ -116,7 +116,7 @@ the system clipboard and use this package to get the request from the
 clipboard and execute it. This is illustrated in
 [`vignette("translate")`](https://pepijn-devries.github.io/CopernicusClimate/articles/translate.md).
 
-### Programatically
+### Programmatically
 
 You can also use this R package to look for datasets. You could start by
 listing them all:
@@ -126,16 +126,16 @@ cds_list_datasets()
 #> # A tibble: 125 × 18
 #>    type  id    stac_version title description summaries    providers    keywords
 #>    <chr> <chr> <chr>        <chr> <chr>       <list>       <list>       <list>  
-#>  1 Coll… insi… 1.1.0        Comp… "The Compr… <named list> <named list> <list>  
-#>  2 Coll… deri… 1.1.0        Ther… "This data… <named list> <named list> <list>  
+#>  1 Coll… rean… 1.1.0        ERA5… "ERA5 is t… <named list> <named list> <list>  
+#>  2 Coll… rean… 1.1.0        ERA5… "ERA5-Land… <named list> <named list> <list>  
 #>  3 Coll… rean… 1.1.0        ERA5… "ERA5 is t… <named list> <named list> <list>  
-#>  4 Coll… sis-… 1.1.0        Agro… "This data… <named list> <named list> <list>  
-#>  5 Coll… deri… 1.1.0        ERA5… "ERA5 is t… <named list> <named list> <list>  
-#>  6 Coll… sate… 1.1.0        Aero… "This data… <named list> <named list> <list>  
-#>  7 Coll… rean… 1.1.0        ERA5… "ERA5-Land… <named list> <named list> <list>  
-#>  8 Coll… rean… 1.1.0        ERA5… "ERA5 is t… <named list> <named list> <list>  
-#>  9 Coll… rean… 1.1.0        ERA5… "ERA5-Land… <named list> <named list> <list>  
-#> 10 Coll… sate… 1.1.0        Meth… "This data… <named list> <named list> <list>  
+#>  4 Coll… deri… 1.1.0        ERA5… "ERA5 is t… <named list> <named list> <list>  
+#>  5 Coll… ecv-… 1.1.0        Esse… "The Essen… <named list> <named list> <list>  
+#>  6 Coll… rean… 1.1.0        ERA5… "ERA5-Land… <named list> <named list> <list>  
+#>  7 Coll… insi… 1.1.0        Comp… "The Compr… <named list> <named list> <list>  
+#>  8 Coll… sate… 1.1.0        Aero… "This data… <named list> <named list> <list>  
+#>  9 Coll… sis-… 1.1.0        Agro… "This data… <named list> <named list> <list>  
+#> 10 Coll… deri… 1.1.0        Ther… "This data… <named list> <named list> <list>  
 #> # ℹ 115 more rows
 #> # ℹ 10 more variables: license <chr>, extent <list>, links <list>,
 #> #   assets <named list>, published <chr>, updated <chr>, `sci:doi` <chr>,
@@ -355,7 +355,7 @@ if (cds_token_works()) {
 #> # A tibble: 1 × 10
 #>   processID           type  jobID status created started finished updated links 
 #> * <chr>               <chr> <chr> <chr>  <chr>   <chr>   <chr>    <chr>   <list>
-#> 1 reanalysis-era5-pr… proc… c2c1… succe… 2025-1… 2025-1… 2025-12… 2025-1… <list>
+#> 1 reanalysis-era5-pr… proc… 7bfe… succe… 2025-1… 2025-1… 2025-12… 2025-1… <list>
 #> # ℹ 1 more variable: metadata <list>
 ```
 
@@ -383,7 +383,7 @@ if (cds_token_works()) {
 #> # A tibble: 1 × 8
 #>   processID         type  jobID status created updated links        metadata    
 #> * <chr>             <chr> <chr> <chr>  <chr>   <chr>   <list>       <list>      
-#> 1 reanalysis-era5-… proc… c2c1… accep… 2025-1… 2025-1… <named list> <named list>
+#> 1 reanalysis-era5-… proc… 7bfe… accep… 2025-1… 2025-1… <named list> <named list>
 ```
 
 ## Downloading data

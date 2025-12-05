@@ -21,7 +21,7 @@ cds_set_token(token, method = c("option", "sysenv"), ...)
 
 - token:
 
-  The API key you wish to set as an R option or to an evironment
+  The API key you wish to set as an R option or to an environment
   variable.
 
 - method:

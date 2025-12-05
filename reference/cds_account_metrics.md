@@ -1,7 +1,7 @@
 # Get Prometheus metrics for account
 
 Obtain account metrics that can be interpreted with
-[prometheus](https://prometheus.io/)
+[Prometheus](https://prometheus.io/)
 
 ## Usage
 
@@ -24,7 +24,7 @@ cds_account_metrics(token = cds_get_token(), ...)
 ## Value
 
 Returns text that can be interpreted with
-[prometheus](https://prometheus.io/)
+[Prometheus](https://prometheus.io/)
 
 ## Examples
 
