@@ -1,6 +1,6 @@
 Package: CopernicusClimate
 Title: Search Download and Handle Data from Copernicus Climate Data Service
-Version: 0.0.3.0003
+Version: 0.0.4
 Authors@R: 
     c(
       person("Pepijn", "de Vries", role = c("aut", "cre"),
@@ -48,6 +48,7 @@ Collate:
     'stars.R'
     'token.R'
 Config/testthat/edition: 3
+Language: en-GB
 URL: https://pepijn-devries.github.io/CopernicusClimate/, https://github.com/pepijn-devries/CopernicusClimate/
 BugReports: https://github.com/pepijn-devries/CopernicusClimate/issues
 VignetteBuilder: knitr

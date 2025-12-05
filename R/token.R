@@ -20,7 +20,7 @@
 #' to your system. Or you can add the option (with the names shown above) to your
 #' `".profile"` file. This will help you obscure your sensitive account information in your R script.
 #'
-#' @param token The API key you wish to set as an R option or to an evironment variable.
+#' @param token The API key you wish to set as an R option or to an environment variable.
 #' @param method Method to store the API key. Should be either `"option"` (default) or
 #' `"sysenv"`.
 #' @param ... Ignored
@@ -117,10 +117,10 @@ cds_get_account <- function(token = cds_get_token(), ...) {
 
 #' Get Prometheus metrics for account
 #' 
-#' Obtain account metrics that can be interpreted with [prometheus](https://prometheus.io/)
+#' Obtain account metrics that can be interpreted with [Prometheus](https://prometheus.io/)
 #' @inheritParams cds_check_authentication
 #' @param ... Ignored
-#' @returns Returns text that can be interpreted with [prometheus](https://prometheus.io/)
+#' @returns Returns text that can be interpreted with [Prometheus](https://prometheus.io/)
 #' @examples
 #' if (interactive() && cds_token_works()) {
 #'   cds_account_metrics()

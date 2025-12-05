@@ -13,10 +13,10 @@ cds_account_metrics(token = cds_get_token(), ...)
 \item{...}{Ignored}
 }
 \value{
-Returns text that can be interpreted with \href{https://prometheus.io/}{prometheus}
+Returns text that can be interpreted with \href{https://prometheus.io/}{Prometheus}
 }
 \description{
-Obtain account metrics that can be interpreted with \href{https://prometheus.io/}{prometheus}
+Obtain account metrics that can be interpreted with \href{https://prometheus.io/}{Prometheus}
 }
 \examples{
 if (interactive() && cds_token_works()) {

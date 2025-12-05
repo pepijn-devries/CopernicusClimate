@@ -44,7 +44,7 @@ cds_list_jobs <- function(job_id = NULL, status = NULL, limit = 50,
 
 #' Delete/cancel jobs submitted to the Climate Data Service
 #' 
-#' Whe you regret submitting a job, you can cancel it by calling this function.
+#' When you regret submitting a job, you can cancel it by calling this function.
 #' @param job_id Hexadecimal code used as identifier of a job. Identifies the job
 #' to be cancelled.
 #' @param ... Ignored

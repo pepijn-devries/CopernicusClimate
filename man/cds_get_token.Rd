@@ -12,7 +12,7 @@ cds_set_token(token, method = c("option", "sysenv"), ...)
 \arguments{
 \item{...}{Ignored}
 
-\item{token}{The API key you wish to set as an R option or to an evironment variable.}
+\item{token}{The API key you wish to set as an R option or to an environment variable.}
 
 \item{method}{Method to store the API key. Should be either \code{"option"} (default) or
 \code{"sysenv"}.}
