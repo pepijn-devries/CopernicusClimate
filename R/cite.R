@@ -16,6 +16,6 @@ cds_cite_dataset <- function(dataset, ...) {
     RefManageR::GetBibEntryWithDOI(ds$`sci:doi`)
   } else {
     rlang::abort(c(x = "This function needs package RefManageR",
-                   i = "Pleas install and try again"))
+                   i = "Please install and try again"))
   }
 }

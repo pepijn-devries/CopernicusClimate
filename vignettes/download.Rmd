@@ -105,7 +105,7 @@ dataset best serves your needs. You can even copy the request code
 to the system clipboard and use this package to get the request from the clipboard
 and execute it. This is illustrated in `vignette("translate")`.
 
-### Programatically
+### Programmatically
 
 You can also use this R package to look for datasets. You could start by listing them
 all:

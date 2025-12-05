@@ -19,7 +19,7 @@ to be cancelled.}
 Returns a \code{data.frame} with information about the cancelled job.
 }
 \description{
-Whe you regret submitting a job, you can cancel it by calling this function.
+When you regret submitting a job, you can cancel it by calling this function.
 }
 \examples{
 if (interactive() && cds_token_works()) {
