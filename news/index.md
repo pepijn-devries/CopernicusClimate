@@ -1,11 +1,12 @@
 # Changelog
 
-## CopernicusClimate v0.0.4.0001
+## CopernicusClimate v0.0.4.0002
 
 - Added
   [`cds_job_results()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_job_results.md)
 - Fixed downloading jobs by relying on
   [`cds_job_results()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_job_results.md)
+- Improved test coverage
 
 ## CopernicusClimate v0.0.4
 

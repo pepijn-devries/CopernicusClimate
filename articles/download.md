@@ -354,7 +354,7 @@ if (cds_token_works()) {
 #> # A tibble: 1 × 10
 #>   processID           type  jobID status created started finished updated links 
 #>   <chr>               <chr> <chr> <chr>  <chr>   <chr>   <chr>    <chr>   <list>
-#> 1 reanalysis-era5-pr… proc… 0c52… succe… 2025-1… 2025-1… 2025-12… 2025-1… <list>
+#> 1 reanalysis-era5-pr… proc… 8b02… succe… 2025-1… 2025-1… 2025-12… 2025-1… <list>
 #> # ℹ 1 more variable: metadata <list>
 ```
 
@@ -379,11 +379,10 @@ if (cds_token_works()) {
 } else {
   message("You need a working token to get a job status")
 }
-#> # A tibble: 1 × 10
-#>   processID           type  jobID status created started finished updated links 
-#>   <chr>               <chr> <chr> <chr>  <chr>   <chr>   <chr>    <chr>   <list>
-#> 1 reanalysis-era5-pr… proc… 0c52… succe… 2025-1… 2025-1… 2025-12… 2025-1… <list>
-#> # ℹ 1 more variable: metadata <list>
+#> # A tibble: 1 × 8
+#>   processID         type  jobID status created updated links        metadata    
+#>   <chr>             <chr> <chr> <chr>  <chr>   <chr>   <list>       <list>      
+#> 1 reanalysis-era5-… proc… 8b02… accep… 2025-1… 2025-1… <named list> <named list>
 ```
 
 ## Downloading data
