@@ -120,6 +120,8 @@ By contributing to this project, you agree to abide by its terms.
 - [`cds_get_token()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_get_token.md)
   [`cds_set_token()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_get_token.md)
   : Get or set a Climate Data Service API key
+- [`cds_job_results()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_job_results.md)
+  : Get the results for a submitted job
 - [`cds_list_jobs()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_list_jobs.md)
   : List jobs submitted to the Climate Data Service
 - [`cds_list_licences()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_list_licences.md)
