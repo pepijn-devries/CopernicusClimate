@@ -1,3 +1,8 @@
+# CopernicusClimate v0.0.4.0001
+
+ * Added `cds_job_results()`
+ * Fixed downloading jobs by relying on `cds_job_results()`
+
 # CopernicusClimate v0.0.4
 
  * Corrected DESCRIPTION file

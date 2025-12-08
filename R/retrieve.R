@@ -370,9 +370,7 @@ cds_download_jobs <- function(job_id, destination, names, ..., token = cds_get_t
   missing_names <- missing(names)
   repeat {
     
-    jobs <-
-      cds_list_jobs(limit = 1000) |>
-      dplyr::filter(.data$jobID %in% job_id)
+    jobs <- cds_list_jobs(job_id, limit = 1000)
     busy_jobs <- jobs$status %in% c("accepted", "running")
     if (any(busy_jobs)) {
       message("\rWaiting for ", sum(busy_jobs), " job(s) to complete   ", appendLF = FALSE)
@@ -381,17 +379,12 @@ cds_download_jobs <- function(job_id, destination, names, ..., token = cds_get_t
   }
   message("")
   jobs <-
-    data.frame(jobID = job_id) |>
-    dplyr::left_join(jobs, by = "jobID") |>
+    cds_job_results(job_id) |>
     dplyr::mutate(
-      href = lapply(.data$metadata, \(x) x$results$asset$value$href),
-      href = lapply(.data$href, \(x) if (is.null(x)) "" else x) |>
-        unlist(),
-      name = if(missing_names) basename(.data$href) else .env$names
-    )
-  success <- jobs$status == "successful"
-  if (any(!success)) message("Skipping ", sum(!success), " unsuccessful jobs")
-  jobs <- jobs |> dplyr::filter(.data$status == "successful")
+      name = basename(.data$href),
+      success = !is.na(.data$href))
+  if (any(!jobs$success)) message("Skipping ", sum(!jobs$success), " unsuccessful jobs")
+  jobs <- jobs |> dplyr::filter(.data$success)
   if (nrow(jobs) == 0) stop("No successful jobs found to download")
   dupes <- duplicated(jobs$href)
   if (any(dupes)) message("Skipped ", sum(dupes), " identical files")
