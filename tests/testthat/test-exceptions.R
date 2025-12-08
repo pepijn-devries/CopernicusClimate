@@ -1,3 +1,5 @@
+Sys.setenv(CLIPR_ALLOW = TRUE)
+
 test_that("Request cannot exceed quota", {
   skip_on_cran()
   skip_if_offline()
