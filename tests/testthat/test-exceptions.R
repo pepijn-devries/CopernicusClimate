@@ -1,3 +1,5 @@
+Sys.setenv(CLIPR_ALLOW = TRUE)
+
 test_that("Request cannot exceed quota", {
   skip_on_cran()
   skip_if_offline()
@@ -84,4 +86,31 @@ test_that("Coordinates out of range are rejected", {
   expect_error({
     cds_build_request("reanalysis-era5-single-levels", area = c(95, -1, 94, 0))
   }, "out of range")
+})
+
+test_that("Cost estimation fails with nothing on clipboard", {
+  skip_on_cran()
+  skip_if_offline()
+  skip_if_not(cds_token_works())
+  expect_error({
+    cds_estimate_costs() |> suppressMessages()
+  }, "System clipboard contained no readable tex|Clipboard on X11|missing required 'clipr'|Failed to convert text to CDSAPI request")
+})
+
+test_that("Submission fails with nothing on clipboard", {
+  skip_on_cran()
+  skip_if_offline()
+  skip_if_not(cds_token_works())
+  expect_error({
+    cds_submit_job() |> suppressMessages()
+  }, "System clipboard contained no readable text|Clipboard on X11|missing required 'clipr'|Failed to convert text to CDSAPI request")
+})
+
+test_that("Building request fails with nothing on clipboard", {
+  skip_on_cran()
+  skip_if_offline()
+  skip_if_not(cds_token_works())
+  expect_error({
+    cds_build_request() |> suppressMessages()
+  }, "System clipboard contained no readable text|Clipboard on X11|missing required 'clipr'|Failed to convert text to CDSAPI request")
 })
