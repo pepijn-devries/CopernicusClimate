@@ -92,7 +92,7 @@ test_that("Cost estimation fails with nothing on clipboard", {
   skip_if_not(cds_token_works())
   expect_error({
     cds_estimate_costs()
-  }, "missing required 'clipr'|Failed to convert text to CDSAPI request")
+  }, "write_clip() in non-interactive mode|missing required 'clipr'|Failed to convert text to CDSAPI request")
 })
 
 test_that("Submission fails with nothing on clipboard", {
@@ -101,7 +101,7 @@ test_that("Submission fails with nothing on clipboard", {
   skip_if_not(cds_token_works())
   expect_error({
     cds_submit_job() |> suppressMessages()
-  }, "missing required 'clipr'|Failed to convert text to CDSAPI request")
+  }, "write_clip() in non-interactive mode|missing required 'clipr'|Failed to convert text to CDSAPI request")
 })
 
 test_that("Building request fails with nothing on clipboard", {
@@ -110,5 +110,5 @@ test_that("Building request fails with nothing on clipboard", {
   skip_if_not(cds_token_works())
   expect_error({
     cds_build_request()
-  }, "missing required 'clipr'|Failed to convert text to CDSAPI request")
+  }, "write_clip() in non-interactive mode|missing required 'clipr'|Failed to convert text to CDSAPI request")
 })
