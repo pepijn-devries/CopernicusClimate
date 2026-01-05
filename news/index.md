@@ -10,6 +10,8 @@
 
 ## CopernicusClimate v0.0.4
 
+CRAN release: 2025-12-05
+
 - Corrected DESCRIPTION file
 - Correction in handling of bbox
 - Updated documentation

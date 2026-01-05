@@ -123,23 +123,24 @@ listing them all:
 
 ``` r
 cds_list_datasets()
-#> # A tibble: 125 × 18
+#> # A tibble: 127 × 18
 #>    type  id    stac_version title description summaries    providers    keywords
 #>    <chr> <chr> <chr>        <chr> <chr>       <list>       <list>       <list>  
-#>  1 Coll… rean… 1.1.0        ERA5… "ERA5-Land… <named list> <named list> <list>  
+#>  1 Coll… rean… 1.1.0        ERA5… "ERA5 is t… <named list> <named list> <list>  
 #>  2 Coll… deri… 1.1.0        ERA5… "ERA5 is t… <named list> <named list> <list>  
-#>  3 Coll… rean… 1.1.0        ERA5… "ERA5 is t… <named list> <named list> <list>  
-#>  4 Coll… sis-… 1.1.0        Agro… "This data… <named list> <named list> <list>  
-#>  5 Coll… deri… 1.1.0        Ther… "This data… <named list> <named list> <list>  
-#>  6 Coll… rean… 1.1.0        ERA5… "ERA5-Land… <named list> <named list> <list>  
-#>  7 Coll… rean… 1.1.0        ERA5… "ERA5 is t… <named list> <named list> <list>  
-#>  8 Coll… rean… 1.1.0        ERA5… "ERA5-Land… <named list> <named list> <list>  
-#>  9 Coll… rean… 1.1.0        ERA5… "ERA5 is t… <named list> <named list> <list>  
-#> 10 Coll… seas… 1.1.0        Seas… "This entr… <named list> <named list> <list>  
-#> # ℹ 115 more rows
+#>  3 Coll… deri… 1.1.0        ERA5… "ERA5 is t… <named list> <named list> <list>  
+#>  4 Coll… rean… 1.1.0        ERA5… "ERA5-Land… <named list> <named list> <list>  
+#>  5 Coll… rean… 1.1.0        ERA5… "ERA5-Land… <named list> <named list> <list>  
+#>  6 Coll… deri… 1.1.0        Mont… "ERA5–Drou… <named list> <named list> <list>  
+#>  7 Coll… sate… 1.1.0        Soil… "The C3S s… <named list> <named list> <list>  
+#>  8 Coll… rean… 1.1.0        ERA5… "ERA5 is t… <named list> <named list> <list>  
+#>  9 Coll… ecv-… 1.1.0        Esse… "The Essen… <named list> <named list> <list>  
+#> 10 Coll… sis-… 1.1.0        Agro… "This data… <named list> <named list> <list>  
+#> # ℹ 117 more rows
 #> # ℹ 10 more variables: license <chr>, extent <list>, links <list>,
-#> #   assets <named list>, published <chr>, updated <chr>, `cads:message` <list>,
-#> #   `cads:disabled_reason` <chr>, `cads:sanity_check` <list>, `sci:doi` <chr>
+#> #   assets <named list>, published <chr>, updated <chr>, `sci:doi` <chr>,
+#> #   `cads:disabled_reason` <chr>, `cads:sanity_check` <list>,
+#> #   `cads:message` <list>
 ```
 
 But you can also look for specific datasets using free search text and /
@@ -354,7 +355,7 @@ if (cds_token_works()) {
 #> # A tibble: 1 × 10
 #>   processID           type  jobID status created started finished updated links 
 #>   <chr>               <chr> <chr> <chr>  <chr>   <chr>   <chr>    <chr>   <list>
-#> 1 reanalysis-era5-pr… proc… 8b02… succe… 2025-1… 2025-1… 2025-12… 2025-1… <list>
+#> 1 reanalysis-era5-pr… proc… 99d3… succe… 2026-0… 2026-0… 2026-01… 2026-0… <list>
 #> # ℹ 1 more variable: metadata <list>
 ```
 
@@ -379,10 +380,11 @@ if (cds_token_works()) {
 } else {
   message("You need a working token to get a job status")
 }
-#> # A tibble: 1 × 8
-#>   processID         type  jobID status created updated links        metadata    
-#>   <chr>             <chr> <chr> <chr>  <chr>   <chr>   <list>       <list>      
-#> 1 reanalysis-era5-… proc… 8b02… accep… 2025-1… 2025-1… <named list> <named list>
+#> # A tibble: 1 × 10
+#>   processID           type  jobID status created started finished updated links 
+#>   <chr>               <chr> <chr> <chr>  <chr>   <chr>   <chr>    <chr>   <list>
+#> 1 reanalysis-era5-pr… proc… 99d3… succe… 2026-0… 2026-0… 2026-01… 2026-0… <list>
+#> # ℹ 1 more variable: metadata <list>
 ```
 
 ## Downloading data
