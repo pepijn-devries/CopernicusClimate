@@ -1,6 +1,12 @@
 # Changelog
 
-## CopernicusClimate v0.0.4.0002
+## CopernicusClimate v0.0.5.0001
+
+- Corrected NEW file
+
+## CopernicusClimate v0.0.5
+
+CRAN release: 2026-01-07
 
 - Added
   [`cds_job_results()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_job_results.md)
