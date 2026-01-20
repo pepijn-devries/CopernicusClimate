@@ -23,6 +23,8 @@ test_that("Download workflow works", {
 })
 
 test_that("Area can be a `bbox` class object", {
+  skip_if_offline()
+  skip_on_cran()
   expect_no_error({
     cds_build_request(
       dataset        = "reanalysis-era5-pressure-levels",

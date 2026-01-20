@@ -1,6 +1,7 @@
-# CopernicusClimate v0.0.5.0001
+# CopernicusClimate v0.0.5.0002
 
- * Corrected NEW file
+ * Corrected NEWS file
+ * Fixed test to pass CRAN checks
 
 # CopernicusClimate v0.0.5
 
