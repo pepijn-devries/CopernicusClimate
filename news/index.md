@@ -1,6 +1,6 @@
 # Changelog
 
-## CopernicusClimate v0.0.5.0003
+## CopernicusClimate v0.0.5.0004
 
 - Corrected NEWS file
 - Fixed test to pass CRAN checks
