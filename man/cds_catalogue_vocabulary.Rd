@@ -21,3 +21,9 @@ if (interactive()) {
   cds_catalogue_vocabulary()
 }
 }
+\seealso{
+Other exploration-functions:
+\code{\link[=cds_list_datasets]{cds_list_datasets()}},
+\code{\link[=cds_starred]{cds_starred()}}
+}
+\concept{exploration-functions}

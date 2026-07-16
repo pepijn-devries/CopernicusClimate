@@ -74,3 +74,11 @@ if (interactive() && cds_token_works()) {
   job <- cds_submit_job(req)
 }
 }
+\seealso{
+Other job-functions:
+\code{\link[=cds_delete_job]{cds_delete_job()}},
+\code{\link[=cds_download_jobs]{cds_download_jobs()}},
+\code{\link[=cds_job_results]{cds_job_results()}},
+\code{\link[=cds_list_jobs]{cds_list_jobs()}}
+}
+\concept{job-functions}

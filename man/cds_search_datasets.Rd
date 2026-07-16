@@ -39,3 +39,9 @@ if (interactive()) {
   cds_search_datasets("rain", "Temporal coverage: Future")
 }
 }
+\seealso{
+Other exploration-functions:
+\code{\link[=cds_catalogue_vocabulary]{cds_catalogue_vocabulary()}},
+\code{\link[=cds_starred]{cds_starred()}}
+}
+\concept{exploration-functions}

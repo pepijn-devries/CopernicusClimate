@@ -9,6 +9,7 @@
 #' if (interactive()) {
 #'   cds_cite_dataset("reanalysis-era5-pressure-levels")
 #' }
+#' @family helper-functions
 #' @export
 cds_cite_dataset <- function(dataset, ...) {
   if (requireNamespace("RefManageR")) {

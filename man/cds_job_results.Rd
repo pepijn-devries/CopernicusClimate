@@ -38,3 +38,11 @@ if (interactive() && cds_token_works()) {
   cds_job_results(job$jobID)
 }
 }
+\seealso{
+Other job-functions:
+\code{\link[=cds_delete_job]{cds_delete_job()}},
+\code{\link[=cds_download_jobs]{cds_download_jobs()}},
+\code{\link[=cds_list_jobs]{cds_list_jobs()}},
+\code{\link[=cds_submit_job]{cds_submit_job()}}
+}
+\concept{job-functions}

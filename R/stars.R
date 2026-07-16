@@ -15,6 +15,7 @@
 #'   cds_remove_star("reanalysis-carra-single-levels")
 #' }
 #' @include helpers.R
+#' @family exploration-functions
 #' @export
 cds_starred <- function(..., token = cds_get_token()) {
   account <- cds_get_account(token = token)
@@ -23,6 +24,7 @@ cds_starred <- function(..., token = cds_get_token()) {
 
 #' @rdname cds_starred
 #' @include helpers.R
+#' @family exploration-functions
 #' @export
 cds_assign_star <- function(dataset, ..., token = cds_get_token()) {
   .base_url |>
@@ -33,6 +35,7 @@ cds_assign_star <- function(dataset, ..., token = cds_get_token()) {
 
 #' @rdname cds_starred
 #' @include helpers.R
+#' @family exploration-functions
 #' @export
 cds_remove_star <- function(dataset, ..., token = cds_get_token()) {
   .base_url |>

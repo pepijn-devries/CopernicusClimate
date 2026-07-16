@@ -1,5 +1,6 @@
 #' @rdname cds_search_datasets
 #' @include helpers.R
+#' @family exploration-functions
 #' @export
 cds_list_datasets <- function(dataset, ...) {
   if (missing(dataset)) dataset <- NULL
@@ -34,6 +35,7 @@ cds_list_datasets <- function(dataset, ...) {
 #'   cds_search_datasets("rain", "Temporal coverage: Future")
 #' }
 #' @include helpers.R
+#' @family exploration-functions
 #' @export
 cds_search_datasets <- function(search, keywords, page = 0, limit = 50, ...) {
   if (missing(search)) search <- ""
@@ -68,6 +70,7 @@ cds_search_datasets <- function(search, keywords, page = 0, limit = 50, ...) {
 #' if (interactive() && cds_token_works()) {
 #'   cds_dataset_form("reanalysis-era5-pressure-levels")
 #' }
+#' @family helper-functions
 #' @export
 cds_dataset_form <- function(dataset, ...) {
   result <-
@@ -93,6 +96,7 @@ cds_dataset_form <- function(dataset, ...) {
 #'   cds_catalogue_vocabulary()
 #' }
 #' @include helpers.R
+#' @family exploration-functions
 #' @export
 cds_catalogue_vocabulary <- function(...) {
   result <-

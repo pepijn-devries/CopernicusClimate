@@ -17,6 +17,11 @@ tryCatch({
 })
 library(ggplot2)
 theme_set(theme_light())
+dataset_form <- NULL
+request <- NULL
+job <- NULL
+file_result <- NULL
+filename <- "skip"
 ```
 
 ## Introduction
@@ -78,12 +83,14 @@ is provided, like so:
 ```{r get-licence, message=FALSE}
 library(dplyr)
 
-licence_info <-
-  cds_dataset_form("reanalysis-era5-pressure-levels") |>
-    filter(name == "licences")
+tryCatch({
+  licence_info <-
+    cds_dataset_form("reanalysis-era5-pressure-levels") |>
+      filter(name == "licences")
 
-licence_info <- licence_info$details[[1]]$details$licences[[1]]
-print(licence_info)
+  licence_info <- licence_info$details[[1]]$details$licences[[1]]
+  print(licence_info)
+})
 ```
 
 You can accept this licence by calling
@@ -111,14 +118,18 @@ You can also use this R package to look for datasets. You could start by listing
 all:
 
 ```{r listing}
-cds_list_datasets()
+tryCatch({
+  cds_list_datasets()
+})
 ```
 
 But you can also look for specific datasets using free search text and / or predefined
 keywords:
 
 ```{r search}
-cds_search_datasets(search = "rain", keywords = "Temporal coverage: Future")
+tryCatch({
+  cds_search_datasets(search = "rain", keywords = "Temporal coverage: Future")
+})
 ```
 
 Use `cds_catalogue_vocabulary()` to list available predefined keywords.
@@ -145,10 +156,11 @@ what options you have for a specific dataset. You can start by obtaining the
 `cds_dataset_form()`.
 
 ```{r dataset-form}
-dataset_form <-
-  cds_dataset_form("reanalysis-era5-pressure-levels")
-
-dataset_form
+tryCatch({
+  dataset_form <-
+    cds_dataset_form("reanalysis-era5-pressure-levels")
+  dataset_form
+})
 ```
 
 This results in a `data.frame` listing which aspects of a dataset you can
@@ -156,7 +168,7 @@ select from. Each row represents an aspect (except for the row with the `name`
 `"licences"`). The column `details` contains information about the available
 values. You could for instance look at the possible values for the `pressure_level`:
 
-```{r possible-values}
+```{r possible-values, eval=!is.null(dataset_form)}
 values <-
   dataset_form |>
   filter(name == "pressure_level") |>
@@ -169,8 +181,10 @@ Using this information you can start building your request using `cds_build_requ
 You can start by just specifying your dataset:
 
 ```{r full-request}
-request <- cds_build_request("reanalysis-era5-pressure-levels")
-summary(request)
+tryCatch({
+  request <- cds_build_request("reanalysis-era5-pressure-levels")
+  summary(request)
+}, error = \(e) message("Failed to build request"))
 ```
 
 The function `cds_build_request()` will automatically add all required parameters
@@ -180,16 +194,18 @@ in the default product type, plus data and download format. As I will explain in
 following section, this request will fail for most users. So let's narrow it down:
 
 ```{r specific-request}
-request <- cds_build_request(
-  "reanalysis-era5-pressure-levels",
-  variable       = "temperature",
-  pressure_level = "1000",
-  year           = "2025",
-  month          = "01",
-  day            = "01",
-  area           = c(n = 60, w = -5, s = 40, e = 10),
-  data_format    = "netcdf")
-summary(request)
+tryCatch({
+  request <- cds_build_request(
+    "reanalysis-era5-pressure-levels",
+    variable       = "temperature",
+    pressure_level = "1000",
+    year           = "2025",
+    month          = "01",
+    day            = "01",
+    area           = c(n = 60, w = -5, s = 40, e = 10),
+    data_format    = "netcdf")
+  summary(request)
+})
 ```
 
 This looks like a reasonable request.
@@ -203,7 +219,9 @@ download the full dataset, the estimated costs are as follows:
 
 ```{r estimate-full}
 if (cds_token_works()) {
-  cds_estimate_costs("reanalysis-era5-pressure-levels")
+  tryCatch({
+    cds_estimate_costs("reanalysis-era5-pressure-levels")
+  })
 } else {
   message("You need a working token to estimate costs")
 }
@@ -213,9 +231,11 @@ In this example the costs exceed the limit, such that this request
 will fail. If we estimate the costs for the more restricted request,
 we get:
 
-```{r estimate-detailed}
+```{r estimate-detailed, eval=!is.null(request)}
 if (cds_token_works()) {
-  cds_estimate_costs(request)
+  tryCatch({
+    cds_estimate_costs(request)
+  })
 } else {
   message("You need a working token to estimate costs")
 }
@@ -230,9 +250,11 @@ it, you can submit a request to C3S. Let's submit the request as shown above:
 
 ```{r submit, message=FALSE}
 if (cds_token_works()) {
-  job <-
-    cds_submit_job(request)
-  job
+  tryCatch({
+    job <-
+      cds_submit_job(request)
+    job
+  })
 } else {
   message("You need a working token to submit a request")
 }
@@ -251,7 +273,7 @@ to list all your submitted jobs. If you want the status of a specific job,
 you can use its identifier (id). You were sent this id when you submitted it earlier.
 So we can have a look at the status of our job submitted above:
 
-```{r job-status}
+```{r job-status, eval=!is.null(job)}
 if (cds_token_works()) {
   cds_list_jobs(job$jobID)
 } else {
@@ -268,10 +290,12 @@ download one or more specific jobs. Note that this function will use parallel do
 which should give you some performance advantage when downloading multiple jobs.
 For now let's try to download the submitted job:
 
-```{r download, message=FALSE}
+```{r download, message=FALSE, eval=!is.null(job)}
 filename <- "result.nc"
 if (cds_token_works()) {
-  file_result <- cds_download_jobs(job$jobID, tempdir(), filename)
+  tryCatch({
+    file_result <- cds_download_jobs(job$jobID, tempdir(), filename)
+  })
 } else {
   message("Downloading data only works with a valid token")
 }

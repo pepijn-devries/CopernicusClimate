@@ -55,3 +55,11 @@ client.retrieve(dataset, request).download()
 
 cds_python_to_r(python_code)
 }
+\seealso{
+Other helper-functions:
+\code{\link[=cds_build_request]{cds_build_request()}},
+\code{\link[=cds_cite_dataset]{cds_cite_dataset()}},
+\code{\link[=cds_dataset_form]{cds_dataset_form()}},
+\code{\link[=cds_estimate_costs]{cds_estimate_costs()}}
+}
+\concept{helper-functions}

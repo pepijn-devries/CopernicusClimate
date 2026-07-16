@@ -41,6 +41,7 @@
 #' "
 #' 
 #' cds_python_to_r(python_code)
+#' @family helper-functions
 #' @export
 cds_python_to_r <- function(text, ...) {
   if (missing(text)) {

@@ -36,6 +36,7 @@
 #'   cds_get_token()
 #' }
 #' @include helpers.R
+#' @family authentication-functions
 #' @export
 cds_get_token <- function(...) {
   token <- Sys.getenv("CDSAPI_KEY")
@@ -77,6 +78,7 @@ cds_set_token <- function(token, method = c("option", "sysenv"), ...) {
 #'   cds_check_authentication()
 #' }
 #' @include helpers.R
+#' @family authentication-functions
 #' @export
 cds_check_authentication <- function(token = cds_get_token(), ...) {
   #https://cds.climate.copernicus.eu/api/profiles/v1/docs
@@ -108,6 +110,7 @@ cds_token_works <- function(token = cds_get_token(), ...) {
 #'   cds_get_account()
 #' }
 #' @include helpers.R
+#' @family authentication-functions
 #' @export
 cds_get_account <- function(token = cds_get_token(), ...) {
   .base_url |>
@@ -126,6 +129,7 @@ cds_get_account <- function(token = cds_get_token(), ...) {
 #'   cds_account_metrics()
 #' }
 #' @include helpers.R
+#' @family authentication-functions
 #' @export
 cds_account_metrics <- function(token = cds_get_token(), ...) {
   .base_url |>

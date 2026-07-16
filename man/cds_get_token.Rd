@@ -53,3 +53,10 @@ if (interactive()) {
   cds_get_token()
 }
 }
+\seealso{
+Other authentication-functions:
+\code{\link[=cds_account_metrics]{cds_account_metrics()}},
+\code{\link[=cds_check_authentication]{cds_check_authentication()}},
+\code{\link[=cds_get_account]{cds_get_account()}}
+}
+\concept{authentication-functions}
