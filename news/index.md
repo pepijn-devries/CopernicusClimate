@@ -1,9 +1,16 @@
 # Changelog
 
-## CopernicusClimate v0.0.5.0002
+## CopernicusClimate v0.0.5.0003
 
 - Corrected NEWS file
 - Fixed test to pass CRAN checks
+- Fixed passing of token in
+  [`cds_download_jobs()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_download_jobs.md)
+  calls
+- Fixed download vignette, by wrapping code in
+  [`tryCatch()`](https://rdrr.io/r/base/conditions.html) when contacting
+  online resources
+- Updated documentation
 
 ## CopernicusClimate v0.0.5
 

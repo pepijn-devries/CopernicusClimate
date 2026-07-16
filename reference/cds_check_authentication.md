@@ -30,6 +30,13 @@ successful but throws an error if it is not. In contrast
 `cds_token_works()` returns a `logical` value and will not throw an
 error upon failure.
 
+## See also
+
+Other authentication-functions:
+[`cds_account_metrics()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_account_metrics.md),
+[`cds_get_account()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_get_account.md),
+[`cds_get_token()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_get_token.md)
+
 ## Examples
 
 ``` r

@@ -30,6 +30,14 @@ defining a job. See also
 and
 [`cds_build_request()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_build_request.md)
 
+## See also
+
+Other helper-functions:
+[`cds_build_request()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_build_request.md),
+[`cds_cite_dataset()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_cite_dataset.md),
+[`cds_estimate_costs()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_estimate_costs.md),
+[`cds_python_to_r()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_python_to_r.md)
+
 ## Examples
 
 ``` r

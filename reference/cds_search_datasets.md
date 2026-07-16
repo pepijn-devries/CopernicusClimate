@@ -47,6 +47,12 @@ A `data.frame` listing the datasets from the Climate Data Service. In
 case of `cds_search_datasets()`, attributes named `SearchMeta` are added
 containing the number of matching and number of returned datasets.
 
+## See also
+
+Other exploration-functions:
+[`cds_catalogue_vocabulary()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_catalogue_vocabulary.md),
+[`cds_starred()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_starred.md)
+
 ## Examples
 
 ``` r

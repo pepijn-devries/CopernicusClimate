@@ -16,12 +16,14 @@ data store and handle it in R.
 Install CRAN release:
 
 ``` r
+
 install.packages("CopernicusClimate")
 ```
 
 Install latest developmental version from R-Universe:
 
 ``` r
+
 install.packages("CopernicusClimate", repos = c('https://pepijn-devries.r-universe.dev', 'https://cloud.r-project.org'))
 ```
 
@@ -38,6 +40,7 @@ detailed description of the workflow see
 [`vignette("download")`](https://pepijn-devries.github.io/CopernicusClimate/articles/download.md).
 
 ``` r
+
 library(CopernicusClimate)
 library(stars)   ## For loading spatial raster data
 library(ggplot2) ## For plotting the data

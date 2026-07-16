@@ -56,6 +56,13 @@ add the option (with the names shown above) to your `".profile"` file.
 This will help you obscure your sensitive account information in your R
 script.
 
+## See also
+
+Other authentication-functions:
+[`cds_account_metrics()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_account_metrics.md),
+[`cds_check_authentication()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_check_authentication.md),
+[`cds_get_account()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_get_account.md)
+
 ## Examples
 
 ``` r

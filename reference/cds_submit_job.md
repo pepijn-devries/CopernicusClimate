@@ -63,6 +63,14 @@ cds_submit_job(
 
 Returns a `data.frame` containing information about the submitted job.
 
+## See also
+
+Other job-functions:
+[`cds_delete_job()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_delete_job.md),
+[`cds_download_jobs()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_download_jobs.md),
+[`cds_job_results()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_job_results.md),
+[`cds_list_jobs()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_list_jobs.md)
+
 ## Examples
 
 ``` r

@@ -44,6 +44,14 @@ cds_download_jobs(job_id, destination, names, ..., token = cds_get_token())
 A `data.frame` of all downloaded files. Contains a column `local` with
 the path to the locally stored files.
 
+## See also
+
+Other job-functions:
+[`cds_delete_job()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_delete_job.md),
+[`cds_job_results()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_job_results.md),
+[`cds_list_jobs()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_list_jobs.md),
+[`cds_submit_job()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_submit_job.md)
+
 ## Examples
 
 ``` r

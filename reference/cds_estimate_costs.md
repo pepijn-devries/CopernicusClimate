@@ -31,6 +31,14 @@ cds_estimate_costs(dataset, ..., token = cds_get_token())
 Returns a named list indicating the available quota and the estimated
 cost for a request specified with `...`-arguments.
 
+## See also
+
+Other helper-functions:
+[`cds_build_request()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_build_request.md),
+[`cds_cite_dataset()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_cite_dataset.md),
+[`cds_dataset_form()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_dataset_form.md),
+[`cds_python_to_r()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_python_to_r.md)
+
 ## Examples
 
 ``` r

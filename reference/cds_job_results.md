@@ -30,6 +30,14 @@ cds_job_results(job_id, ..., token = cds_get_token())
 
 Returns a `data.frame` with information about the requested job.
 
+## See also
+
+Other job-functions:
+[`cds_delete_job()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_delete_job.md),
+[`cds_download_jobs()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_download_jobs.md),
+[`cds_list_jobs()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_list_jobs.md),
+[`cds_submit_job()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_submit_job.md)
+
 ## Examples
 
 ``` r

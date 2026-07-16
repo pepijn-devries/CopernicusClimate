@@ -2,7 +2,9 @@
 
 ## Authors
 
-- **Pepijn de Vries**. Author, maintainer.
+- **[![Pepijn de
+  Vries](https://avatars.githubusercontent.com/u/13707449) Pepijn de
+  Vries](https://github.com/pepijn-devries/)**. Author, maintainer.
   [](https://orcid.org/0000-0002-7961-6646)
 
 ## Citation
@@ -11,13 +13,13 @@ Source:
 [`DESCRIPTION`](https://github.com/pepijn-devries/CopernicusClimate/blob/main/DESCRIPTION)
 
 de Vries P (2026). *CopernicusClimate: Search Download and Handle Data
-from Copernicus Climate Data Service*. R package version 0.0.5.0002,
+from Copernicus Climate Data Service*. R package version 0.0.5.0003,
 <https://pepijn-devries.github.io/CopernicusClimate/>.
 
     @Manual{,
       title = {CopernicusClimate: Search Download and Handle Data from Copernicus Climate Data Service},
       author = {Pepijn {de Vries}},
       year = {2026},
-      note = {R package version 0.0.5.0002},
+      note = {R package version 0.0.5.0003},
       url = {https://pepijn-devries.github.io/CopernicusClimate/},
     }

@@ -26,6 +26,13 @@ cds_account_metrics(token = cds_get_token(), ...)
 Returns text that can be interpreted with
 [Prometheus](https://prometheus.io/)
 
+## See also
+
+Other authentication-functions:
+[`cds_check_authentication()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_check_authentication.md),
+[`cds_get_account()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_get_account.md),
+[`cds_get_token()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_get_token.md)
+
 ## Examples
 
 ``` r

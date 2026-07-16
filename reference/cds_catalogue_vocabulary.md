@@ -19,6 +19,12 @@ cds_catalogue_vocabulary(...)
 
 Returns a `data.frame` of keyword vocabulary used by the catalogue.
 
+## See also
+
+Other exploration-functions:
+[`cds_list_datasets()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_search_datasets.md),
+[`cds_starred()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_starred.md)
+
 ## Examples
 
 ``` r

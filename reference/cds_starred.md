@@ -35,6 +35,12 @@ In case of `cds_assign_star()` returns the name of the starred dataset.
 In case of `cds_starred()` a vector of names of starred datasets. In
 case of `cds_remove_star()` returns `NULL` invisibly.
 
+## See also
+
+Other exploration-functions:
+[`cds_catalogue_vocabulary()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_catalogue_vocabulary.md),
+[`cds_list_datasets()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_search_datasets.md)
+
 ## Examples
 
 ``` r

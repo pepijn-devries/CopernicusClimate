@@ -35,6 +35,14 @@ A named `list` that can be used as input for the functions
 and
 [`cds_estimate_costs()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_estimate_costs.md)
 
+## See also
+
+Other helper-functions:
+[`cds_build_request()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_build_request.md),
+[`cds_cite_dataset()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_cite_dataset.md),
+[`cds_dataset_form()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_dataset_form.md),
+[`cds_estimate_costs()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_estimate_costs.md)
+
 ## Examples
 
 ``` r

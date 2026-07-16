@@ -49,6 +49,7 @@ You can check if your token works with
 [`cds_token_works()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_check_authentication.md):
 
 ``` r
+
 library(CopernicusClimate)
 
 message(
@@ -67,14 +68,17 @@ licence. You can use
 to inspect under which licence a dataset is provided, like so:
 
 ``` r
+
 library(dplyr)
 
-licence_info <-
-  cds_dataset_form("reanalysis-era5-pressure-levels") |>
-    filter(name == "licences")
+tryCatch({
+  licence_info <-
+    cds_dataset_form("reanalysis-era5-pressure-levels") |>
+      filter(name == "licences")
 
-licence_info <- licence_info$details[[1]]$details$licences[[1]]
-print(licence_info)
+  licence_info <- licence_info$details[[1]]$details$licences[[1]]
+  print(licence_info)
+})
 #> $id
 #> [1] "cc-by"
 #> 
@@ -122,44 +126,50 @@ You can also use this R package to look for datasets. You could start by
 listing them all:
 
 ``` r
-cds_list_datasets()
-#> # A tibble: 127 × 18
+
+tryCatch({
+  cds_list_datasets()
+})
+#> # A tibble: 137 × 20
 #>    type  id    stac_version title description summaries    providers    keywords
 #>    <chr> <chr> <chr>        <chr> <chr>       <list>       <list>       <list>  
-#>  1 Coll… rean… 1.1.0        ERA5… "ERA5 is t… <named list> <named list> <list>  
-#>  2 Coll… rean… 1.1.0        ERA5… "ERA5-Land… <named list> <named list> <list>  
-#>  3 Coll… rean… 1.1.0        ERA5… "ERA5 is t… <named list> <named list> <list>  
-#>  4 Coll… deri… 1.1.0        ERA5… "ERA5 is t… <named list> <named list> <list>  
-#>  5 Coll… sate… 1.1.0        Soil… "The C3S s… <named list> <named list> <list>  
-#>  6 Coll… deri… 1.1.0        Ther… "This data… <named list> <named list> <list>  
-#>  7 Coll… rean… 1.1.0        ERA5… "ERA5-Land… <named list> <named list> <list>  
-#>  8 Coll… rean… 1.1.0        ERA5… "ERA5 is t… <named list> <named list> <list>  
-#>  9 Coll… deri… 1.1.0        ERA5… "ERA5 is t… <named list> <named list> <list>  
-#> 10 Coll… deri… 1.1.0        Mont… "ERA5–Drou… <named list> <named list> <list>  
-#> # ℹ 117 more rows
-#> # ℹ 10 more variables: license <chr>, extent <list>, links <list>,
+#>  1 Coll… deri… 1.1.0        ERA5… "ERA5-Land… <named list> <named list> <list>  
+#>  2 Coll… deri… 1.1.0        ERA5… "ERA5 is t… <named list> <named list> <list>  
+#>  3 Coll… deri… 1.1.0        ERA5… "ERA5 is t… <named list> <named list> <list>  
+#>  4 Coll… deri… 1.1.0        Ther… "This data… <named list> <named list> <list>  
+#>  5 Coll… sate… 1.1.0        Glob… "This data… <named list> <named list> <list>  
+#>  6 Coll… rean… 1.1.0        ERA5… "ERA5 is t… <named list> <named list> <list>  
+#>  7 Coll… sis-… 1.1.0        Agro… "This cata… <named list> <named list> <list>  
+#>  8 Coll… rean… 1.1.0        ERA5… "ERA5-Land… <named list> <named list> <list>  
+#>  9 Coll… sis-… 1.1.0        Agro… "This data… <named list> <named list> <list>  
+#> 10 Coll… rean… 1.1.0        ERA5… "ERA5 is t… <named list> <named list> <list>  
+#> # ℹ 127 more rows
+#> # ℹ 12 more variables: license <chr>, extent <list>, links <list>,
 #> #   assets <named list>, published <chr>, updated <chr>, `sci:doi` <chr>,
 #> #   `cads:disabled_reason` <chr>, `cads:sanity_check` <list>,
-#> #   `cads:message` <list>
+#> #   `cads:update_frequency` <chr>, `cads:fair` <int>, `cads:message` <list>
 ```
 
 But you can also look for specific datasets using free search text and /
 or predefined keywords:
 
 ``` r
-cds_search_datasets(search = "rain", keywords = "Temporal coverage: Future")
+
+tryCatch({
+  cds_search_datasets(search = "rain", keywords = "Temporal coverage: Future")
+})
 #> # A tibble: 9 × 12
 #>   type       stac_version id           title description links  keywords license
 #> * <chr>      <chr>        <chr>        <chr> <chr>       <list> <list>   <chr>  
-#> 1 Collection 1.1.0        projections… CMIP… "This cata… <list> <list>   other  
-#> 2 Collection 1.1.0        sis-energy-… Clim… "The Pan-E… <list> <list>   other  
+#> 1 Collection 1.1.0        projections… CORD… "This cata… <list> <list>   other  
+#> 2 Collection 1.1.0        sis-ecv-cmi… Esse… "This data… <list> <list>   other  
 #> 3 Collection 1.1.0        sis-energy-… Clim… "This data… <list> <list>   CC-BY-…
 #> 4 Collection 1.1.0        sis-hydrolo… Temp… "This data… <list> <list>   CC-BY-…
-#> 5 Collection 1.1.0        sis-ecv-cmi… Esse… "This data… <list> <list>   other  
-#> 6 Collection 1.1.0        sis-tourism… Moun… "This data… <list> <list>   CC-BY-…
-#> 7 Collection 1.1.0        sis-ecde-cl… Clim… "This data… <list> <list>   CC-BY-…
+#> 5 Collection 1.1.0        sis-tourism… Moun… "This data… <list> <list>   CC-BY-…
+#> 6 Collection 1.1.0        sis-ecde-cl… Clim… "This data… <list> <list>   CC-BY-…
+#> 7 Collection 1.1.0        sis-energy-… Clim… "The Pan-E… <list> <list>   other  
 #> 8 Collection 1.1.0        projections… CMIP… "This cata… <list> <list>   other  
-#> 9 Collection 1.1.0        projections… CORD… "This cata… <list> <list>   other  
+#> 9 Collection 1.1.0        projections… CMIP… "This cata… <list> <list>   other  
 #> # ℹ 4 more variables: providers <list>, extent <list>, summaries <list>,
 #> #   assets <named list>
 ```
@@ -197,10 +207,12 @@ start by obtaining the
 [`cds_dataset_form()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_dataset_form.md).
 
 ``` r
-dataset_form <-
-  cds_dataset_form("reanalysis-era5-pressure-levels")
 
-dataset_form
+tryCatch({
+  dataset_form <-
+    cds_dataset_form("reanalysis-era5-pressure-levels")
+  dataset_form
+})
 #> # A tibble: 13 × 9
 #>    name            label      required css   type  id    help  details  children
 #>    <chr>           <chr>      <lgl>    <chr> <chr> <chr> <chr> <list>   <list>  
@@ -226,6 +238,7 @@ about the available values. You could for instance look at the possible
 values for the `pressure_level`:
 
 ``` r
+
 values <-
   dataset_form |>
   filter(name == "pressure_level") |>
@@ -243,8 +256,11 @@ Using this information you can start building your request using
 You can start by just specifying your dataset:
 
 ``` r
-request <- cds_build_request("reanalysis-era5-pressure-levels")
-summary(request)
+
+tryCatch({
+  request <- cds_build_request("reanalysis-era5-pressure-levels")
+  summary(request)
+}, error = \(e) message("Failed to build request"))
 #>                 Length Class  Mode     
 #> product_type     1     -none- character
 #> variable        16     -none- list     
@@ -267,16 +283,19 @@ explain in the following section, this request will fail for most users.
 So let’s narrow it down:
 
 ``` r
-request <- cds_build_request(
-  "reanalysis-era5-pressure-levels",
-  variable       = "temperature",
-  pressure_level = "1000",
-  year           = "2025",
-  month          = "01",
-  day            = "01",
-  area           = c(n = 60, w = -5, s = 40, e = 10),
-  data_format    = "netcdf")
-summary(request)
+
+tryCatch({
+  request <- cds_build_request(
+    "reanalysis-era5-pressure-levels",
+    variable       = "temperature",
+    pressure_level = "1000",
+    year           = "2025",
+    month          = "01",
+    day            = "01",
+    area           = c(n = 60, w = -5, s = 40, e = 10),
+    data_format    = "netcdf")
+  summary(request)
+})
 #>                 Length Class  Mode     
 #> variable         1     -none- list     
 #> pressure_level   1     -none- list     
@@ -302,8 +321,11 @@ Using the example above, if you want to download the full dataset, the
 estimated costs are as follows:
 
 ``` r
+
 if (cds_token_works()) {
-  cds_estimate_costs("reanalysis-era5-pressure-levels")
+  tryCatch({
+    cds_estimate_costs("reanalysis-era5-pressure-levels")
+  })
 } else {
   message("You need a working token to estimate costs")
 }
@@ -321,8 +343,11 @@ In this example the costs exceed the limit, such that this request will
 fail. If we estimate the costs for the more restricted request, we get:
 
 ``` r
+
 if (cds_token_works()) {
-  cds_estimate_costs(request)
+  tryCatch({
+    cds_estimate_costs(request)
+  })
 } else {
   message("You need a working token to estimate costs")
 }
@@ -345,17 +370,20 @@ wish to subset it, you can submit a request to C3S. Let’s submit the
 request as shown above:
 
 ``` r
+
 if (cds_token_works()) {
-  job <-
-    cds_submit_job(request)
-  job
+  tryCatch({
+    job <-
+      cds_submit_job(request)
+    job
+  })
 } else {
   message("You need a working token to submit a request")
 }
 #> # A tibble: 1 × 10
 #>   processID           type  jobID status created started finished updated links 
 #>   <chr>               <chr> <chr> <chr>  <chr>   <chr>   <chr>    <chr>   <list>
-#> 1 reanalysis-era5-pr… proc… 3d54… succe… 2026-0… 2026-0… 2026-01… 2026-0… <list>
+#> 1 reanalysis-era5-pr… proc… 3e27… succe… 2026-0… 2026-0… 2026-07… 2026-0… <list>
 #> # ℹ 1 more variable: metadata <list>
 ```
 
@@ -375,6 +403,7 @@ submitted it earlier. So we can have a look at the status of our job
 submitted above:
 
 ``` r
+
 if (cds_token_works()) {
   cds_list_jobs(job$jobID)
 } else {
@@ -383,7 +412,7 @@ if (cds_token_works()) {
 #> # A tibble: 1 × 10
 #>   processID           type  jobID status created started finished updated links 
 #>   <chr>               <chr> <chr> <chr>  <chr>   <chr>   <chr>    <chr>   <list>
-#> 1 reanalysis-era5-pr… proc… 3d54… succe… 2026-0… 2026-0… 2026-01… 2026-0… <list>
+#> 1 reanalysis-era5-pr… proc… 3e27… succe… 2026-0… 2026-0… 2026-07… 2026-0… <list>
 #> # ℹ 1 more variable: metadata <list>
 ```
 
@@ -399,9 +428,12 @@ give you some performance advantage when downloading multiple jobs. For
 now let’s try to download the submitted job:
 
 ``` r
+
 filename <- "result.nc"
 if (cds_token_works()) {
-  file_result <- cds_download_jobs(job$jobID, tempdir(), filename)
+  tryCatch({
+    file_result <- cds_download_jobs(job$jobID, tempdir(), filename)
+  })
 } else {
   message("Downloading data only works with a valid token")
 }
@@ -410,6 +442,7 @@ if (cds_token_works()) {
 Now you can do whatever it is you want to do with the data:
 
 ``` r
+
 fn <- file.path(tempdir(), filename)
 
 if (file.exists(fn)) {

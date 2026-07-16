@@ -33,6 +33,14 @@ Returns a named list, which can be used to submit a job
 or inquiry its cost
 ([`cds_estimate_costs()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_estimate_costs.md)).
 
+## See also
+
+Other helper-functions:
+[`cds_cite_dataset()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_cite_dataset.md),
+[`cds_dataset_form()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_dataset_form.md),
+[`cds_estimate_costs()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_estimate_costs.md),
+[`cds_python_to_r()`](https://pepijn-devries.github.io/CopernicusClimate/reference/cds_python_to_r.md)
+
 ## Examples
 
 ``` r

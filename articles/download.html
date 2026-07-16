@@ -12,8 +12,8 @@
 <link rel="icon" sizes="any" href="../favicon.ico">
 <link rel="manifest" href="../site.webmanifest">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Downloading from Copernicus Climate Service">
 </head>
@@ -25,7 +25,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">CopernicusClimate</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.5.0002</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.5.0003</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -134,12 +134,14 @@ which licence a dataset is provided, like so:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">licence_info</span> <span class="op">&lt;-</span></span>
-<span>  <span class="fu"><a href="../reference/cds_dataset_form.html">cds_dataset_form</a></span><span class="op">(</span><span class="st">"reanalysis-era5-pressure-levels"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">name</span> <span class="op">==</span> <span class="st">"licences"</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/conditions.html" class="external-link">tryCatch</a></span><span class="op">(</span><span class="op">{</span></span>
+<span>  <span class="va">licence_info</span> <span class="op">&lt;-</span></span>
+<span>    <span class="fu"><a href="../reference/cds_dataset_form.html">cds_dataset_form</a></span><span class="op">(</span><span class="st">"reanalysis-era5-pressure-levels"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">name</span> <span class="op">==</span> <span class="st">"licences"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">licence_info</span> <span class="op">&lt;-</span> <span class="va">licence_info</span><span class="op">$</span><span class="va">details</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">details</span><span class="op">$</span><span class="va">licences</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">licence_info</span><span class="op">)</span></span>
+<span>  <span class="va">licence_info</span> <span class="op">&lt;-</span> <span class="va">licence_info</span><span class="op">$</span><span class="va">details</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">details</span><span class="op">$</span><span class="va">licences</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">licence_info</span><span class="op">)</span></span>
+<span><span class="op">}</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $id</span></span>
 <span><span class="co">#&gt; [1] "cc-by"</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -186,41 +188,45 @@ illustrated in <code><a href="../articles/translate.html">vignette("translate")<
 <p>You can also use this R package to look for datasets. You could start
 by listing them all:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/cds_search_datasets.html">cds_list_datasets</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 127 × 18</span></span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/conditions.html" class="external-link">tryCatch</a></span><span class="op">(</span><span class="op">{</span></span>
+<span>  <span class="fu"><a href="../reference/cds_search_datasets.html">cds_list_datasets</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="op">}</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 137 × 20</span></span></span>
 <span><span class="co">#&gt;    type  id    stac_version title description summaries    providers    keywords</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> Coll… rean… 1.1.0        ERA5… <span style="color: #949494;">"</span>ERA5 is t… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> Coll… rean… 1.1.0        ERA5… <span style="color: #949494;">"</span>ERA5-Land… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> Coll… rean… 1.1.0        ERA5… <span style="color: #949494;">"</span>ERA5 is t… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> Coll… deri… 1.1.0        ERA5… <span style="color: #949494;">"</span>ERA5 is t… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> Coll… sate… 1.1.0        Soil… <span style="color: #949494;">"</span>The C3S s… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> Coll… deri… 1.1.0        Ther… <span style="color: #949494;">"</span>This data… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> Coll… rean… 1.1.0        ERA5… <span style="color: #949494;">"</span>ERA5-Land… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> Coll… rean… 1.1.0        ERA5… <span style="color: #949494;">"</span>ERA5 is t… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> Coll… deri… 1.1.0        ERA5… <span style="color: #949494;">"</span>ERA5 is t… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> Coll… deri… 1.1.0        Mont… <span style="color: #949494;">"</span>ERA5–Drou… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 117 more rows</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 10 more variables: license &lt;chr&gt;, extent &lt;list&gt;, links &lt;list&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> Coll… deri… 1.1.0        ERA5… <span style="color: #949494;">"</span>ERA5-Land… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> Coll… deri… 1.1.0        ERA5… <span style="color: #949494;">"</span>ERA5 is t… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> Coll… deri… 1.1.0        ERA5… <span style="color: #949494;">"</span>ERA5 is t… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> Coll… deri… 1.1.0        Ther… <span style="color: #949494;">"</span>This data… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> Coll… sate… 1.1.0        Glob… <span style="color: #949494;">"</span>This data… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> Coll… rean… 1.1.0        ERA5… <span style="color: #949494;">"</span>ERA5 is t… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> Coll… sis-… 1.1.0        Agro… <span style="color: #949494;">"</span>This cata… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> Coll… rean… 1.1.0        ERA5… <span style="color: #949494;">"</span>ERA5-Land… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> Coll… sis-… 1.1.0        Agro… <span style="color: #949494;">"</span>This data… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> Coll… rean… 1.1.0        ERA5… <span style="color: #949494;">"</span>ERA5 is t… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 127 more rows</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 12 more variables: license &lt;chr&gt;, extent &lt;list&gt;, links &lt;list&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   assets &lt;named list&gt;, published &lt;chr&gt;, updated &lt;chr&gt;, `sci:doi` &lt;chr&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   `cads:disabled_reason` &lt;chr&gt;, `cads:sanity_check` &lt;list&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   `cads:message` &lt;list&gt;</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;">#   `cads:update_frequency` &lt;chr&gt;, `cads:fair` &lt;int&gt;, `cads:message` &lt;list&gt;</span></span></span></code></pre></div>
 <p>But you can also look for specific datasets using free search text
 and / or predefined keywords:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/cds_search_datasets.html">cds_search_datasets</a></span><span class="op">(</span>search <span class="op">=</span> <span class="st">"rain"</span>, keywords <span class="op">=</span> <span class="st">"Temporal coverage: Future"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/conditions.html" class="external-link">tryCatch</a></span><span class="op">(</span><span class="op">{</span></span>
+<span>  <span class="fu"><a href="../reference/cds_search_datasets.html">cds_search_datasets</a></span><span class="op">(</span>search <span class="op">=</span> <span class="st">"rain"</span>, keywords <span class="op">=</span> <span class="st">"Temporal coverage: Future"</span><span class="op">)</span></span>
+<span><span class="op">}</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 9 × 12</span></span></span>
 <span><span class="co">#&gt;   type       stac_version id           title description links  keywords license</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Collection 1.1.0        projections… CMIP… <span style="color: #949494;">"</span>This cata… <span style="color: #949494;">&lt;list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>   other  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Collection 1.1.0        sis-energy-… Clim… <span style="color: #949494;">"</span>The Pan-E… <span style="color: #949494;">&lt;list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>   other  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Collection 1.1.0        projections… CORD… <span style="color: #949494;">"</span>This cata… <span style="color: #949494;">&lt;list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>   other  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Collection 1.1.0        sis-ecv-cmi… Esse… <span style="color: #949494;">"</span>This data… <span style="color: #949494;">&lt;list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>   other  </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Collection 1.1.0        sis-energy-… Clim… <span style="color: #949494;">"</span>This data… <span style="color: #949494;">&lt;list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>   CC-BY-…</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> Collection 1.1.0        sis-hydrolo… Temp… <span style="color: #949494;">"</span>This data… <span style="color: #949494;">&lt;list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>   CC-BY-…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> Collection 1.1.0        sis-ecv-cmi… Esse… <span style="color: #949494;">"</span>This data… <span style="color: #949494;">&lt;list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>   other  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> Collection 1.1.0        sis-tourism… Moun… <span style="color: #949494;">"</span>This data… <span style="color: #949494;">&lt;list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>   CC-BY-…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">7</span> Collection 1.1.0        sis-ecde-cl… Clim… <span style="color: #949494;">"</span>This data… <span style="color: #949494;">&lt;list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>   CC-BY-…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> Collection 1.1.0        sis-tourism… Moun… <span style="color: #949494;">"</span>This data… <span style="color: #949494;">&lt;list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>   CC-BY-…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> Collection 1.1.0        sis-ecde-cl… Clim… <span style="color: #949494;">"</span>This data… <span style="color: #949494;">&lt;list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>   CC-BY-…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">7</span> Collection 1.1.0        sis-energy-… Clim… <span style="color: #949494;">"</span>The Pan-E… <span style="color: #949494;">&lt;list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>   other  </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">8</span> Collection 1.1.0        projections… CMIP… <span style="color: #949494;">"</span>This cata… <span style="color: #949494;">&lt;list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>   other  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">9</span> Collection 1.1.0        projections… CORD… <span style="color: #949494;">"</span>This cata… <span style="color: #949494;">&lt;list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>   other  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">9</span> Collection 1.1.0        projections… CMIP… <span style="color: #949494;">"</span>This cata… <span style="color: #949494;">&lt;list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>   other  </span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 4 more variables: providers &lt;list&gt;, extent &lt;list&gt;, summaries &lt;list&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   assets &lt;named list&gt;</span></span></span></code></pre></div>
 <p>Use <code><a href="../reference/cds_catalogue_vocabulary.html">cds_catalogue_vocabulary()</a></code> to list available
@@ -254,10 +260,11 @@ options differ for each dataset, so there is no straightforward answer.
 However, you can inspect what options you have for a specific dataset.
 You can start by obtaining the <code><a href="../reference/cds_dataset_form.html">cds_dataset_form()</a></code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">dataset_form</span> <span class="op">&lt;-</span></span>
-<span>  <span class="fu"><a href="../reference/cds_dataset_form.html">cds_dataset_form</a></span><span class="op">(</span><span class="st">"reanalysis-era5-pressure-levels"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">dataset_form</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/conditions.html" class="external-link">tryCatch</a></span><span class="op">(</span><span class="op">{</span></span>
+<span>  <span class="va">dataset_form</span> <span class="op">&lt;-</span></span>
+<span>    <span class="fu"><a href="../reference/cds_dataset_form.html">cds_dataset_form</a></span><span class="op">(</span><span class="st">"reanalysis-era5-pressure-levels"</span><span class="op">)</span></span>
+<span>  <span class="va">dataset_form</span></span>
+<span><span class="op">}</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 13 × 9</span></span></span>
 <span><span class="co">#&gt;    name            label      required css   type  id    help  details  children</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>  </span></span>
@@ -295,8 +302,10 @@ You could for instance look at the possible values for the
 <code><a href="../reference/cds_build_request.html">cds_build_request()</a></code>. You can start by just specifying your
 dataset:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">request</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cds_build_request.html">cds_build_request</a></span><span class="op">(</span><span class="st">"reanalysis-era5-pressure-levels"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">request</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/conditions.html" class="external-link">tryCatch</a></span><span class="op">(</span><span class="op">{</span></span>
+<span>  <span class="va">request</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cds_build_request.html">cds_build_request</a></span><span class="op">(</span><span class="st">"reanalysis-era5-pressure-levels"</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">request</span><span class="op">)</span></span>
+<span><span class="op">}</span>, error <span class="op">=</span> \<span class="op">(</span><span class="va">e</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">message</a></span><span class="op">(</span><span class="st">"Failed to build request"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                 Length Class  Mode     </span></span>
 <span><span class="co">#&gt; product_type     1     -none- character</span></span>
 <span><span class="co">#&gt; variable        16     -none- list     </span></span>
@@ -315,16 +324,18 @@ product type, plus data and download format. As I will explain in the
 following section, this request will fail for most users. So let’s
 narrow it down:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">request</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cds_build_request.html">cds_build_request</a></span><span class="op">(</span></span>
-<span>  <span class="st">"reanalysis-era5-pressure-levels"</span>,</span>
-<span>  variable       <span class="op">=</span> <span class="st">"temperature"</span>,</span>
-<span>  pressure_level <span class="op">=</span> <span class="st">"1000"</span>,</span>
-<span>  year           <span class="op">=</span> <span class="st">"2025"</span>,</span>
-<span>  month          <span class="op">=</span> <span class="st">"01"</span>,</span>
-<span>  day            <span class="op">=</span> <span class="st">"01"</span>,</span>
-<span>  area           <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">60</span>, w <span class="op">=</span> <span class="op">-</span><span class="fl">5</span>, s <span class="op">=</span> <span class="fl">40</span>, e <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>,</span>
-<span>  data_format    <span class="op">=</span> <span class="st">"netcdf"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">request</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/conditions.html" class="external-link">tryCatch</a></span><span class="op">(</span><span class="op">{</span></span>
+<span>  <span class="va">request</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cds_build_request.html">cds_build_request</a></span><span class="op">(</span></span>
+<span>    <span class="st">"reanalysis-era5-pressure-levels"</span>,</span>
+<span>    variable       <span class="op">=</span> <span class="st">"temperature"</span>,</span>
+<span>    pressure_level <span class="op">=</span> <span class="st">"1000"</span>,</span>
+<span>    year           <span class="op">=</span> <span class="st">"2025"</span>,</span>
+<span>    month          <span class="op">=</span> <span class="st">"01"</span>,</span>
+<span>    day            <span class="op">=</span> <span class="st">"01"</span>,</span>
+<span>    area           <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">60</span>, w <span class="op">=</span> <span class="op">-</span><span class="fl">5</span>, s <span class="op">=</span> <span class="fl">40</span>, e <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>,</span>
+<span>    data_format    <span class="op">=</span> <span class="st">"netcdf"</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">request</span><span class="op">)</span></span>
+<span><span class="op">}</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                 Length Class  Mode     </span></span>
 <span><span class="co">#&gt; variable         1     -none- list     </span></span>
 <span><span class="co">#&gt; pressure_level   1     -none- list     </span></span>
@@ -348,7 +359,9 @@ above, if you want to download the full dataset, the estimated costs are
 as follows:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="../reference/cds_check_authentication.html">cds_token_works</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="fu"><a href="../reference/cds_estimate_costs.html">cds_estimate_costs</a></span><span class="op">(</span><span class="st">"reanalysis-era5-pressure-levels"</span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/conditions.html" class="external-link">tryCatch</a></span><span class="op">(</span><span class="op">{</span></span>
+<span>    <span class="fu"><a href="../reference/cds_estimate_costs.html">cds_estimate_costs</a></span><span class="op">(</span><span class="st">"reanalysis-era5-pressure-levels"</span><span class="op">)</span></span>
+<span>  <span class="op">}</span><span class="op">)</span></span>
 <span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">message</a></span><span class="op">(</span><span class="st">"You need a working token to estimate costs"</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
@@ -365,7 +378,9 @@ will fail. If we estimate the costs for the more restricted request, we
 get:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="../reference/cds_check_authentication.html">cds_token_works</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="fu"><a href="../reference/cds_estimate_costs.html">cds_estimate_costs</a></span><span class="op">(</span><span class="va">request</span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/conditions.html" class="external-link">tryCatch</a></span><span class="op">(</span><span class="op">{</span></span>
+<span>    <span class="fu"><a href="../reference/cds_estimate_costs.html">cds_estimate_costs</a></span><span class="op">(</span><span class="va">request</span><span class="op">)</span></span>
+<span>  <span class="op">}</span><span class="op">)</span></span>
 <span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">message</a></span><span class="op">(</span><span class="st">"You need a working token to estimate costs"</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
@@ -388,16 +403,18 @@ you wish to subset it, you can submit a request to C3S. Let’s submit the
 request as shown above:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="../reference/cds_check_authentication.html">cds_token_works</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">job</span> <span class="op">&lt;-</span></span>
-<span>    <span class="fu"><a href="../reference/cds_submit_job.html">cds_submit_job</a></span><span class="op">(</span><span class="va">request</span><span class="op">)</span></span>
-<span>  <span class="va">job</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/conditions.html" class="external-link">tryCatch</a></span><span class="op">(</span><span class="op">{</span></span>
+<span>    <span class="va">job</span> <span class="op">&lt;-</span></span>
+<span>      <span class="fu"><a href="../reference/cds_submit_job.html">cds_submit_job</a></span><span class="op">(</span><span class="va">request</span><span class="op">)</span></span>
+<span>    <span class="va">job</span></span>
+<span>  <span class="op">}</span><span class="op">)</span></span>
 <span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">message</a></span><span class="op">(</span><span class="st">"You need a working token to submit a request"</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 10</span></span></span>
 <span><span class="co">#&gt;   processID           type  jobID status created started finished updated links </span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> reanalysis-era5-pr… proc… 3d54… succe… 2026-0… 2026-0… 2026-01… 2026-0… <span style="color: #949494;">&lt;list&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> reanalysis-era5-pr… proc… 3e27… succe… 2026-0… 2026-0… 2026-07… 2026-0… <span style="color: #949494;">&lt;list&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 1 more variable: metadata &lt;list&gt;</span></span></span></code></pre></div>
 <p>By default this function will wait until the request has been
 processed by C3S. But when you set the argument
@@ -423,7 +440,7 @@ at the status of our job submitted above:</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 10</span></span></span>
 <span><span class="co">#&gt;   processID           type  jobID status created started finished updated links </span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> reanalysis-era5-pr… proc… 3d54… succe… 2026-0… 2026-0… 2026-01… 2026-0… <span style="color: #949494;">&lt;list&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> reanalysis-era5-pr… proc… 3e27… succe… 2026-0… 2026-0… 2026-07… 2026-0… <span style="color: #949494;">&lt;list&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 1 more variable: metadata &lt;list&gt;</span></span></span></code></pre></div>
 </div>
 <div class="section level2">
@@ -439,7 +456,9 @@ now let’s try to download the submitted job:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">filename</span> <span class="op">&lt;-</span> <span class="st">"result.nc"</span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="../reference/cds_check_authentication.html">cds_token_works</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">file_result</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cds_download_jobs.html">cds_download_jobs</a></span><span class="op">(</span><span class="va">job</span><span class="op">$</span><span class="va">jobID</span>, <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">filename</span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/conditions.html" class="external-link">tryCatch</a></span><span class="op">(</span><span class="op">{</span></span>
+<span>    <span class="va">file_result</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cds_download_jobs.html">cds_download_jobs</a></span><span class="op">(</span><span class="va">job</span><span class="op">$</span><span class="va">jobID</span>, <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">filename</span><span class="op">)</span></span>
+<span>  <span class="op">}</span><span class="op">)</span></span>
 <span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">message</a></span><span class="op">(</span><span class="st">"Downloading data only works with a valid token"</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
@@ -473,11 +492,11 @@ now let’s try to download the submitted job:</p>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Pepijn de Vries.</p>
+  <p>Developed by <a href="https://github.com/pepijn-devries/" class="external-link"><img src="https://avatars.githubusercontent.com/u/13707449" width="62px" alt="Pepijn de Vries"> Pepijn de Vries</a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer>
