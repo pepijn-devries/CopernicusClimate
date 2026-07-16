@@ -1,7 +1,7 @@
 Package: CopernicusClimate
 Title: Search Download and Handle Data from Copernicus Climate Data Service
-Version: 0.0.5.0003
-Authors@R: 
+Version: 0.0.5.0004
+Authors@R:
     c(
       person("Pepijn", "de Vries", role = c("aut", "cre"),
              email = "pepijn.devries@outlook.com",
