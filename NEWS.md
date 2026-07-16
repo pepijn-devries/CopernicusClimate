@@ -1,7 +1,11 @@
-# CopernicusClimate v0.0.5.0002
+# CopernicusClimate v0.0.5.0003
 
  * Corrected NEWS file
  * Fixed test to pass CRAN checks
+ * Fixed passing of token in `cds_download_jobs()` calls
+ * Fixed download vignette, by wrapping code in `tryCatch()`
+   when contacting online resources
+ * Updated documentation
 
 # CopernicusClimate v0.0.5
 

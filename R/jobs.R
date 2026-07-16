@@ -16,6 +16,7 @@
 #'   cds_list_jobs()
 #' }
 #' @include helpers.R
+#' @family job-functions
 #' @export
 cds_list_jobs <- function(job_id = NULL, status = NULL, limit = 50,
                           ..., token = cds_get_token()) {
@@ -72,6 +73,7 @@ cds_list_jobs <- function(job_id = NULL, status = NULL, limit = 50,
 #'   cds_delete_job(job$jobID, tempdir())
 #' }
 #' @include helpers.R
+#' @family job-functions
 #' @export
 cds_delete_job <- function(job_id, ..., token = cds_get_token()) {
   result <-
@@ -106,6 +108,7 @@ cds_delete_job <- function(job_id, ..., token = cds_get_token()) {
 #'   cds_job_results(job$jobID)
 #' }
 #' @include helpers.R
+#' @family job-functions
 #' @export
 cds_job_results <- function(job_id, ..., token = cds_get_token()) {
   result <-

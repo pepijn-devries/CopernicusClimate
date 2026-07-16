@@ -30,3 +30,10 @@ if (interactive() && cds_token_works()) {
   cds_check_authentication()
 }
 }
+\seealso{
+Other authentication-functions:
+\code{\link[=cds_account_metrics]{cds_account_metrics()}},
+\code{\link[=cds_get_account]{cds_get_account()}},
+\code{\link[=cds_get_token]{cds_get_token()}}
+}
+\concept{authentication-functions}

@@ -22,8 +22,8 @@ if (interactive()) {
 }
 }
 \seealso{
-Other licences: 
-\code{\link{cds_accept_licence}()},
-\code{\link{cds_accepted_licences}()}
+Other licences:
+\code{\link[=cds_accept_licence]{cds_accept_licence()}},
+\code{\link[=cds_accepted_licences]{cds_accepted_licences()}}
 }
 \concept{licences}

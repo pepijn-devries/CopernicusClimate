@@ -36,3 +36,9 @@ if (interactive() && cds_token_works()) {
   cds_remove_star("reanalysis-carra-single-levels")
 }
 }
+\seealso{
+Other exploration-functions:
+\code{\link[=cds_catalogue_vocabulary]{cds_catalogue_vocabulary()}},
+\code{\link[=cds_list_datasets]{cds_list_datasets()}}
+}
+\concept{exploration-functions}

@@ -50,6 +50,7 @@
 #'   job <- cds_submit_job(req)
 #' }
 #' @include helpers.R
+#' @family job-functions
 #' @export
 cds_submit_job <- function(
     dataset, ..., wait = TRUE, check_quota = TRUE, check_licence = TRUE,
@@ -136,7 +137,8 @@ cds_submit_job <- function(
 #'     data_format    = "netcdf"
 #'   )
 #' }
-#'@export
+#' @family helper-functions
+#' @export
 cds_build_request <- function(dataset, ...) {
   form_result <- list(...)
   if ((missing(dataset) || is.null(dataset)) && length(form_result) == 0) {
@@ -320,6 +322,7 @@ cds_build_request <- function(dataset, ...) {
 #'   cds_estimate_costs(dataset = "reanalysis-era5-pressure-levels")
 #' }
 #' @include helpers.R
+#' @family helper-functions
 #' @export
 cds_estimate_costs <- function(dataset, ..., token = cds_get_token()) {
   if (missing(dataset)) dataset <- NULL
@@ -363,6 +366,7 @@ cds_estimate_costs <- function(dataset, ..., token = cds_get_token()) {
 #'   cds_download_jobs(job$jobID, tempdir())
 #' }
 #' @include helpers.R
+#' @family job-functions
 #' @export
 cds_download_jobs <- function(job_id, destination, names, ..., token = cds_get_token()) {
   if (!missing(names) && length(job_id) != length(names))
@@ -370,7 +374,7 @@ cds_download_jobs <- function(job_id, destination, names, ..., token = cds_get_t
   missing_names <- missing(names)
   repeat {
     
-    jobs <- cds_list_jobs(job_id, limit = 1000)
+    jobs <- cds_list_jobs(job_id, limit = 1000, token = token)
     busy_jobs <- jobs$status %in% c("accepted", "running")
     if (any(busy_jobs)) {
       message("\rWaiting for ", sum(busy_jobs), " job(s) to complete   ", appendLF = FALSE)
@@ -379,7 +383,7 @@ cds_download_jobs <- function(job_id, destination, names, ..., token = cds_get_t
   }
   message("")
   jobs <-
-    cds_job_results(job_id) |>
+    cds_job_results(job_id, token = token) |>
     dplyr::mutate(
       name = basename(.data$href),
       success = !is.na(.data$href))

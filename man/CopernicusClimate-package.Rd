@@ -6,7 +6,7 @@
 \alias{CopernicusClimate-package}
 \title{CopernicusClimate: Search Download and Handle Data from Copernicus Climate Data Service}
 \description{
-\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+\if{html}{\figure{logo.svg}{options: style='float: right' alt='logo' width='120'}}
 
 Subset and download data from EU Copernicus Climate Data Service: \url{https://cds.climate.copernicus.eu/}. Import information about the Earth's past, present and future climate from Copernicus into R without the need of external software.
 }
@@ -21,6 +21,11 @@ Useful links:
 }
 \author{
 \strong{Maintainer}: Pepijn de Vries \email{pepijn.devries@outlook.com} (\href{https://orcid.org/0000-0002-7961-6646}{ORCID})
+
+Authors:
+\itemize{
+  \item Pepijn de Vries \email{pepijn.devries@outlook.com} (\href{https://orcid.org/0000-0002-7961-6646}{ORCID})
+}
 
 }
 \keyword{internal}

@@ -37,3 +37,11 @@ if (interactive() && cds_token_works()) {
   cds_delete_job(job$jobID, tempdir())
 }
 }
+\seealso{
+Other job-functions:
+\code{\link[=cds_download_jobs]{cds_download_jobs()}},
+\code{\link[=cds_job_results]{cds_job_results()}},
+\code{\link[=cds_list_jobs]{cds_list_jobs()}},
+\code{\link[=cds_submit_job]{cds_submit_job()}}
+}
+\concept{job-functions}

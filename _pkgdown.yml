@@ -2,3 +2,29 @@ url: https://pepijn-devries.github.io/CopernicusClimate/
 template:
   bootstrap: 5
 
+reference:
+  - title: "Data Exploration Functions"
+    desc: "Functions exploring available data"
+    contents:
+      - has_concept("exploration-functions")
+  - title: "Authentication Functions"
+    desc: "Functions for handling Copernicus Climate authentication"
+    contents:
+      - has_concept("authentication-functions")
+  - title: "Job Functions"
+    desc: "Functions for submitting and managing jobs on the server"
+    contents:
+      - has_concept("job-functions")
+  - title: "Licence Functions"
+    desc: "Functions for managing and accepting licences, required for downloading data"
+    contents:
+      - has_concept("licences")
+  - title: "Helper Functions"
+    desc: "Functions assisting in the workflow of retrieving data or preparing requests"
+    contents:
+      - has_concept("helper-functions")
+authors:
+  Pepijn de Vries:
+    href: https://github.com/pepijn-devries/
+    html: <img src="https://avatars.githubusercontent.com/u/13707449" width="62px" alt="Pepijn de Vries"/>
+      Pepijn de Vries

@@ -24,3 +24,11 @@ if (interactive() && cds_token_works()) {
   cds_dataset_form("reanalysis-era5-pressure-levels")
 }
 }
+\seealso{
+Other helper-functions:
+\code{\link[=cds_build_request]{cds_build_request()}},
+\code{\link[=cds_cite_dataset]{cds_cite_dataset()}},
+\code{\link[=cds_estimate_costs]{cds_estimate_costs()}},
+\code{\link[=cds_python_to_r]{cds_python_to_r()}}
+}
+\concept{helper-functions}

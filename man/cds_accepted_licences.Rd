@@ -33,8 +33,8 @@ if (interactive() && cds_token_works()) {
 }
 }
 \seealso{
-Other licences: 
-\code{\link{cds_accept_licence}()},
-\code{\link{cds_list_licences}()}
+Other licences:
+\code{\link[=cds_accept_licence]{cds_accept_licence()}},
+\code{\link[=cds_list_licences]{cds_list_licences()}}
 }
 \concept{licences}
