@@ -133,16 +133,16 @@ tryCatch({
 #> # A tibble: 137 × 20
 #>    type  id    stac_version title description summaries    providers    keywords
 #>    <chr> <chr> <chr>        <chr> <chr>       <list>       <list>       <list>  
-#>  1 Coll… deri… 1.1.0        ERA5… "ERA5-Land… <named list> <named list> <list>  
-#>  2 Coll… sis-… 1.1.0        Agro… "This data… <named list> <named list> <list>  
+#>  1 Coll… deri… 1.1.0        Ther… "This data… <named list> <named list> <list>  
+#>  2 Coll… rean… 1.1.0        ERA5… "ERA5 is t… <named list> <named list> <list>  
 #>  3 Coll… rean… 1.1.0        ERA5… "ERA5-Land… <named list> <named list> <list>  
-#>  4 Coll… deri… 1.1.0        Ther… "This data… <named list> <named list> <list>  
+#>  4 Coll… deri… 1.1.0        ERA5… "ERA5 is t… <named list> <named list> <list>  
 #>  5 Coll… deri… 1.1.0        ERA5… "ERA5 is t… <named list> <named list> <list>  
-#>  6 Coll… deri… 1.1.0        ERA5… "ERA5 is t… <named list> <named list> <list>  
-#>  7 Coll… sate… 1.1.0        Glob… "This data… <named list> <named list> <list>  
+#>  6 Coll… rean… 1.1.0        ERA5… "ERA5-Land… <named list> <named list> <list>  
+#>  7 Coll… rean… 1.1.0        ERA5… "ERA5 is t… <named list> <named list> <list>  
 #>  8 Coll… rean… 1.1.0        ERA5… "ERA5 is t… <named list> <named list> <list>  
-#>  9 Coll… rean… 1.1.0        ERA5… "ERA5 is t… <named list> <named list> <list>  
-#> 10 Coll… rean… 1.1.0        ERA5… "ERA5 is t… <named list> <named list> <list>  
+#>  9 Coll… deri… 1.1.0        ERA5… "ERA5-Land… <named list> <named list> <list>  
+#> 10 Coll… sis-… 1.1.0        Agro… "This cata… <named list> <named list> <list>  
 #> # ℹ 127 more rows
 #> # ℹ 12 more variables: license <chr>, extent <list>, links <list>,
 #> #   assets <named list>, published <chr>, updated <chr>, `sci:doi` <chr>,
@@ -383,7 +383,7 @@ if (cds_token_works()) {
 #> # A tibble: 1 × 10
 #>   processID           type  jobID status created started finished updated links 
 #>   <chr>               <chr> <chr> <chr>  <chr>   <chr>   <chr>    <chr>   <list>
-#> 1 reanalysis-era5-pr… proc… 3653… succe… 2026-0… 2026-0… 2026-07… 2026-0… <list>
+#> 1 reanalysis-era5-pr… proc… 7b73… succe… 2026-0… 2026-0… 2026-07… 2026-0… <list>
 #> # ℹ 1 more variable: metadata <list>
 ```
 
@@ -412,7 +412,7 @@ if (cds_token_works()) {
 #> # A tibble: 1 × 10
 #>   processID           type  jobID status created started finished updated links 
 #>   <chr>               <chr> <chr> <chr>  <chr>   <chr>   <chr>    <chr>   <list>
-#> 1 reanalysis-era5-pr… proc… 3653… succe… 2026-0… 2026-0… 2026-07… 2026-0… <list>
+#> 1 reanalysis-era5-pr… proc… 7b73… succe… 2026-0… 2026-0… 2026-07… 2026-0… <list>
 #> # ℹ 1 more variable: metadata <list>
 ```
 
