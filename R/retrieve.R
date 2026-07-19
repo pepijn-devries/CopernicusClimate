@@ -396,9 +396,10 @@ cds_download_jobs <- function(job_id, destination, names, ..., token = cds_get_t
   requests <-
     lapply(jobs$href, httr2::request)
   message("Start downloading files:")
+  fnames <- if (missing_names) jobs$name else names
   responses <- httr2::req_perform_parallel(
     requests,
-    paths = file.path(destination, jobs$name)
+    paths = file.path(destination, fnames)
   )
   jobs |>
     dplyr::mutate(
