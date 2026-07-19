@@ -1,6 +1,6 @@
 # Changelog
 
-## CopernicusClimate v0.0.5.0004
+## CopernicusClimate v0.0.5.0005
 
 - Corrected NEWS file
 - Fixed test to pass CRAN checks
@@ -11,6 +11,7 @@
   [`tryCatch()`](https://rdrr.io/r/base/conditions.html) when contacting
   online resources
 - Updated documentation
+- Redesigned logo
 
 ## CopernicusClimate v0.0.5
 
