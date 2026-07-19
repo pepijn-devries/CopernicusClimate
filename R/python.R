@@ -46,7 +46,12 @@
 cds_python_to_r <- function(text, ...) {
   if (missing(text)) {
     if (requireNamespace("clipr")) {
-      text <- clipr::read_clip()
+      text <- clipr::read_clip() |>
+        suppressWarnings()
+      if (is.null(text)) rlang::abort(c(
+        x = "System clipboard contained no readable text",
+        i = "Pass argument 'text' to the function"
+      ))
     } else {
       if (clipr::clipr_available()) {
         rlang::abort(
