@@ -316,7 +316,7 @@ if (file.exists(fn)) {
   ggplot() +
     geom_stars(data = result) +
     coord_sf() +
-    facet_wrap(~strftime(valid_time, "%H:%M"), nrow = 3) +
+    facet_wrap(~strftime(as.POSIXct(valid_time), "%H:%M"), nrow = 3) +
     scale_fill_viridis_c(option = "turbo") +
     labs(x = NULL, y = NULL, fill = "Temperature [K]") +
     theme(axis.text = element_blank())
