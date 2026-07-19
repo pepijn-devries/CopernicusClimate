@@ -90,7 +90,7 @@ tryCatch({
 
   licence_info <- licence_info$details[[1]]$details$licences[[1]]
   print(licence_info)
-})
+}, error = \(e) message("Failed to get licence info"))
 ```
 
 You can accept this licence by calling
@@ -120,7 +120,7 @@ all:
 ```{r listing}
 tryCatch({
   cds_list_datasets()
-})
+}, error = \(e) message("Failed to retrieve datasets"))
 ```
 
 But you can also look for specific datasets using free search text and / or predefined
@@ -129,7 +129,7 @@ keywords:
 ```{r search}
 tryCatch({
   cds_search_datasets(search = "rain", keywords = "Temporal coverage: Future")
-})
+}, error = \(e) message("Failed to search for datasets"))
 ```
 
 Use `cds_catalogue_vocabulary()` to list available predefined keywords.
@@ -160,7 +160,7 @@ tryCatch({
   dataset_form <-
     cds_dataset_form("reanalysis-era5-pressure-levels")
   dataset_form
-})
+}, error = \(e) message("Failed to retrieve request form"))
 ```
 
 This results in a `data.frame` listing which aspects of a dataset you can
@@ -205,7 +205,7 @@ tryCatch({
     area           = c(n = 60, w = -5, s = 40, e = 10),
     data_format    = "netcdf")
   summary(request)
-})
+}, error = \(e) message("Failed to build the request"))
 ```
 
 This looks like a reasonable request.
@@ -221,7 +221,7 @@ download the full dataset, the estimated costs are as follows:
 if (cds_token_works()) {
   tryCatch({
     cds_estimate_costs("reanalysis-era5-pressure-levels")
-  })
+  }, error = \(e) message("Failed to estimate costs"))
 } else {
   message("You need a working token to estimate costs")
 }
@@ -235,7 +235,7 @@ we get:
 if (cds_token_works()) {
   tryCatch({
     cds_estimate_costs(request)
-  })
+  }, error = \(e) message("Failed to estimate costs"))
 } else {
   message("You need a working token to estimate costs")
 }
@@ -254,7 +254,7 @@ if (cds_token_works()) {
     job <-
       cds_submit_job(request)
     job
-  })
+  }, error = \(e) message("Failed to submit job"))
 } else {
   message("You need a working token to submit a request")
 }
@@ -295,7 +295,7 @@ filename <- "result.nc"
 if (cds_token_works()) {
   tryCatch({
     file_result <- cds_download_jobs(job$jobID, tempdir(), filename)
-  })
+  }, error = \(e) message("Failed to download job"))
 } else {
   message("Downloading data only works with a valid token")
 }
