@@ -25,7 +25,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">CopernicusClimate</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.5.0005</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.5.0006</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -141,7 +141,7 @@ which licence a dataset is provided, like so:</p>
 <span></span>
 <span>  <span class="va">licence_info</span> <span class="op">&lt;-</span> <span class="va">licence_info</span><span class="op">$</span><span class="va">details</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">details</span><span class="op">$</span><span class="va">licences</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">licence_info</span><span class="op">)</span></span>
-<span><span class="op">}</span><span class="op">)</span></span>
+<span><span class="op">}</span>, error <span class="op">=</span> \<span class="op">(</span><span class="va">e</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">message</a></span><span class="op">(</span><span class="st">"Failed to get licence info"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $id</span></span>
 <span><span class="co">#&gt; [1] "cc-by"</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -190,32 +190,31 @@ by listing them all:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/conditions.html" class="external-link">tryCatch</a></span><span class="op">(</span><span class="op">{</span></span>
 <span>  <span class="fu"><a href="../reference/cds_search_datasets.html">cds_list_datasets</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="op">}</span><span class="op">)</span></span>
+<span><span class="op">}</span>, error <span class="op">=</span> \<span class="op">(</span><span class="va">e</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">message</a></span><span class="op">(</span><span class="st">"Failed to retrieve datasets"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 137 × 20</span></span></span>
 <span><span class="co">#&gt;    type  id    stac_version title description summaries    providers    keywords</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> Coll… deri… 1.1.0        ERA5… <span style="color: #949494;">"</span>ERA5 is t… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> Coll… rean… 1.1.0        ERA5… <span style="color: #949494;">"</span>ERA5-Land… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> Coll… rean… 1.1.0        ERA5… <span style="color: #949494;">"</span>ERA5-Land… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> Coll… sis-… 1.1.0        Agro… <span style="color: #949494;">"</span>This cata… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> Coll… rean… 1.1.0        ERA5… <span style="color: #949494;">"</span>ERA5-Land… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> Coll… rean… 1.1.0        ERA5… <span style="color: #949494;">"</span>ERA5 is t… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> Coll… deri… 1.1.0        Ther… <span style="color: #949494;">"</span>This data… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> Coll… sis-… 1.1.0        Agro… <span style="color: #949494;">"</span>This data… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> Coll… sis-… 1.1.0        Agro… <span style="color: #949494;">"</span>This cata… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> Coll… rean… 1.1.0        ERA5… <span style="color: #949494;">"</span>ERA5 is t… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> Coll… rean… 1.1.0        ERA5… <span style="color: #949494;">"</span>ERA5 is t… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> Coll… deri… 1.1.0        ERA5… <span style="color: #949494;">"</span>ERA5-Land… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> Coll… sis-… 1.1.0        Agro… <span style="color: #949494;">"</span>This data… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> Coll… rean… 1.1.0        ERA5… <span style="color: #949494;">"</span>ERA5 is t… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> Coll… rean… 1.1.0        ERA5… <span style="color: #949494;">"</span>ERA5 is t… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> Coll… deri… 1.1.0        ERA5… <span style="color: #949494;">"</span>ERA5-Land… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> Coll… sate… 1.1.0        Uppe… <span style="color: #949494;">"</span>Upper Tro… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> Coll… deri… 1.1.0        ERA5… <span style="color: #949494;">"</span>ERA5 is t… <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;named list&gt;</span> <span style="color: #949494;">&lt;list&gt;</span>  </span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 127 more rows</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 12 more variables: license &lt;chr&gt;, extent &lt;list&gt;, links &lt;list&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   assets &lt;named list&gt;, published &lt;chr&gt;, updated &lt;chr&gt;, `sci:doi` &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   `cads:message` &lt;list&gt;, `cads:disabled_reason` &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   `cads:sanity_check` &lt;list&gt;, `cads:update_frequency` &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   `cads:fair` &lt;int&gt;</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;">#   `cads:disabled_reason` &lt;chr&gt;, `cads:sanity_check` &lt;list&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   `cads:update_frequency` &lt;chr&gt;, `cads:fair` &lt;int&gt;, `cads:message` &lt;list&gt;</span></span></span></code></pre></div>
 <p>But you can also look for specific datasets using free search text
 and / or predefined keywords:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/conditions.html" class="external-link">tryCatch</a></span><span class="op">(</span><span class="op">{</span></span>
 <span>  <span class="fu"><a href="../reference/cds_search_datasets.html">cds_search_datasets</a></span><span class="op">(</span>search <span class="op">=</span> <span class="st">"rain"</span>, keywords <span class="op">=</span> <span class="st">"Temporal coverage: Future"</span><span class="op">)</span></span>
-<span><span class="op">}</span><span class="op">)</span></span>
+<span><span class="op">}</span>, error <span class="op">=</span> \<span class="op">(</span><span class="va">e</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">message</a></span><span class="op">(</span><span class="st">"Failed to search for datasets"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 9 × 12</span></span></span>
 <span><span class="co">#&gt;   type       stac_version id           title description links  keywords license</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span></span>
@@ -265,7 +264,7 @@ You can start by obtaining the <code><a href="../reference/cds_dataset_form.html
 <span>  <span class="va">dataset_form</span> <span class="op">&lt;-</span></span>
 <span>    <span class="fu"><a href="../reference/cds_dataset_form.html">cds_dataset_form</a></span><span class="op">(</span><span class="st">"reanalysis-era5-pressure-levels"</span><span class="op">)</span></span>
 <span>  <span class="va">dataset_form</span></span>
-<span><span class="op">}</span><span class="op">)</span></span>
+<span><span class="op">}</span>, error <span class="op">=</span> \<span class="op">(</span><span class="va">e</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">message</a></span><span class="op">(</span><span class="st">"Failed to retrieve request form"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 13 × 9</span></span></span>
 <span><span class="co">#&gt;    name            label      required css   type  id    help  details  children</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>  </span></span>
@@ -307,16 +306,7 @@ dataset:</p>
 <span>  <span class="va">request</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cds_build_request.html">cds_build_request</a></span><span class="op">(</span><span class="st">"reanalysis-era5-pressure-levels"</span><span class="op">)</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">request</span><span class="op">)</span></span>
 <span><span class="op">}</span>, error <span class="op">=</span> \<span class="op">(</span><span class="va">e</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">message</a></span><span class="op">(</span><span class="st">"Failed to build request"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                 Length Class  Mode     </span></span>
-<span><span class="co">#&gt; product_type     1     -none- character</span></span>
-<span><span class="co">#&gt; variable        16     -none- list     </span></span>
-<span><span class="co">#&gt; year            87     -none- list     </span></span>
-<span><span class="co">#&gt; month           12     -none- list     </span></span>
-<span><span class="co">#&gt; day             31     -none- list     </span></span>
-<span><span class="co">#&gt; time            24     -none- list     </span></span>
-<span><span class="co">#&gt; pressure_level  37     -none- list     </span></span>
-<span><span class="co">#&gt; data_format      1     -none- character</span></span>
-<span><span class="co">#&gt; download_format  1     -none- character</span></span></code></pre></div>
+<span><span class="co">#&gt; Failed to build request</span></span></code></pre></div>
 <p>The function <code><a href="../reference/cds_build_request.html">cds_build_request()</a></code> will automatically add
 all required parameters to the request and fills it with either their
 default value, if available, or all allowed values otherwise. The
@@ -336,7 +326,7 @@ narrow it down:</p>
 <span>    area           <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">60</span>, w <span class="op">=</span> <span class="op">-</span><span class="fl">5</span>, s <span class="op">=</span> <span class="fl">40</span>, e <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>,</span>
 <span>    data_format    <span class="op">=</span> <span class="st">"netcdf"</span><span class="op">)</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">request</span><span class="op">)</span></span>
-<span><span class="op">}</span><span class="op">)</span></span>
+<span><span class="op">}</span>, error <span class="op">=</span> \<span class="op">(</span><span class="va">e</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">message</a></span><span class="op">(</span><span class="st">"Failed to build the request"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                 Length Class  Mode     </span></span>
 <span><span class="co">#&gt; variable         1     -none- list     </span></span>
 <span><span class="co">#&gt; pressure_level   1     -none- list     </span></span>
@@ -362,7 +352,7 @@ as follows:</p>
 <code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="../reference/cds_check_authentication.html">cds_token_works</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/conditions.html" class="external-link">tryCatch</a></span><span class="op">(</span><span class="op">{</span></span>
 <span>    <span class="fu"><a href="../reference/cds_estimate_costs.html">cds_estimate_costs</a></span><span class="op">(</span><span class="st">"reanalysis-era5-pressure-levels"</span><span class="op">)</span></span>
-<span>  <span class="op">}</span><span class="op">)</span></span>
+<span>  <span class="op">}</span>, error <span class="op">=</span> \<span class="op">(</span><span class="va">e</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">message</a></span><span class="op">(</span><span class="st">"Failed to estimate costs"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">message</a></span><span class="op">(</span><span class="st">"You need a working token to estimate costs"</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
@@ -381,7 +371,7 @@ get:</p>
 <code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="../reference/cds_check_authentication.html">cds_token_works</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/conditions.html" class="external-link">tryCatch</a></span><span class="op">(</span><span class="op">{</span></span>
 <span>    <span class="fu"><a href="../reference/cds_estimate_costs.html">cds_estimate_costs</a></span><span class="op">(</span><span class="va">request</span><span class="op">)</span></span>
-<span>  <span class="op">}</span><span class="op">)</span></span>
+<span>  <span class="op">}</span>, error <span class="op">=</span> \<span class="op">(</span><span class="va">e</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">message</a></span><span class="op">(</span><span class="st">"Failed to estimate costs"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">message</a></span><span class="op">(</span><span class="st">"You need a working token to estimate costs"</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
@@ -408,14 +398,14 @@ request as shown above:</p>
 <span>    <span class="va">job</span> <span class="op">&lt;-</span></span>
 <span>      <span class="fu"><a href="../reference/cds_submit_job.html">cds_submit_job</a></span><span class="op">(</span><span class="va">request</span><span class="op">)</span></span>
 <span>    <span class="va">job</span></span>
-<span>  <span class="op">}</span><span class="op">)</span></span>
+<span>  <span class="op">}</span>, error <span class="op">=</span> \<span class="op">(</span><span class="va">e</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">message</a></span><span class="op">(</span><span class="st">"Failed to submit job"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">message</a></span><span class="op">(</span><span class="st">"You need a working token to submit a request"</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 10</span></span></span>
 <span><span class="co">#&gt;   processID           type  jobID status created started finished updated links </span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> reanalysis-era5-pr… proc… 4e11… succe… 2026-0… 2026-0… 2026-07… 2026-0… <span style="color: #949494;">&lt;list&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> reanalysis-era5-pr… proc… 8935… succe… 2026-0… 2026-0… 2026-07… 2026-0… <span style="color: #949494;">&lt;list&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 1 more variable: metadata &lt;list&gt;</span></span></span></code></pre></div>
 <p>By default this function will wait until the request has been
 processed by C3S. But when you set the argument
@@ -441,7 +431,7 @@ at the status of our job submitted above:</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 10</span></span></span>
 <span><span class="co">#&gt;   processID           type  jobID status created started finished updated links </span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> reanalysis-era5-pr… proc… 4e11… succe… 2026-0… 2026-0… 2026-07… 2026-0… <span style="color: #949494;">&lt;list&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> reanalysis-era5-pr… proc… 8935… succe… 2026-0… 2026-0… 2026-07… 2026-0… <span style="color: #949494;">&lt;list&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 1 more variable: metadata &lt;list&gt;</span></span></span></code></pre></div>
 </div>
 <div class="section level2">
@@ -459,7 +449,7 @@ now let’s try to download the submitted job:</p>
 <span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="../reference/cds_check_authentication.html">cds_token_works</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/conditions.html" class="external-link">tryCatch</a></span><span class="op">(</span><span class="op">{</span></span>
 <span>    <span class="va">file_result</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cds_download_jobs.html">cds_download_jobs</a></span><span class="op">(</span><span class="va">job</span><span class="op">$</span><span class="va">jobID</span>, <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">filename</span><span class="op">)</span></span>
-<span>  <span class="op">}</span><span class="op">)</span></span>
+<span>  <span class="op">}</span>, error <span class="op">=</span> \<span class="op">(</span><span class="va">e</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">message</a></span><span class="op">(</span><span class="st">"Failed to download job"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">message</a></span><span class="op">(</span><span class="st">"Downloading data only works with a valid token"</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
@@ -477,7 +467,7 @@ now let’s try to download the submitted job:</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://r-spatial.github.io/stars/reference/geom_stars.html" class="external-link">geom_stars</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">result</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">coord_sf</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/strptime.html" class="external-link">strftime</a></span><span class="op">(</span><span class="va">valid_time</span>, <span class="st">"%H:%M"</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/strptime.html" class="external-link">strftime</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html" class="external-link">as.POSIXct</a></span><span class="op">(</span><span class="va">valid_time</span><span class="op">)</span>, <span class="st">"%H:%M"</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">scale_fill_viridis_c</a></span><span class="op">(</span>option <span class="op">=</span> <span class="st">"turbo"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="cn">NULL</span>, y <span class="op">=</span> <span class="cn">NULL</span>, fill <span class="op">=</span> <span class="st">"Temperature [K]"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>axis.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
@@ -485,6 +475,7 @@ now let’s try to download the submitted job:</p>
 <span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">message</a></span><span class="op">(</span><span class="st">"File wasn't downloaded"</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
+<p><img src="download_files/figure-html/plot-1.png" class="r-plt" alt="Plot created from downloaded data" width="672"></p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

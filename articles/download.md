@@ -78,7 +78,7 @@ tryCatch({
 
   licence_info <- licence_info$details[[1]]$details$licences[[1]]
   print(licence_info)
-})
+}, error = \(e) message("Failed to get licence info"))
 #> $id
 #> [1] "cc-by"
 #> 
@@ -129,26 +129,25 @@ listing them all:
 
 tryCatch({
   cds_list_datasets()
-})
+}, error = \(e) message("Failed to retrieve datasets"))
 #> # A tibble: 137 × 20
 #>    type  id    stac_version title description summaries    providers    keywords
 #>    <chr> <chr> <chr>        <chr> <chr>       <list>       <list>       <list>  
-#>  1 Coll… deri… 1.1.0        ERA5… "ERA5 is t… <named list> <named list> <list>  
-#>  2 Coll… rean… 1.1.0        ERA5… "ERA5-Land… <named list> <named list> <list>  
+#>  1 Coll… rean… 1.1.0        ERA5… "ERA5-Land… <named list> <named list> <list>  
+#>  2 Coll… sis-… 1.1.0        Agro… "This cata… <named list> <named list> <list>  
 #>  3 Coll… rean… 1.1.0        ERA5… "ERA5-Land… <named list> <named list> <list>  
 #>  4 Coll… rean… 1.1.0        ERA5… "ERA5 is t… <named list> <named list> <list>  
-#>  5 Coll… deri… 1.1.0        Ther… "This data… <named list> <named list> <list>  
-#>  6 Coll… sis-… 1.1.0        Agro… "This data… <named list> <named list> <list>  
-#>  7 Coll… sis-… 1.1.0        Agro… "This cata… <named list> <named list> <list>  
-#>  8 Coll… rean… 1.1.0        ERA5… "ERA5 is t… <named list> <named list> <list>  
-#>  9 Coll… rean… 1.1.0        ERA5… "ERA5 is t… <named list> <named list> <list>  
-#> 10 Coll… deri… 1.1.0        ERA5… "ERA5-Land… <named list> <named list> <list>  
+#>  5 Coll… sis-… 1.1.0        Agro… "This data… <named list> <named list> <list>  
+#>  6 Coll… rean… 1.1.0        ERA5… "ERA5 is t… <named list> <named list> <list>  
+#>  7 Coll… rean… 1.1.0        ERA5… "ERA5 is t… <named list> <named list> <list>  
+#>  8 Coll… deri… 1.1.0        ERA5… "ERA5-Land… <named list> <named list> <list>  
+#>  9 Coll… sate… 1.1.0        Uppe… "Upper Tro… <named list> <named list> <list>  
+#> 10 Coll… deri… 1.1.0        ERA5… "ERA5 is t… <named list> <named list> <list>  
 #> # ℹ 127 more rows
 #> # ℹ 12 more variables: license <chr>, extent <list>, links <list>,
 #> #   assets <named list>, published <chr>, updated <chr>, `sci:doi` <chr>,
-#> #   `cads:message` <list>, `cads:disabled_reason` <chr>,
-#> #   `cads:sanity_check` <list>, `cads:update_frequency` <chr>,
-#> #   `cads:fair` <int>
+#> #   `cads:disabled_reason` <chr>, `cads:sanity_check` <list>,
+#> #   `cads:update_frequency` <chr>, `cads:fair` <int>, `cads:message` <list>
 ```
 
 But you can also look for specific datasets using free search text and /
@@ -158,7 +157,7 @@ or predefined keywords:
 
 tryCatch({
   cds_search_datasets(search = "rain", keywords = "Temporal coverage: Future")
-})
+}, error = \(e) message("Failed to search for datasets"))
 #> # A tibble: 9 × 12
 #>   type       stac_version id           title description links  keywords license
 #> * <chr>      <chr>        <chr>        <chr> <chr>       <list> <list>   <chr>  
@@ -213,7 +212,7 @@ tryCatch({
   dataset_form <-
     cds_dataset_form("reanalysis-era5-pressure-levels")
   dataset_form
-})
+}, error = \(e) message("Failed to retrieve request form"))
 #> # A tibble: 13 × 9
 #>    name            label      required css   type  id    help  details  children
 #>    <chr>           <chr>      <lgl>    <chr> <chr> <chr> <chr> <list>   <list>  
@@ -262,16 +261,7 @@ tryCatch({
   request <- cds_build_request("reanalysis-era5-pressure-levels")
   summary(request)
 }, error = \(e) message("Failed to build request"))
-#>                 Length Class  Mode     
-#> product_type     1     -none- character
-#> variable        16     -none- list     
-#> year            87     -none- list     
-#> month           12     -none- list     
-#> day             31     -none- list     
-#> time            24     -none- list     
-#> pressure_level  37     -none- list     
-#> data_format      1     -none- character
-#> download_format  1     -none- character
+#> Failed to build request
 ```
 
 The function
@@ -296,7 +286,7 @@ tryCatch({
     area           = c(n = 60, w = -5, s = 40, e = 10),
     data_format    = "netcdf")
   summary(request)
-})
+}, error = \(e) message("Failed to build the request"))
 #>                 Length Class  Mode     
 #> variable         1     -none- list     
 #> pressure_level   1     -none- list     
@@ -326,7 +316,7 @@ estimated costs are as follows:
 if (cds_token_works()) {
   tryCatch({
     cds_estimate_costs("reanalysis-era5-pressure-levels")
-  })
+  }, error = \(e) message("Failed to estimate costs"))
 } else {
   message("You need a working token to estimate costs")
 }
@@ -348,7 +338,7 @@ fail. If we estimate the costs for the more restricted request, we get:
 if (cds_token_works()) {
   tryCatch({
     cds_estimate_costs(request)
-  })
+  }, error = \(e) message("Failed to estimate costs"))
 } else {
   message("You need a working token to estimate costs")
 }
@@ -377,14 +367,14 @@ if (cds_token_works()) {
     job <-
       cds_submit_job(request)
     job
-  })
+  }, error = \(e) message("Failed to submit job"))
 } else {
   message("You need a working token to submit a request")
 }
 #> # A tibble: 1 × 10
 #>   processID           type  jobID status created started finished updated links 
 #>   <chr>               <chr> <chr> <chr>  <chr>   <chr>   <chr>    <chr>   <list>
-#> 1 reanalysis-era5-pr… proc… 4e11… succe… 2026-0… 2026-0… 2026-07… 2026-0… <list>
+#> 1 reanalysis-era5-pr… proc… 8935… succe… 2026-0… 2026-0… 2026-07… 2026-0… <list>
 #> # ℹ 1 more variable: metadata <list>
 ```
 
@@ -413,7 +403,7 @@ if (cds_token_works()) {
 #> # A tibble: 1 × 10
 #>   processID           type  jobID status created started finished updated links 
 #>   <chr>               <chr> <chr> <chr>  <chr>   <chr>   <chr>    <chr>   <list>
-#> 1 reanalysis-era5-pr… proc… 4e11… succe… 2026-0… 2026-0… 2026-07… 2026-0… <list>
+#> 1 reanalysis-era5-pr… proc… 8935… succe… 2026-0… 2026-0… 2026-07… 2026-0… <list>
 #> # ℹ 1 more variable: metadata <list>
 ```
 
@@ -434,7 +424,7 @@ filename <- "result.nc"
 if (cds_token_works()) {
   tryCatch({
     file_result <- cds_download_jobs(job$jobID, tempdir(), filename)
-  })
+  }, error = \(e) message("Failed to download job"))
 } else {
   message("Downloading data only works with a valid token")
 }
@@ -456,7 +446,7 @@ if (file.exists(fn)) {
   ggplot() +
     geom_stars(data = result) +
     coord_sf() +
-    facet_wrap(~strftime(valid_time, "%H:%M"), nrow = 3) +
+    facet_wrap(~strftime(as.POSIXct(valid_time), "%H:%M"), nrow = 3) +
     scale_fill_viridis_c(option = "turbo") +
     labs(x = NULL, y = NULL, fill = "Temperature [K]") +
     theme(axis.text = element_blank())
@@ -465,3 +455,6 @@ if (file.exists(fn)) {
   message("File wasn't downloaded")
 }
 ```
+
+![Plot created from downloaded
+data](download_files/figure-html/plot-1.png)
