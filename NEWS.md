@@ -1,3 +1,7 @@
+# CopernicusClimate v0.0.6.0001
+
+ * Updated README
+
 # CopernicusClimate v0.0.6
 
  * Corrected NEWS file

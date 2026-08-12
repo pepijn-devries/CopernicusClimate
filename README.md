@@ -89,6 +89,8 @@ More R packages for exploring other Copernicus data services:
 
 - [CopernicusMarine](https://github.com/pepijn-devries/CopernicusMarine)
   Dedicated to marine datasets
+- [CopernicusDataspace](https://github.com/pepijn-devries/CopernicusDataspace)
+  Dedicated to Sentinel mission data and more
 
 ## Code of Conduct
 
