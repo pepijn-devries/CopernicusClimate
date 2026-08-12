@@ -1,6 +1,12 @@
 # Changelog
 
+## CopernicusClimate v0.0.6.0001
+
+- Updated README
+
 ## CopernicusClimate v0.0.6
+
+CRAN release: 2026-07-20
 
 - Corrected NEWS file
 - Fixed test to pass CRAN checks

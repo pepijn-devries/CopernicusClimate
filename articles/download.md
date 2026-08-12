@@ -57,10 +57,7 @@ message(
   ifelse(
     cds_token_works(), "has", "does not have"),
   " a working token")
-#> Waiting 4s for retry backoff ■■■■■■■■■                       
-#> Waiting 4s for retry backoff ■■■■■■■■■■■■■■■■■■              
-#> Waiting 4s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> The machine that rendered this vignette does not have a working token
+#> The machine that rendered this vignette has a working token
 ```
 
 ### Licences
@@ -82,6 +79,23 @@ tryCatch({
   licence_info <- licence_info$details[[1]]$details$licences[[1]]
   print(licence_info)
 }, error = \(e) message("Failed to get licence info"))
+#> $id
+#> [1] "cc-by"
+#> 
+#> $revision
+#> [1] 1
+#> 
+#> $label
+#> [1] "CC-BY licence"
+#> 
+#> $contents_url
+#> [1] "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/cc-by/cc-byv1_2b61eb0b42e053566cb9447c1d2847a69a275c095e00fca00bad1bf5326a9432.md"
+#> 
+#> $attachment_url
+#> [1] "https://spdx.org/licenses/CC-BY-4.0"
+#> 
+#> $spdx_identifier
+#> [1] "CC-BY-4.0"
 ```
 
 You can accept this licence by calling
@@ -116,7 +130,24 @@ listing them all:
 tryCatch({
   cds_list_datasets()
 }, error = \(e) message("Failed to retrieve datasets"))
-#> Failed to retrieve datasets
+#> # A tibble: 140 × 20
+#>    type  id    stac_version title description summaries    providers    keywords
+#>    <chr> <chr> <chr>        <chr> <chr>       <list>       <list>       <list>  
+#>  1 Coll… sate… 1.1.0        Sea … "This data… <named list> <named list> <list>  
+#>  2 Coll… sate… 1.1.0        Soil… "The C3S s… <named list> <named list> <list>  
+#>  3 Coll… deri… 1.1.0        ERA5… "ERA5 is t… <named list> <named list> <list>  
+#>  4 Coll… rean… 1.1.0        ERA5… "ERA5 is t… <named list> <named list> <list>  
+#>  5 Coll… deri… 1.1.0        Ther… "This data… <named list> <named list> <list>  
+#>  6 Coll… sate… 1.1.0        Sea … "This data… <named list> <named list> <list>  
+#>  7 Coll… sis-… 1.1.0        Agro… "This data… <named list> <named list> <list>  
+#>  8 Coll… rean… 1.1.0        ERA5… "ERA5-Land… <named list> <named list> <list>  
+#>  9 Coll… rean… 1.1.0        ERA5… "ERA5 is t… <named list> <named list> <list>  
+#> 10 Coll… deri… 1.1.0        ERA5… "ERA5-Land… <named list> <named list> <list>  
+#> # ℹ 130 more rows
+#> # ℹ 12 more variables: license <chr>, extent <list>, links <list>,
+#> #   assets <named list>, published <chr>, updated <chr>, `sci:doi` <chr>,
+#> #   `cads:disabled_reason` <chr>, `cads:sanity_check` <list>,
+#> #   `cads:update_frequency` <chr>, `cads:fair` <int>, `cads:message` <list>
 ```
 
 But you can also look for specific datasets using free search text and /
@@ -127,7 +158,21 @@ or predefined keywords:
 tryCatch({
   cds_search_datasets(search = "rain", keywords = "Temporal coverage: Future")
 }, error = \(e) message("Failed to search for datasets"))
-#> Failed to search for datasets
+#> # A tibble: 10 × 12
+#>    type       stac_version id          title description links  keywords license
+#>  * <chr>      <chr>        <chr>       <chr> <chr>       <list> <list>   <chr>  
+#>  1 Collection 1.1.0        projection… CMIP… "This cata… <list> <list>   other  
+#>  2 Collection 1.1.0        sis-hydrol… Mult… "This data… <list> <list>   CC-BY-…
+#>  3 Collection 1.1.0        sis-energy… Clim… "This data… <list> <list>   CC-BY-…
+#>  4 Collection 1.1.0        projection… CORD… "This cata… <list> <list>   other  
+#>  5 Collection 1.1.0        sis-touris… Moun… "This data… <list> <list>   CC-BY-…
+#>  6 Collection 1.1.0        sis-ecv-cm… Esse… "This data… <list> <list>   other  
+#>  7 Collection 1.1.0        sis-hydrol… Temp… "This data… <list> <list>   CC-BY-…
+#>  8 Collection 1.1.0        sis-ecde-c… Clim… "This data… <list> <list>   CC-BY-…
+#>  9 Collection 1.1.0        sis-energy… Clim… "The Pan-E… <list> <list>   other  
+#> 10 Collection 1.1.0        projection… CMIP… "This cata… <list> <list>   other  
+#> # ℹ 4 more variables: providers <list>, extent <list>, summaries <list>,
+#> #   assets <named list>
 ```
 
 Use
@@ -169,7 +214,22 @@ tryCatch({
     cds_dataset_form("reanalysis-era5-pressure-levels")
   dataset_form
 }, error = \(e) message("Failed to retrieve request form"))
-#> Failed to retrieve request form
+#> # A tibble: 13 × 9
+#>    name            label      required css   type  id    help  details  children
+#>    <chr>           <chr>      <lgl>    <chr> <chr> <chr> <chr> <list>   <list>  
+#>  1 product_type    Product t… TRUE     todo  Stri… prod… NA    <tibble> <tibble>
+#>  2 variable        Variable   TRUE     todo  Stri… vari… Plea… <tibble> <tibble>
+#>  3 year            Year       TRUE     todo  Stri… year  NA    <tibble> <tibble>
+#>  4 month           Month      TRUE     todo  Stri… month NA    <tibble> <tibble>
+#>  5 day             Day        TRUE     todo  Stri… day   NA    <tibble> <tibble>
+#>  6 time            Time       TRUE     todo  Stri… time  UTC … <tibble> <tibble>
+#>  7 pressure_level  Pressure … TRUE     todo  Stri… pres… NA    <tibble> <tibble>
+#>  8 area_group      Geographi… NA       NA    Excl… area… Sele… <tibble> <tibble>
+#>  9 global          Whole ava… NA       NA    Free… glob… NA    <tibble> <tibble>
+#> 10 area            Sub-regio… NA       NA    Geog… area  Sele… <tibble> <tibble>
+#> 11 data_format     Data form… TRUE     todo  Stri… data… Sele… <tibble> <tibble>
+#> 12 download_format Download … TRUE     todo  Stri… down… If y… <tibble> <tibble>
+#> 13 licences        Terms of … NA       NA    Lice… NA    NA    <tibble> <tibble>
 ```
 
 This results in a `data.frame` listing which aspects of a dataset you
@@ -186,6 +246,10 @@ values <-
   pull("details")
 
 values[[1]]$details$values |> unlist()
+#>  [1] "1"    "2"    "3"    "5"    "7"    "10"   "20"   "30"   "50"   "70"  
+#> [11] "100"  "125"  "150"  "175"  "200"  "225"  "250"  "300"  "350"  "400" 
+#> [21] "450"  "500"  "550"  "600"  "650"  "700"  "750"  "775"  "800"  "825" 
+#> [31] "850"  "875"  "900"  "925"  "950"  "975"  "1000"
 ```
 
 Using this information you can start building your request using
@@ -198,7 +262,16 @@ tryCatch({
   request <- cds_build_request("reanalysis-era5-pressure-levels")
   summary(request)
 }, error = \(e) message("Failed to build request"))
-#> Failed to build request
+#>                 Length Class  Mode     
+#> product_type     1     -none- character
+#> variable        16     -none- list     
+#> year            87     -none- list     
+#> month           12     -none- list     
+#> day             31     -none- list     
+#> time            24     -none- list     
+#> pressure_level  37     -none- list     
+#> data_format      1     -none- character
+#> download_format  1     -none- character
 ```
 
 The function
@@ -224,7 +297,17 @@ tryCatch({
     data_format    = "netcdf")
   summary(request)
 }, error = \(e) message("Failed to build the request"))
-#> Failed to build the request
+#>                 Length Class  Mode     
+#> variable         1     -none- list     
+#> pressure_level   1     -none- list     
+#> year             1     -none- list     
+#> month            1     -none- list     
+#> day              1     -none- list     
+#> area             4     -none- numeric  
+#> data_format      1     -none- character
+#> product_type     1     -none- character
+#> time            24     -none- list     
+#> download_format  1     -none- character
 ```
 
 This looks like a reasonable request.
@@ -247,7 +330,14 @@ if (cds_token_works()) {
 } else {
   message("You need a working token to estimate costs")
 }
-#> You need a working token to estimate costs
+#> $id
+#> [1] "size"
+#> 
+#> $cost
+#> [1] 451487616
+#> 
+#> $limit
+#> [1] 60000
 ```
 
 In this example the costs exceed the limit, such that this request will
@@ -262,6 +352,14 @@ if (cds_token_works()) {
 } else {
   message("You need a working token to estimate costs")
 }
+#> $id
+#> [1] "size"
+#> 
+#> $cost
+#> [1] 144
+#> 
+#> $limit
+#> [1] 60000
 ```
 
 This is a request that we can afford.
@@ -283,6 +381,11 @@ if (cds_token_works()) {
 } else {
   message("You need a working token to submit a request")
 }
+#> # A tibble: 1 × 10
+#>   processID           type  jobID status created started finished updated links 
+#>   <chr>               <chr> <chr> <chr>  <chr>   <chr>   <chr>    <chr>   <list>
+#> 1 reanalysis-era5-pr… proc… fa14… succe… 2026-0… 2026-0… 2026-08… 2026-0… <list>
+#> # ℹ 1 more variable: metadata <list>
 ```
 
 By default this function will wait until the request has been processed
@@ -307,6 +410,11 @@ if (cds_token_works()) {
 } else {
   message("You need a working token to get a job status")
 }
+#> # A tibble: 1 × 10
+#>   processID           type  jobID status created started finished updated links 
+#>   <chr>               <chr> <chr> <chr>  <chr>   <chr>   <chr>    <chr>   <list>
+#> 1 reanalysis-era5-pr… proc… fa14… succe… 2026-0… 2026-0… 2026-08… 2026-0… <list>
+#> # ℹ 1 more variable: metadata <list>
 ```
 
 ## Downloading data
@@ -357,3 +465,6 @@ if (file.exists(fn)) {
   message("File wasn't downloaded")
 }
 ```
+
+![Plot created from downloaded
+data](download_files/figure-html/plot-1.png)
